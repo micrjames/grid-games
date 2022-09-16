@@ -1,0 +1,7 @@
+@import 'utils/config', 'utils/utils', 'utils/about', 'utils/button', 'header', 'footer', 'main-plfd';
+
+$primary-color:  #282828;
+
+body {
+   background-color: $primary-color;
+}

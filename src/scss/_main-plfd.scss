@@ -1,0 +1,65 @@
+$secondary-color: #ff652f;
+
+main {
+   #games-grid {
+	  &-title {
+		 color: white;
+		 font-size: 1.75rem;
+		 padding: 10vh 0 0 0;
+		 text-align: center;
+		 text-decoration: underline;
+	  }
+	  .games-grid-game {
+		 width: 75vmin;
+		 height: 60vmin;
+
+		 img {
+			width: 100%;
+			height: 85%;
+		 }
+
+		 &-description {
+			color: white;
+			width: 100%;
+			height: 15%;
+			background-color: $secondary-color;
+			text-align: center;
+			font-size: 1.5rem;
+			padding-top: 0.75rem;
+		 }
+	  }
+	  .game-1 {
+		 position: absolute;
+		 top: 50%;
+		 left: 50%;
+		 transform: translate(-50%, -50%);
+	  }
+   }
+   #games-btn-group {
+	  position: absolute;
+	  bottom: 10%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  width: 75vmin;
+	  display: flex;
+	  justify-content: space-between;
+	  &-prev {
+		 @include button(1.2rem, 1rem 1.2rem, 0);
+		 @include box-shadow(6px, 2px, 9px, 2px, rgba(0, 0, 0, 0.6), false); 
+		 @include transition-ease;
+
+		 &:active {
+			box-shadow: none;
+		 }
+	  }
+	  &-next {
+		 @include button(1.2rem, 1rem 1.2rem, 0);
+		 @include box-shadow(6px, 2px, 9px, 2px, rgba(0, 0, 0, 0.6), false); 
+		 @include transition-ease;
+
+		 &:active {
+			box-shadow: none;
+		 }
+	  }
+   }
+}

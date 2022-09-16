@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+   	<meta charset="UTF-8">
+   	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   	<link rel="stylesheet" href="css/main.css">
+   	<title>Grid Games</title>
+    <script src="https://kit.fontawesome.com/aaeb479cf8.js" crossorigin="anonymous"></script>
+	</head>
+	<body>
+	   <header>
+		  <nav>
+			 <menu>
+				<li id="modal-trigger">About Games</li>
+			 </menu>
+		  </nav>
+	   </header>
+	   <main>
+		  <section id="games-grid">
+			 <h1 id="games-grid-title">Some grid-based games.</h1>
+             <figure class="games-grid-game game-1">
+				<img src="/images/cityscape.jpg" alt="" title="">
+				<figcaption class="games-grid-game-description">        
+				   Game Title
+				</figcaption>
+             </figure>
+		  </section>
+		  <section id="games-btn-group">
+			 <button id="games-btn-group-prev">
+				<i class="fa-solid fa-less-than"></i>
+			 </button>
+			 <button id="games-btn-group-next">
+			    <i class="fa-solid fa-greater-than"></i>
+			 </button>
+		  </section>
+		  <section class="modal hidden">
+			 <div class="modal-header">
+				<div class="modal-header-close">
+				   <i class="fa-solid fa-xmark"></i>
+				</div>
+				<div class="modal-header-text">About the Games</div>
+			 </div>
+			 <div class="modal-body">
+				<p>
+				The games presented here are built on a grid system using plain JavaScript, combined with html and css, in this case, transpiled from scss files.
+				</p>
+				<p>
+				Each game works a little differently, so the rules and the information necessary to play them is made available when the game is selected.
+				</p>
+				<p>
+				However, all of these games should be familiar to just about everyone, so it shouldn't be too tough to pick it up.
+				</p>
+			 </div>
+		  </section>
+	   </main>
+	   <footer>
+		  <section id="footer">
+			 &#169; Michael James, 2021
+		  </section>
+	   </footer>
+   	<script src="js/index.js" type="module"></script>
+	</body>
+</html>
