@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-   	<meta charset="UTF-8">
-   	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-   	<link rel="stylesheet" href="css/main.css">
-   	<title>Grid Games</title>
-    <script src="https://kit.fontawesome.com/aaeb479cf8.js" crossorigin="anonymous"></script>
+	   <meta charset="UTF-8">
+	   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	   <link rel="stylesheet" href="css/main.css">
+	   <title>Grid Games</title>
+	   <script src="https://kit.fontawesome.com/aaeb479cf8.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
 	   <header>
 		  <nav>
 			 <menu>
-				<li id="modal-trigger">About Games</li>
+				<li>Home</li>
+				<li><a href="about.html">About Games</a></li>
 			 </menu>
 		  </nav>
 	   </header>
@@ -24,11 +25,14 @@
 				<figcaption id="game-description" class="games-grid-game-description"></figcaption>
              </figure>
 		  </section>
-		  <section id="games-btn-group">
-			 <button id="games-btn-group-prev">
+		  <section class="games-btn-group">
+			 <button id="games-btn-group-prev" class="games-btn-group-btn">
 				<i class="fa-solid fa-less-than"></i>
 			 </button>
-			 <button id="games-btn-group-next">
+			 <button id="modal-trigger" class="games-btn-group-btn">
+				<i class="fa-solid fa-check-double"></i>
+			 </button>
+			 <button id="games-btn-group-next" class="games-btn-group-btn">
 			    <i class="fa-solid fa-greater-than"></i>
 			 </button>
 		  </section>
@@ -37,18 +41,10 @@
 				<div class="modal-header-close">
 				   <i class="fa-solid fa-xmark"></i>
 				</div>
-				<div class="modal-header-text">About the Games</div>
+				<div class="modal-header-text"></div>
 			 </div>
 			 <div class="modal-body">
-				<p>
-				The games presented here are built on a grid system using plain JavaScript, combined with html and css, in this case, transpiled from scss files.
-				</p>
-				<p>
-				Each game works a little differently, so the rules and the information necessary to play them is made available when the game is selected.
-				</p>
-				<p>
-				However, all of these games should be familiar to just about everyone, so it shouldn't be too tough to pick it up.
-				</p>
+				<div class="game-display"></div>
 			 </div>
 		  </section>
 	   </main>
