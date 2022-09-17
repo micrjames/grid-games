@@ -9,23 +9,23 @@ const setGamePostValues = function(which) {
 		 const gamePostEls = gameFigure.children;
 
 		 gamePostEls[0].setAttribute("src", gameValues[which]["image"]);
-
-		 const descriptionText = document.createTextNode(gameValues[which]["name"]);
-		 gamePostEls[1].append(descriptionText);
+		 gamePostEls[1].textContent = gameValues[which]["name"];
 	  }
    });
 };
 
 setGamePostValues(gamePostValuesIndex);
-if(gamePostValuesIndex == 0) {
-   gameBtnPrev.disabled = true;
-} else if(gamePostValuesIndex == gameValues.length-1) {
-   gameBtnNext.disabled = true;
-}
+gameBtnPrev.disabled = true;
 
 gameBtnPrev.addEventListener("click", function() {
    gamePostValuesIndex--;
+   if(gamePostValuesIndex == 0) gameBtnPrev.disabled = true;
+   if(gamePostValuesIndex != gameValues.length-1) gameBtnNext.disabled = false;
+   setGamePostValues(gamePostValuesIndex);
 });
 gameBtnNext.addEventListener("click", function() {
    gamePostValuesIndex++;
+   if(gamePostValuesIndex != 0) gameBtnPrev.disabled = false;
+   if(gamePostValuesIndex == gameValues.length-1) gameBtnNext.disabled = true;
+   setGamePostValues(gamePostValuesIndex);
 });
