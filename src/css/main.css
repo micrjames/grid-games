@@ -92,7 +92,7 @@ footer #footer {
 main #games-grid-title {
   color: white;
   font-size: 1.75rem;
-  padding: 10vh 0 0 0;
+  padding: 15vh 0 0 0;
   text-align: center;
   text-decoration: underline;
 }
@@ -146,6 +146,10 @@ main #games-btn-group-prev {
 main #games-btn-group-prev:active {
   box-shadow: none;
 }
+main #games-btn-group-prev:disabled {
+  box-shadow: none;
+  opacity: 0.2;
+}
 main #games-btn-group-next {
   display: inline-block;
   background: #000;
@@ -163,6 +167,10 @@ main #games-btn-group-next {
 }
 main #games-btn-group-next:active {
   box-shadow: none;
+}
+main #games-btn-group-next:disabled {
+  box-shadow: none;
+  opacity: 0.2;
 }
 
 body {
