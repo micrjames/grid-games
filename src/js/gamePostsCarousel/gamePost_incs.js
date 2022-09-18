@@ -2,7 +2,7 @@ const gameValues = [
    {
 	  "id": "1",
 	  "name": "Tic-Tac-Toe",
-	  "image": "../images/cityscape.jpg"
+	  "image": "../images/tic-tac-toe.png"
    },
    {
 	  "id": "2",

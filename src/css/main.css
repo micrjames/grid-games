@@ -62,11 +62,6 @@ footer #footer {
   margin: 0;
 }
 
-.modal .modal-body .game-display {
-  width: 100%;
-  height: 65vh;
-  background-color: white;
-}
 .modal .modal-body .game-display .game-tic-tac-toe {
   padding-top: 3rem;
 }
@@ -203,6 +198,11 @@ footer #footer {
   list-style-position: inside;
 }
 
+.modal .modal-body .game-display {
+  width: 100%;
+  height: 65vh;
+  background-color: white;
+}
 .modal {
   position: absolute;
   top: 50%;
