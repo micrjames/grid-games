@@ -36,9 +36,11 @@ const WINNING_COMBINATIONS = [
 	[2, 4, 6]
 ];
 
-const winningMessageElement = document.getElementById('winning-message');
+const instructionsMessageElement = document.querySelector(".instructions-message");
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]');
-const restartButton = document.getElementById('restart-button');
+const restartBtn = document.querySelector(".game-display-btn-group-reset");
+const btnGroup = document.querySelector(".game-display-btn-group");
+restartBtn.addEventListener("click", startGame);
 
 const X_CLASS = "x";
 const CIRCLE_CLASS = "circle";
@@ -57,6 +59,9 @@ function startGame() {
 	  cellEl.addEventListener("click", handleClick, { once: true });
    });
    setBoardHoverClass();
+   btnGroup.classList.add("hidden");
+   winningMessageTextElement.classList.add("hidden");
+   instructionsMessageElement.classList.remove("hidden");
 }
 
 function setBoardHoverClass() {
@@ -69,21 +74,16 @@ function handleClick(event) {
    const cell = event.target;
    const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS;
    placeMark(cell, currentClass);
-   swapTurns();
-   setBoardHoverClass();
-   /*
-   // check for Win
+
+   // check for a win
    if(checkWin(currentClass)) {
-		endGame(false);	
-	} else if(isDraw()) {
-		// Check for Draw
-		endGame(true);	
-	} else {
-		// Switch Turns
-		swapTurns();
-		setBoardHoverClass();
-	}
-	*/
+	  endGame(false);
+   } else if(checkDraw()) {
+	  endGame(true);
+   } else {
+	  swapTurns();
+	  setBoardHoverClass();
+   }
 }
 function swapTurns() {
    circleTurn = !circleTurn;
@@ -91,25 +91,28 @@ function swapTurns() {
 function placeMark(cell, currentClass) {
    cell.classList.add(currentClass);
 }
+
 function checkWin(currentClass) {
-	return WINNING_COMBINATIONS.some(combination => {
-		return combination.every(index => {
-				return cellElements[index].classList.contains(currentClass);
-		});
-	});
+   return WINNING_COMBINATIONS.some(combination => {
+	  return combination.every(index => {
+		   return cellEls[index].classList.contains(currentClass);
+	  });
+   });
 }
 
-function isDraw() {
-	return [...cellElements].every(cell => {
+function checkDraw() {
+   return [...cellEls].every(cell => {
 		return cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS);
-	});
+   });
 }
 
 function endGame(draw) {
-	if(draw) {
-		winningMessageTextElement.innerText = 'Draw!';
-	} else {
-		winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's"} Wins!`;
-	}
-	winningMessageElement.classList.add('show');
+   if(draw) {
+	  winningMessageTextElement.innerText = "It's a Draw!";
+   } else {
+	  winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's"} Wins the Game!`;
+   }
+   btnGroup.classList.remove("hidden");
+   winningMessageTextElement.classList.remove("hidden");
+   instructionsMessageElement.classList.add("hidden");
 }

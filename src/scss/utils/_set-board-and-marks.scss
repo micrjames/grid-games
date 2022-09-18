@@ -1,7 +1,7 @@
 @mixin set-board($cell-size) {
 	 .board {
 		width: 100%;
-		height: 85%;
+		height: 75%;
 
 		display: grid;
 		justify-content: center;
