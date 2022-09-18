@@ -1,4 +1,4 @@
-@import '../button', '../tic-tac-toe/ttt-styles';
+@import '../button', '../tic-tac-toe/ttt-styles', '../rock-paper-scissors/rps-styles';
 
 $primary-color:  #282828;
 $secondary-color: #ff652f;
@@ -11,6 +11,37 @@ $secondary-color: #ff652f;
 		background-color: white;
 	    	.game-tic-tac-toe {
 			   @extend %ttt;
+			}
+			.game-rock-paper-scissors {
+			   .selections {
+				  display: flex;
+				  justify-content: space-around;
+				  padding: 2rem;
+				  .selection {
+					 @include button(5.75rem, 0.75rem, 0);
+					 color: #222;
+					 background: none;
+					 border: none;
+					 outline: none;
+					 transition: 100ms;
+
+					 &:hover {
+						transform: scale(1.2);
+					 }
+				  }
+			   }
+			   .results {
+				  display: flex;
+				  justify-content: space-evenly;
+				  font-size: 1.75rem;
+				  span {
+					 .result-score {
+						padding-left: 0.5rem;
+						font-size: 1.95rem;
+					 }
+				  }
+			   }
+			   @extend %rps;
 			}
 		}   
    }

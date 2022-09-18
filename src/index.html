@@ -76,11 +76,48 @@
 					   </div>
 				   </div>
 				   <div class="game-rock-paper-scissors">
-					  Play some rps.
-				   </div>
-				   <div class="game-connect-four">
-					  Play some connect four.
-				   </div>
+					  <div class="selections">
+						 <button class="selection" data-selection="rock">
+							<i class="fa-regular fa-hand-back-fist"></i>
+						 </button>		<!-- Rock -->
+						 <button class="selection" data-selection="paper">
+							<i class="fa-regular fa-hand"></i>
+						 </button>		<!-- Paper -->
+						 <button class="selection" data-selection="scissors">
+							<i class="fa-regular fa-hand-scissors"></i>
+						 </button>		<!-- Scissors -->
+					  </div>
+					  <div class="results">
+						 <span>
+						    You
+						    <span class="result-score">0</span>
+						 </span>
+						 <span>
+						    Computer
+						    <span class="result-score">0</span>
+						 </span>
+					  </div>
+					  <div class="winning-message hidden">
+						   <div data-winning-message-text id="winning-message-text"></div>
+						   <div class="game-display-btn-group"> 
+							  <button class="game-display-btn-group-reset">
+								 <i class="fa-solid fa-arrows-rotate"></i>
+									Reset Game
+							  </button>
+						  </div>
+					   </div>
+					   <div class="instructions-message">
+						  <p>How to Play</p>
+						  <ul>
+							 <li>Click on a hand above.</li>
+							 <li>Another hand will be chosen.</li>
+							 <li>Paper beats rock. Rock beats scissors. Scissors beats paper.</li>
+							 <li>It&apos;s just that simple.</li>
+						  </ul>
+					   </div>
+				</div>
+				<div class="game-connect-four">
+					Play some connect four.
 				</div>
 			 </div>
 		  </section>
