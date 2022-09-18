@@ -1,11 +1,44 @@
+@import '../set-board-and-marks', '../button';
+
 $primary-color:  #282828;
 $secondary-color: #ff652f;
+
+$cell-size: 100px;
+$mark-size: $cell-size * .9;
 
 %modal-body {
    .game-display {
 		width: 100%;
 		height: 65vh;
 
-		background-color: black;
+		background-color: white;
+
+		@include set-board($cell-size);
+
+	    @include set-marks-x($mark-size);
+		@include set-marks-circle($mark-size);	
+
+		.winning-message {
+		   .game-display-btn-group {
+			  &-reset {
+				  position: absolute;
+				  left: 50%;
+				  transform: translateX(-50%);
+
+				  @include button(1.2rem, 1rem 1.2rem, 0);
+				  @include box-shadow(6px, 2px, 9px, 2px, rgba(0, 0, 0, 0.6), false); 
+				  @include transition-ease;
+
+				  &:active {
+					 box-shadow: none;
+				  }
+
+				  &:disabled {
+					 box-shadow: none;
+					 opacity: 0.2;
+				  }
+			  }
+		   }
+		}
    }
 }

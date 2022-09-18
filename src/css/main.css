@@ -61,7 +61,117 @@ footer #footer {
 .modal .modal-body .game-display {
   width: 100%;
   height: 65vh;
+  background-color: white;
+}
+.modal .modal-body .game-display .board {
+  width: 100%;
+  height: 85%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto);
+}
+.modal .modal-body .game-display .board .cell {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+.modal .modal-body .game-display .board .cell:first-child, .modal .modal-body .game-display .board .cell:nth-child(2), .modal .modal-body .game-display .board .cell:nth-child(3) {
+  border-top: none;
+}
+.modal .modal-body .game-display .board .cell:nth-child(3n+1) {
+  border-left: none;
+}
+.modal .modal-body .game-display .board .cell:nth-child(3n+3) {
+  border-right: none;
+}
+.modal .modal-body .game-display .board .cell:last-child, .modal .modal-body .game-display .board .cell:nth-child(8), .modal .modal-body .game-display .board .cell:nth-child(7) {
+  border-bottom: none;
+}
+.modal .modal-body .game-display .cell.x {
+  cursor: not-allowed;
+}
+.modal .modal-body .game-display .cell.x::before, .modal .modal-body .game-display .cell.x::after {
   background-color: black;
+}
+.modal .modal-body .game-display .board.x .cell:not(.x):not(.circle):hover::before,
+.modal .modal-body .game-display .board.x .cell:not(.x):not(.circle):hover::after {
+  background-color: lightgrey;
+}
+.modal .modal-body .game-display .cell.x::before, .modal .modal-body .game-display .cell.x::after,
+.modal .modal-body .game-display .board.x .cell:not(.x):not(.circle):hover::before,
+.modal .modal-body .game-display .board.x .cell:not(.x):not(.circle):hover::after {
+  content: "";
+  position: absolute;
+  width: 13.5px;
+  height: 90px;
+}
+.modal .modal-body .game-display .cell.x::before,
+.modal .modal-body .game-display .board.x .cell:not(.x):not(.circle):hover::before {
+  transform: rotate(45deg);
+}
+.modal .modal-body .game-display .cell.x::after,
+.modal .modal-body .game-display .board.x .cell:not(.x):not(.circle):hover::after {
+  transform: rotate(-45deg);
+}
+.modal .modal-body .game-display .cell.circle {
+  cursor: not-allowed;
+}
+.modal .modal-body .game-display .cell.circle::before {
+  background-color: black;
+}
+.modal .modal-body .game-display .board.circle .cell:not(.x):not(.circle):hover::before {
+  background-color: lightgrey;
+}
+.modal .modal-body .game-display .cell.circle::before, .modal .modal-body .game-display .cell.circle::after,
+.modal .modal-body .game-display .board.circle .cell:not(.x):not(.circle):hover::before,
+.modal .modal-body .game-display .board.circle .cell:not(.x):not(.circle):hover::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.modal .modal-body .game-display .cell.circle::before,
+.modal .modal-body .game-display .board.circle .cell:not(.x):not(.circle):hover::before {
+  width: 90px;
+  height: 90px;
+}
+.modal .modal-body .game-display .cell.circle::after,
+.modal .modal-body .game-display .board.circle .cell:not(.x):not(.circle):hover::after {
+  width: 63px;
+  height: 63px;
+  background-color: white;
+}
+.modal .modal-body .game-display .winning-message .game-display-btn-group-reset {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 1rem 1.2rem;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s ease-in-out;
+}
+.modal .modal-body .game-display .winning-message .game-display-btn-group-reset:active {
+  box-shadow: none;
+}
+.modal .modal-body .game-display .winning-message .game-display-btn-group-reset:disabled {
+  box-shadow: none;
+  opacity: 0.2;
 }
 
 .modal {
