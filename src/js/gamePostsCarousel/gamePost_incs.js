@@ -6,12 +6,12 @@ const gameValues = [
    },
    {
 	  "id": "2",
-	  "name": "Game 2",
+	  "name": "Rock-paper-scissors",
 	  "image": "../images/cityscape.jpg"
    },
    {
 	  "id": 3,
-	  "name": "Game 3",
+	  "name": "Connect-four",
 	  "image": "../images/cityscape.jpg"
    }
 ];
@@ -21,4 +21,6 @@ const gameFigures = document.querySelectorAll("figure");
 const gameBtnPrev = document.querySelector("#games-btn-group-prev");
 const gameBtnNext = document.querySelector("#games-btn-group-next");
 
-export { gameValues, gameFigures, gameBtnPrev, gameBtnNext };
+const gameDisplay = document.querySelector(".game-display");
+
+export { gameValues, gameFigures, gameBtnPrev, gameBtnNext, gameDisplay };
