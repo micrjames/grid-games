@@ -7,7 +7,7 @@ const gameValues = [
    {
 	  "id": "2",
 	  "name": "Rock-paper-scissors",
-	  "image": "../images/cityscape.jpg"
+	  "image": "../images/rps.png"
    },
    {
 	  "id": 3,

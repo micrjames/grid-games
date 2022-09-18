@@ -1,49 +1,41 @@
 %rps {
-	.winning-message {
-		padding: 0.65rem 0;
-		#winning-message-text {
-		   text-align: center;
-		   font-size: 1.5rem;
-		   margin: 1.2rem 0;
-		}
-		.game-display-btn-group {
-		   &-reset {
-			   position: absolute;
-			   left: 50%;
-			   transform: translateX(-50%);
+  .game-display-btn-group {
+	 &-reset {
+		 position: absolute;
+		 left: 50%;
+		 top: 90%;
+		 transform: translateX(-50%);
 
-			   @include button(1.2rem, 1rem 1.2rem, 0);
-			   @include box-shadow(6px, 2px, 9px, 2px, rgba(0, 0, 0, 0.6), false);
-			   @include transition-ease;
+		 @include button(0.85rem, 0.6rem 1.2rem, 0);
+		 @include box-shadow(6px, 2px, 9px, 2px, rgba(0, 0, 0, 0.6), false);
+		 @include transition-ease;
 
-			   i {
-				  margin-right: 0.5rem;
-			   }
+		 i {
+			margin-right: 0.5rem;
+		 }
 
-			   &:active {
-				  box-shadow: none;
-			   }
+		 &:active {
+			box-shadow: none;
+		 }
 
-			   &:disabled {
-				  box-shadow: none;
-				  opacity: 0.2;
-			   }
-		   }
+		 &:disabled {
+			box-shadow: none;
+			opacity: 0.2;
+		 }
+	 }
+  }
+  .instructions-message {
+	 font-size: 1.15rem;
+	 p {
+		text-align: center;
+		text-decoration: underline;
+		margin: 0.85rem 0;
+	 }
+	 ul {
+		li {
+		   padding-left: 12%;
+		   list-style-position: inside;
 		}
 	 }
-	 .instructions-message {
-		p {
-		   text-align: center;
-		   text-decoration: underline;
-		   font-size: 1.5rem;
-		   margin: 1.2rem 0;
-		}
-		ul {
-		   li {
-			  font-size: 1.1rem;
-			  padding-left: 12%;
-			  list-style-position: inside;
-		   }
-		}
-   } 
+ } 
 }
