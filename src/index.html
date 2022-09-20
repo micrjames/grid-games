@@ -60,7 +60,7 @@
 					   <div class="winning-message">
 						  <div data-winning-message-text id="winning-message-text"></div>
 						  <div class="game-display-btn-group"> 
-							   <button class="game-display-btn-group-reset">
+							   <button class="game-display-btn-group-reset" id="restart-ttt">
 								  <i class="fa-solid fa-arrows-rotate"></i>
 								  Reset Game
 							   </button>
@@ -100,7 +100,7 @@
 						 </span>
 					  </div>
 						<div class="game-display-btn-group"> 
-						   <button class="game-display-btn-group-reset">
+						   <button class="game-display-btn-group-reset" id="restart-rps">
 							  <i class="fa-solid fa-arrows-rotate"></i>
 								 Reset Game
 						   </button>
@@ -116,7 +116,21 @@
 					   </div>
 				</div>
 				<div class="game-connect-four">
-					Play some connect four.
+				   <div class="cf-board"></div>
+				   <div class="winning-message hidden">
+                       <div data-winning-message-text id="winning-message-text">Red Wins</div>
+                       <div class="game-display-btn-group"> 
+                           <button class="game-display-btn-group-reset" id="restart-cf">
+                               <i class="fa-solid fa-arrows-rotate"></i>
+                                   Reset Game
+                           </button>
+                       </div>
+                   </div>
+                   <div class="instructions-message">
+					  <p>
+					  Just get four in a row, diagonally, horizontally, or vertically.
+					  </p>
+                   </div>
 				</div>
 			 </div>
 		  </section>

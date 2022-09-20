@@ -12,7 +12,7 @@ const gameValues = [
    {
 	  "id": 3,
 	  "name": "Connect-four",
-	  "image": "../images/cityscape.jpg"
+	  "image": "../images/cf.png"
    }
 ];
  

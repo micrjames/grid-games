@@ -1,10 +1,13 @@
+/* includes */
 import { gameValues, gameBtnPrev, gameBtnNext } from "./gamePostsCarousel/gamePost_incs.js";
 import { setGamePostValues } from "./gamePostsCarousel/setGamePosts.js";
 import { setShowGame } from "./gamePostsCarousel/setShowGame.js";
 import { modalTrigger, modalHdrText, closeBtn } from "./modal.js";
-import { restartBtn } from "./tic-tac-toe/game_incs.js";
+import { restartTTTBtn } from "./tic-tac-toe/game_incs.js";
 import { startTTT } from "./tic-tac-toe/game_logic.js";
+import { startCF } from "./connect-four/game_logic.js";
 
+/* game post interface */
 let gamePostValuesIndex = 0;
 
 setGamePostValues(gamePostValuesIndex);
@@ -31,5 +34,11 @@ gameBtnNext.addEventListener("click", function() {
    setShowGame(gamePostValuesIndex);
 });
 
+/* tic-tac-toe */
 startTTT();
-restartBtn.addEventListener("click", startTTT);
+restartTTTBtn.addEventListener("click", startTTT);
+
+/* rock-paper-scissors */
+
+/* connect-four */
+startCF();

@@ -1,4 +1,24 @@
+@import "./_set-board";
+
 %rps {
+   @extend %set-board;
+   .results {
+	  display: flex;
+	  justify-content: space-evenly;
+	  font-size: 1.5rem;
+	  span {
+          .result-score {
+              padding-left: 0.5rem;
+			  font-size: 1.95rem;
+          }
+          i {
+			  display: block;
+              font-size: 5.75rem;
+              opacity: 0.5;
+              padding: 0.5rem;
+         }
+      }
+  }
   .game-display-btn-group {
 	 &-reset {
 		 position: absolute;

@@ -11,9 +11,9 @@ const WINNING_COMBINATIONS = [
 
 const instructionsMessageElement = document.querySelector(".instructions-message");
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]');
-const restartBtn = document.querySelector(".game-display-btn-group-reset");
+const restartTTTBtn = document.querySelector("#restart-ttt");
 const btnGroup = document.querySelector(".game-display-btn-group");
 const board = document.querySelector("#board");
 const cellEls = document.querySelectorAll("[data-cell]");
 
-export { WINNING_COMBINATIONS, instructionsMessageElement, winningMessageTextElement, restartBtn, btnGroup, board, cellEls };
+export { WINNING_COMBINATIONS, instructionsMessageElement, winningMessageTextElement, restartTTTBtn, btnGroup, board, cellEls };

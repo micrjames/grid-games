@@ -82,7 +82,6 @@ footer #footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   cursor: pointer;
 }
 .modal .modal-body .game-display .game-tic-tac-toe .board .cell:first-child, .modal .modal-body .game-display .game-tic-tac-toe .board .cell:nth-child(2), .modal .modal-body .game-display .game-tic-tac-toe .board .cell:nth-child(3) {
@@ -198,6 +197,48 @@ footer #footer {
   list-style-position: inside;
 }
 
+.modal .modal-body .game-display .game-rock-paper-scissors .selections {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
+}
+.modal .modal-body .game-display .game-rock-paper-scissors .selections .selection {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 5.75rem;
+  text-decoration: none;
+  padding: 0.75rem;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #222;
+  background: none;
+  border: none;
+  outline: none;
+  transition: 100ms;
+}
+.modal .modal-body .game-display .game-rock-paper-scissors .selections .selection:hover {
+  transform: scale(1.2);
+}
+
+.modal .modal-body .game-display .game-rock-paper-scissors .results {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.5rem;
+}
+.modal .modal-body .game-display .game-rock-paper-scissors .results span .result-score {
+  padding-left: 0.5rem;
+  font-size: 1.95rem;
+}
+.modal .modal-body .game-display .game-rock-paper-scissors .results span i {
+  display: block;
+  font-size: 5.75rem;
+  opacity: 0.5;
+  padding: 0.5rem;
+}
 .modal .modal-body .game-display .game-rock-paper-scissors .game-display-btn-group-reset {
   position: absolute;
   left: 50%;
@@ -245,46 +286,101 @@ footer #footer {
   height: 65vh;
   background-color: white;
 }
-.modal .modal-body .game-display .game-rock-paper-scissors .selections {
-  display: flex;
-  justify-content: space-around;
-  padding: 2rem;
+.modal .modal-body .game-display .game-connect-four .cf-board {
+  margin: 0 30px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  column-gap: 1px;
+  grid-template-columns: repeat(7, auto);
+  background-color: blue;
+  border-bottom: 15px solid blue;
+  border-top: 15px solid blue;
 }
-.modal .modal-body .game-display .game-rock-paper-scissors .selections .selection {
+.modal .modal-body .game-display .game-connect-four .cf-board .col-end-cap {
+  width: 75px;
+  height: 10px;
+  background-color: black;
+  cursor: pointer;
+}
+.modal .modal-body .game-display .game-connect-four .cf-board .col-end-cap:hover {
+  background-color: #333333;
+}
+.modal .modal-body .game-display .game-connect-four .cf-board .cell {
+  width: 75px;
+  height: 75px;
+  border: 5px solid blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+.modal .modal-body .game-display .game-connect-four .cf-board .cell::before, .modal .modal-body .game-display .game-connect-four .cf-board .cell::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.modal .modal-body .game-display .game-connect-four .cf-board .cell::before {
+  background-color: #0000e6;
+  width: 65px;
+  height: 65px;
+}
+.modal .modal-body .game-display .game-connect-four .cf-board .cell::after {
+  width: 45.5px;
+  height: 45.5px;
+  background-color: white;
+}
+.modal .modal-body .game-display .game-connect-four .winning-message {
+  padding: 0.65rem 0;
+}
+.modal .modal-body .game-display .game-connect-four .winning-message #winning-message-text {
+  text-align: center;
+  font-size: 3.5rem;
+  margin: 1.2rem 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.modal .modal-body .game-display .game-connect-four .winning-message #winning-message-text::after {
+  content: "!!!";
+}
+.modal .modal-body .game-display .game-connect-four .winning-message .game-display-btn-group-reset {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
   display: inline-block;
   background: #000;
   color: #fff;
   font-family: inherit;
-  font-size: 5.75rem;
+  font-size: 1.2rem;
   text-decoration: none;
-  padding: 0.75rem;
+  padding: 1rem 1.2rem;
   margin: 0;
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  color: #222;
-  background: none;
-  border: none;
-  outline: none;
-  transition: 100ms;
+  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s ease-in-out;
 }
-.modal .modal-body .game-display .game-rock-paper-scissors .selections .selection:hover {
-  transform: scale(1.2);
+.modal .modal-body .game-display .game-connect-four .winning-message .game-display-btn-group-reset i {
+  margin-right: 0.5rem;
 }
-.modal .modal-body .game-display .game-rock-paper-scissors .results {
-  display: flex;
-  justify-content: space-evenly;
+.modal .modal-body .game-display .game-connect-four .winning-message .game-display-btn-group-reset:active {
+  box-shadow: none;
+}
+.modal .modal-body .game-display .game-connect-four .winning-message .game-display-btn-group-reset:disabled {
+  box-shadow: none;
+  opacity: 0.2;
+}
+.modal .modal-body .game-display .game-connect-four .instructions-message p {
+  text-align: center;
   font-size: 1.5rem;
-}
-.modal .modal-body .game-display .game-rock-paper-scissors .results span .result-score {
-  padding-left: 0.5rem;
-  font-size: 1.95rem;
-}
-.modal .modal-body .game-display .game-rock-paper-scissors .results span i {
-  display: block;
-  font-size: 5.75rem;
-  opacity: 0.5;
-  padding: 0.5rem;
+  margin: 0.8rem 0;
 }
 
 .modal {
