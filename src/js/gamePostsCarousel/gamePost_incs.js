@@ -2,7 +2,7 @@ const gameValues = [
    {
 	  "id": "1",
 	  "name": "Tic-Tac-Toe",
-	  "image": "../images/tic-tac-toe.png"
+	  "image": "../images/ttt.png"
    },
    {
 	  "id": "2",
@@ -17,7 +17,7 @@ const gameValues = [
    {
 	  "id": 4,
 	  "name": "Minesweeper",
-	  "image": "../images/minesweeper.jpeg"
+	  "image": "../images/ms.png"
    }
 ];
  

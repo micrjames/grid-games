@@ -22,9 +22,15 @@
 		justify-content: center;
 		align-items: center;
 
-		background-color: darkgrey;
-		cursor: pointer;
-		border: 5px outset darkgrey;
+		&.covered {
+		   background-color: darkgrey;
+		   cursor: pointer;
+		   border: 5px outset darkgrey;
+		}
+		&.uncovered {
+		   background-color: grey;
+		   border: 1px solid grey;
+		}
 	 }
 
    }

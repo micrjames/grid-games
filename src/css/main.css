@@ -395,9 +395,15 @@ footer #footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.modal .modal-body .game-display .game-minesweeper .ms-board .cell.covered, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board .cell.covered, .modal .modal-body .game-display .game-connect-four .ms-board .cell.covered {
   background-color: darkgrey;
   cursor: pointer;
   border: 5px outset darkgrey;
+}
+.modal .modal-body .game-display .game-minesweeper .ms-board .cell.uncovered, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board .cell.uncovered, .modal .modal-body .game-display .game-connect-four .ms-board .cell.uncovered {
+  background-color: grey;
+  border: 1px solid grey;
 }
 
 @font-face {
@@ -405,9 +411,9 @@ footer #footer {
   src: url("../../../fonts/Digital7Mono-B1g5.ttf");
 }
 .modal .modal-body .game-display .game-minesweeper .game-interface {
-  width: 50%;
+  width: 315px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -456,8 +462,12 @@ footer #footer {
 }
 .modal .modal-body .game-display .game-minesweeper .instructions-message p {
   text-align: center;
+  margin: 0.9rem 0;
   font-size: 1.2rem;
-  margin: 0.8rem 0;
+}
+.modal .modal-body .game-display .game-minesweeper .instructions-message p:first-child {
+  font-size: 1.4rem;
+  text-decoration: underline;
 }
 
 .modal .modal-body .game-display {

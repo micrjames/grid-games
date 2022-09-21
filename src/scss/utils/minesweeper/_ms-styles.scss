@@ -7,9 +7,9 @@
 
 %ms {
    .game-interface {
-	   width: 50%;
+	   width: calc(35px * 9);
 	   margin: 0 auto;
-	   padding: 20px;
+	   padding: 20px 0;
 
 	   display: flex;
 	   justify-content: space-between;
@@ -55,8 +55,13 @@
    .instructions-message {
 		p {
 		   text-align: center;
+		   margin: 0.9rem 0;
 		   font-size: 1.2rem;
-		   margin: 0.8rem 0;
+
+		   &:first-child {
+			  font-size: 1.4rem;
+			  text-decoration: underline;
+		   }
 		}
    }
    @extend %set-board;
