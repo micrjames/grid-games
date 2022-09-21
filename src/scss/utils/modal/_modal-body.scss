@@ -1,4 +1,4 @@
-@import '../button', '../tic-tac-toe/ttt-styles', '../rock-paper-scissors/rps-styles';
+@import '../button', '../tic-tac-toe/ttt-styles', '../rock-paper-scissors/rps-styles', '../connect-four/cf-styles', '../minesweeper/ms-styles';
 
 $primary-color:  #282828;
 $secondary-color: #ff652f;
@@ -16,119 +16,10 @@ $secondary-color: #ff652f;
 		   @extend %rps;
 		}
 		.game-connect-four {
-		   .cf-board {
-			  margin: 0 30px;
-			  display: grid;
-
-			  // to center the grid
-			  justify-content: center;
-			  align-content: center;
-
-			  // to align the marks in the cells
-			  justify-items: center;
-			  align-items: center;
-
-			  column-gap: 1px;
-			  grid-template-columns: repeat(7, auto);
-			  background-color: blue;
-			  border-bottom: 15px solid blue;
-			  border-top: 15px solid blue;
-
-			  .col-end-cap {
-				 width: 75px;
-				 height: 10px;
-
-				 background-color: black;
-				 cursor: pointer;
-
-				 &:hover {
-					background-color: lighten(black, 20%);
-				 }
-			  }
-
-			  .cell {
-				 width: 75px;
-				 height: 75px;
-
-				 border: 5px solid blue;
-
-				 // to display the marks in the cells
-				 display: flex;
-				 justify-content: center;
-				 align-items: center;
-
-				 background-color: rgba(255, 255, 255, 0.15);
-
-				 &::before, &::after {
-					content: "";
-					position: absolute;
-					border-radius: 50%;
-				 }
-
-				 &::before {
-					background-color: darken(blue, 5);
-					width: 65px;
-					height: 65px;
-				 }
-				 &::after {
-					width: 65px * .7;
-					height: 65px * .7;
-					background-color: white;
-				 }
-			  }
-
-		   }
-		   .winning-message {
-				 padding: 0.65rem 0;
-				 #winning-message-text {
-					text-align: center;
-					font-size: 3.5rem;
-					margin: 1.2rem 0;
-
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
-					z-index: 1;
-
-					&::after {
-					   content: "!!!";
-					}
-				 }
-				 .game-display-btn-group {
-					&-reset {
-						position: absolute;
-						left: 50%;
-						bottom: 20px;
-						transform: translateX(-50%);
-
-						@include button(1.2rem, 1rem 1.2rem, 0);
-						@include box-shadow(6px, 2px, 9px, 2px, rgba(0, 0, 0, 0.6), false);
-						@include transition-ease;
-
-						i {
-						   margin-right: 0.5rem;
-						}
-
-						&:active {
-						   box-shadow: none;
-						}
-
-						&:disabled {
-						   box-shadow: none;
-						   opacity: 0.2;
-						}
-					}
-				 }
-			  }
-			  .instructions-message {
-				 p {
-					text-align: center;
-					font-size: 1.5rem;
-					margin: 0.8rem 0;
-				 }
-			  }
-
+		   @extend %cf;
+		}
+		.game-minesweeper {
+		   @extend %ms;
 		}
    }   
 }

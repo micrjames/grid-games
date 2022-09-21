@@ -197,12 +197,12 @@ footer #footer {
   list-style-position: inside;
 }
 
-.modal .modal-body .game-display .game-rock-paper-scissors .selections {
+.modal .modal-body .game-display .game-minesweeper .selections, .modal .modal-body .game-display .game-connect-four .selections, .modal .modal-body .game-display .game-rock-paper-scissors .selections {
   display: flex;
   justify-content: space-around;
   padding: 2rem;
 }
-.modal .modal-body .game-display .game-rock-paper-scissors .selections .selection {
+.modal .modal-body .game-display .game-minesweeper .selections .selection, .modal .modal-body .game-display .game-connect-four .selections .selection, .modal .modal-body .game-display .game-rock-paper-scissors .selections .selection {
   display: inline-block;
   background: #000;
   color: #fff;
@@ -220,7 +220,7 @@ footer #footer {
   outline: none;
   transition: 100ms;
 }
-.modal .modal-body .game-display .game-rock-paper-scissors .selections .selection:hover {
+.modal .modal-body .game-display .game-minesweeper .selections .selection:hover, .modal .modal-body .game-display .game-connect-four .selections .selection:hover, .modal .modal-body .game-display .game-rock-paper-scissors .selections .selection:hover {
   transform: scale(1.2);
 }
 
@@ -281,12 +281,7 @@ footer #footer {
   list-style-position: inside;
 }
 
-.modal .modal-body .game-display {
-  width: 100%;
-  height: 65vh;
-  background-color: white;
-}
-.modal .modal-body .game-display .game-connect-four .cf-board {
+.modal .modal-body .game-display .game-minesweeper .cf-board, .modal .modal-body .game-display .game-connect-four .cf-board, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board {
   margin: 0 30px;
   display: grid;
   justify-content: center;
@@ -299,16 +294,16 @@ footer #footer {
   border-bottom: 15px solid blue;
   border-top: 15px solid blue;
 }
-.modal .modal-body .game-display .game-connect-four .cf-board .col-end-cap {
+.modal .modal-body .game-display .game-minesweeper .cf-board .col-end-cap, .modal .modal-body .game-display .game-connect-four .cf-board .col-end-cap, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .col-end-cap {
   width: 75px;
   height: 10px;
   background-color: black;
   cursor: pointer;
 }
-.modal .modal-body .game-display .game-connect-four .cf-board .col-end-cap:hover {
+.modal .modal-body .game-display .game-minesweeper .cf-board .col-end-cap:hover, .modal .modal-body .game-display .game-connect-four .cf-board .col-end-cap:hover, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .col-end-cap:hover {
   background-color: #333333;
 }
-.modal .modal-body .game-display .game-connect-four .cf-board .cell {
+.modal .modal-body .game-display .game-minesweeper .cf-board .cell, .modal .modal-body .game-display .game-connect-four .cf-board .cell, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell {
   width: 75px;
   height: 75px;
   border: 5px solid blue;
@@ -317,21 +312,22 @@ footer #footer {
   align-items: center;
   background-color: rgba(255, 255, 255, 0.15);
 }
-.modal .modal-body .game-display .game-connect-four .cf-board .cell::before, .modal .modal-body .game-display .game-connect-four .cf-board .cell::after {
+.modal .modal-body .game-display .game-minesweeper .cf-board .cell::before, .modal .modal-body .game-display .game-connect-four .cf-board .cell::before, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell::before, .modal .modal-body .game-display .game-minesweeper .cf-board .cell::after, .modal .modal-body .game-display .game-connect-four .cf-board .cell::after, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell::after {
   content: "";
   position: absolute;
   border-radius: 50%;
 }
-.modal .modal-body .game-display .game-connect-four .cf-board .cell::before {
+.modal .modal-body .game-display .game-minesweeper .cf-board .cell::before, .modal .modal-body .game-display .game-connect-four .cf-board .cell::before, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell::before {
   background-color: #0000e6;
   width: 65px;
   height: 65px;
 }
-.modal .modal-body .game-display .game-connect-four .cf-board .cell::after {
+.modal .modal-body .game-display .game-minesweeper .cf-board .cell::after, .modal .modal-body .game-display .game-connect-four .cf-board .cell::after, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell::after {
   width: 45.5px;
   height: 45.5px;
   background-color: white;
 }
+
 .modal .modal-body .game-display .game-connect-four .winning-message {
   padding: 0.65rem 0;
 }
@@ -379,10 +375,96 @@ footer #footer {
 }
 .modal .modal-body .game-display .game-connect-four .instructions-message p {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin: 0.8rem 0;
 }
 
+.modal .modal-body .game-display .game-minesweeper .ms-board, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board, .modal .modal-body .game-display .game-connect-four .ms-board {
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(9, auto);
+  gap: 1px;
+}
+.modal .modal-body .game-display .game-minesweeper .ms-board .cell, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board .cell, .modal .modal-body .game-display .game-connect-four .ms-board .cell {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: darkgrey;
+  cursor: pointer;
+  border: 5px outset darkgrey;
+}
+
+@font-face {
+  font-family: Digital7Mono;
+  src: url("../../../fonts/Digital7Mono-B1g5.ttf");
+}
+.modal .modal-body .game-display .game-minesweeper .game-interface {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal .modal-body .game-display .game-minesweeper .game-interface-mines-display {
+  font-family: Digital7Mono;
+  font-size: 1.85rem;
+  border: 1px solid grey;
+  padding: 10px 15px;
+  background-color: black;
+  color: red;
+}
+.modal .modal-body .game-display .game-minesweeper .game-interface .game-display-btn-group-reset {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s ease-in-out;
+}
+.modal .modal-body .game-display .game-minesweeper .game-interface .game-display-btn-group-reset i {
+  color: yellow;
+  font-size: 1.75rem;
+}
+.modal .modal-body .game-display .game-minesweeper .game-interface .game-display-btn-group-reset:active {
+  box-shadow: none;
+}
+.modal .modal-body .game-display .game-minesweeper .game-interface .game-display-btn-group-reset:disabled {
+  box-shadow: none;
+  opacity: 0.2;
+}
+.modal .modal-body .game-display .game-minesweeper .game-interface-countdown {
+  font-family: Digital7Mono;
+  font-size: 1.85rem;
+  border: 1px solid grey;
+  padding: 10px 15px;
+  background-color: black;
+  color: red;
+}
+.modal .modal-body .game-display .game-minesweeper .instructions-message p {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 0.8rem 0;
+}
+
+.modal .modal-body .game-display {
+  width: 100%;
+  height: 65vh;
+  background-color: white;
+}
 .modal {
   position: absolute;
   top: 50%;

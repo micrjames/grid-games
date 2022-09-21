@@ -6,6 +6,7 @@ import { modalTrigger, modalHdrText, closeBtn } from "./modal.js";
 import { restartTTTBtn } from "./tic-tac-toe/game_incs.js";
 import { startTTT } from "./tic-tac-toe/game_logic.js";
 import { startCF } from "./connect-four/game_logic.js";
+import { startMS } from "./minesweeper/game_logic.js";
 
 /* game post interface */
 let gamePostValuesIndex = 0;
@@ -42,3 +43,6 @@ restartTTTBtn.addEventListener("click", startTTT);
 
 /* connect-four */
 startCF();
+
+/* minesweeper */
+startMS();
