@@ -31,6 +31,23 @@
 		   background-color: grey;
 		   border: 1px solid grey;
 		}
+		&.mine {
+		   i {
+			  color: red;
+		   }
+		}
+		&.flag {
+		   i {
+			  color: black;
+		   }
+		}
+		&.burst {
+		   i {
+			  font-size: 1.75rem;
+			  color: yellow;
+			  background-color: red;
+		   }
+		}
 	 }
 
    }

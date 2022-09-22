@@ -405,6 +405,17 @@ footer #footer {
   background-color: grey;
   border: 1px solid grey;
 }
+.modal .modal-body .game-display .game-minesweeper .ms-board .cell.mine i, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board .cell.mine i, .modal .modal-body .game-display .game-connect-four .ms-board .cell.mine i {
+  color: red;
+}
+.modal .modal-body .game-display .game-minesweeper .ms-board .cell.flag i, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board .cell.flag i, .modal .modal-body .game-display .game-connect-four .ms-board .cell.flag i {
+  color: black;
+}
+.modal .modal-body .game-display .game-minesweeper .ms-board .cell.burst i, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board .cell.burst i, .modal .modal-body .game-display .game-connect-four .ms-board .cell.burst i {
+  font-size: 1.75rem;
+  color: yellow;
+  background-color: red;
+}
 
 @font-face {
   font-family: Digital7Mono;
