@@ -7,4 +7,11 @@ const startMS = function() {
    msBoard.appendChild(cellFragment);
 }
 
-export { startMS };
+const resetMS = function() {
+   while(msBoard.firstChild) {
+	  msBoard.removeChild(msBoard.lastChild);
+   }
+   startMS();
+};
+
+export { startMS, resetMS };

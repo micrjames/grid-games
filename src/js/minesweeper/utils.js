@@ -1,3 +1,5 @@
+import { Timer } from "../utils/Timer.js";
+
 const setRandNumsArr = (numRandNums, gridSize) => {
    let randNumsArr = [];
    for(let i = 0; i <= numRandNums-1; i++) {
@@ -24,9 +26,26 @@ const createIcon = function(iconClasses) {
    return icon;
 };
 
+const addIcon = function(context, name, className = false) {
+   const icon = createIcon(`fa-solid fa-${name}`);
+   context.appendChild(icon);
+   if(className) context.classList.add(`${name}`);
+};
+
+const removeIcon = function(context, name) {
+   context.classList.remove(`${name}`);                                                            
+   context.removeChild(context.lastChild);
+};
+
+const switchClasses = function(context, before, after) {
+   context.classList.remove(before);
+   context.classList.add(after);
+};
+
 const createTimer = function(timerEl, secsRemaining) {                                                  
    let secsRemainingText;
-   let countdownID = setInterval(() => {
+   let timer = new Timer(1000);
+   timer.startTimer(() => {
 	  secsRemaining--;
 	  if(secsRemaining >= 10) {
 		 secsRemainingText = secsRemaining;
@@ -39,9 +58,9 @@ const createTimer = function(timerEl, secsRemaining) {
 		 secsRemainingText = `0${secsRemaining}`;
 	  }
 	  timerEl.textContent = secsRemainingText;
-   }, 1000);	
+   });
 
-   return countdownID;
+   return timer;
 };
 
-export { setRandNumsArr, createIcon, createTimer };
+export { setRandNumsArr, addIcon, removeIcon, createTimer, switchClasses };
