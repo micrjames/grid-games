@@ -51,7 +51,7 @@ const createTimer = function(timerEl, secsRemaining) {
 		 secsRemainingText = secsRemaining;
 	  } else {
 		 if(secsRemaining < 1) {
-			clearInterval(countdownID);
+			timer.cancelTimer();
 
 			// game is over when the timer clock runs out.
 		 }

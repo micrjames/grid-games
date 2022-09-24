@@ -8,6 +8,7 @@ import { startTTT } from "./tic-tac-toe/game_logic.js";
 import { startCF } from "./connect-four/game_logic.js";
 import { restartMSBtn } from "./minesweeper/game_incs.js";
 import { startMS, resetMS } from "./minesweeper/game_logic.js";
+import { startRPS } from "./rock-paper-scissors/game_logic.js";
 
 /* game post interface */
 let gamePostValuesIndex = 0;
@@ -41,6 +42,7 @@ startTTT();
 restartTTTBtn.addEventListener("click", startTTT);
 
 /* rock-paper-scissors */
+startRPS();
 
 /* connect-four */
 startCF();
