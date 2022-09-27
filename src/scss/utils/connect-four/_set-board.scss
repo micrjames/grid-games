@@ -57,6 +57,31 @@
 		   height: 65px * .7;
 		   background-color: white;
 		}
+
+		&.covered {
+		   &.yellow {
+			  &::after {
+				 background-color: yellow;
+			  }
+		   }
+		   &.red {
+			  &::after {
+				 background-color: red;
+			  }
+		   }
+		}
+		&.try {
+		   &.yellow {
+			  &::after {
+				 background-color: lighten(yellow, 25%);
+			  }
+		   }
+		   &.red {
+			  &::after {
+				 background-color: lighten(red, 25%);
+			  }
+		   }
+		}
 	 }
 
    }

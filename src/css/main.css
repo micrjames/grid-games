@@ -327,6 +327,18 @@ footer #footer {
   height: 45.5px;
   background-color: white;
 }
+.modal .modal-body .game-display .game-minesweeper .cf-board .cell.covered.yellow::after, .modal .modal-body .game-display .game-connect-four .cf-board .cell.covered.yellow::after, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell.covered.yellow::after {
+  background-color: yellow;
+}
+.modal .modal-body .game-display .game-minesweeper .cf-board .cell.covered.red::after, .modal .modal-body .game-display .game-connect-four .cf-board .cell.covered.red::after, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell.covered.red::after {
+  background-color: red;
+}
+.modal .modal-body .game-display .game-minesweeper .cf-board .cell.try.yellow::after, .modal .modal-body .game-display .game-connect-four .cf-board .cell.try.yellow::after, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell.try.yellow::after {
+  background-color: #ffff80;
+}
+.modal .modal-body .game-display .game-minesweeper .cf-board .cell.try.red::after, .modal .modal-body .game-display .game-connect-four .cf-board .cell.try.red::after, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell.try.red::after {
+  background-color: #ff8080;
+}
 
 .modal .modal-body .game-display .game-connect-four .winning-message {
   padding: 0.65rem 0;

@@ -1,18 +1,10 @@
-import { numRows, numCols, connectFourEl, cfBoard } from "./game_incs.js";
+import { cf_data, cfBoard } from "./game_incs.js";
+import { createEndCaps, createCells } from "./cf.js";
 
 const startCF = function() {
-   const CFEndCapFragment = document.createDocumentFragment();                                          
-   const CFCellFragment = document.createDocumentFragment();
-   for(let i = 0; i < numCols; i++) {
-       const CFEndCap = document.createElement("div");
-	   CFEndCap.classList.add("col-end-cap");
-	   CFEndCapFragment.appendChild(CFEndCap);
-   }   
-   for(let i = 0; i < numRows * numCols; i++) {
-       const CFcell = document.createElement("div");
-	   CFcell.classList.add("cell");
-	   CFCellFragment.appendChild(CFcell);
-   }  
+   const CFEndCapFragment = createEndCaps(cf_data.numCols);                                          
+   const CFCellFragment = createCells(cf_data.numRows, cf_data.numCols);
+
    cfBoard.appendChild(CFEndCapFragment);
    cfBoard.appendChild(CFCellFragment);
 }  
