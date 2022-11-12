@@ -33,6 +33,10 @@ header nav menu li:hover {
   font-weight: bolder;
 }
 
+.hidden {
+  display: none;
+}
+
 header {
   position: sticky;
   top: 0;
@@ -44,10 +48,51 @@ header {
   z-index: 1;
 }
 main {
+  width: 100vw;
   background-color: grey;
+  padding: 5% 0;
+}
+main h1 {
+  color: white;
+  font-size: 1.75rem;
+  text-align: center;
+  text-decoration: underline;
+}
+main .games-grid {
+  width: 75%;
+  height: 100%;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  main .games-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+main .games-grid-game {
   width: 100%;
-  height: 100vh;
-  padding: 15% 0;
+  height: 25%;
+  background-color: #343434;
+  margin: 2rem 0;
+}
+@media (min-width: 768px) {
+  main .games-grid-game {
+    width: 40%;
+  }
+}
+main .games-grid-game img {
+  width: 100%;
+  height: 75%;
+}
+main .games-grid-game-description {
+  width: 100%;
+  height: 15%;
+  color: white;
+  background-color: #010101;
+  text-align: center;
+  font-size: 1.5rem;
+  padding-top: 0.75rem;
 }
 
 footer {
