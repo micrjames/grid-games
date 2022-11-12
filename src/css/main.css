@@ -4,25 +4,14 @@
   margin: 0;
 }
 
-.modal .modal-header, .modal {
-  display: flex;
-  flex-direction: column;
+a {
+  color: white;
 }
 
 .hidden {
   display: none;
 }
 
-header {
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  display: flex;
-  justify-content: flex-end;
-  padding: 1.25rem 2rem;
-  background-color: #ff652f;
-  z-index: 1;
-}
 header nav menu {
   list-style-type: none;
 }
@@ -31,7 +20,6 @@ header nav menu li {
   display: inline;
   cursor: pointer;
   padding: 1rem 0.5rem;
-  color: white;
   transition: all 0.5s ease-in-out;
 }
 header nav menu li a {
@@ -45,569 +33,48 @@ header nav menu li:hover {
   font-weight: bolder;
 }
 
-footer #footer {
-  border-top: 2px solid #ff652f;
-  position: absolute;
-  bottom: 0;
-  padding: 0.5rem 1.5rem;
-  width: 100%;
-  text-align: right;
-  color: white;
-  font-size: 1.2rem;
-}
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-.modal .modal-body .game-display .game-tic-tac-toe {
-  padding-top: 3rem;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .board {
-  width: 100%;
-  height: 75%;
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  justify-items: center;
-  align-items: center;
-  grid-template-columns: repeat(3, auto);
-}
-.modal .modal-body .game-display .game-tic-tac-toe .board .cell {
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
+header {
+  position: sticky;
+  top: 0;
+  width: 100vw;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .board .cell:first-child, .modal .modal-body .game-display .game-tic-tac-toe .board .cell:nth-child(2), .modal .modal-body .game-display .game-tic-tac-toe .board .cell:nth-child(3) {
-  border-top: none;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .board .cell:nth-child(3n+1) {
-  border-left: none;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .board .cell:nth-child(3n+3) {
-  border-right: none;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .board .cell:last-child, .modal .modal-body .game-display .game-tic-tac-toe .board .cell:nth-child(8), .modal .modal-body .game-display .game-tic-tac-toe .board .cell:nth-child(7) {
-  border-bottom: none;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .cell.x {
-  cursor: not-allowed;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .cell.x::before, .modal .modal-body .game-display .game-tic-tac-toe .cell.x::after {
-  background-color: black;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .board.x .cell:not(.x):not(.circle):hover::before,
-.modal .modal-body .game-display .game-tic-tac-toe .board.x .cell:not(.x):not(.circle):hover::after {
-  background-color: lightgrey;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .cell.x::before, .modal .modal-body .game-display .game-tic-tac-toe .cell.x::after,
-.modal .modal-body .game-display .game-tic-tac-toe .board.x .cell:not(.x):not(.circle):hover::before,
-.modal .modal-body .game-display .game-tic-tac-toe .board.x .cell:not(.x):not(.circle):hover::after {
-  content: "";
-  position: absolute;
-  width: 13.5px;
-  height: 90px;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .cell.x::before,
-.modal .modal-body .game-display .game-tic-tac-toe .board.x .cell:not(.x):not(.circle):hover::before {
-  transform: rotate(45deg);
-}
-.modal .modal-body .game-display .game-tic-tac-toe .cell.x::after,
-.modal .modal-body .game-display .game-tic-tac-toe .board.x .cell:not(.x):not(.circle):hover::after {
-  transform: rotate(-45deg);
-}
-.modal .modal-body .game-display .game-tic-tac-toe .cell.circle {
-  cursor: not-allowed;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .cell.circle::before {
-  background-color: black;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .board.circle .cell:not(.x):not(.circle):hover::before {
-  background-color: lightgrey;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .cell.circle::before, .modal .modal-body .game-display .game-tic-tac-toe .cell.circle::after,
-.modal .modal-body .game-display .game-tic-tac-toe .board.circle .cell:not(.x):not(.circle):hover::before,
-.modal .modal-body .game-display .game-tic-tac-toe .board.circle .cell:not(.x):not(.circle):hover::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .cell.circle::before,
-.modal .modal-body .game-display .game-tic-tac-toe .board.circle .cell:not(.x):not(.circle):hover::before {
-  width: 90px;
-  height: 90px;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .cell.circle::after,
-.modal .modal-body .game-display .game-tic-tac-toe .board.circle .cell:not(.x):not(.circle):hover::after {
-  width: 63px;
-  height: 63px;
-  background-color: white;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .winning-message {
-  padding: 0.65rem 0;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .winning-message #winning-message-text {
-  text-align: center;
-  font-size: 1.5rem;
-  margin: 1.2rem 0;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .winning-message .game-display-btn-group-reset {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  font-family: inherit;
-  font-size: 1.2rem;
-  text-decoration: none;
-  padding: 1rem 1.2rem;
-  margin: 0;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
-  transition: all 0.5s ease-in-out;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .winning-message .game-display-btn-group-reset i {
-  margin-right: 0.5rem;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .winning-message .game-display-btn-group-reset:active {
-  box-shadow: none;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .winning-message .game-display-btn-group-reset:disabled {
-  box-shadow: none;
-  opacity: 0.2;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .instructions-message p {
-  text-align: center;
-  text-decoration: underline;
-  font-size: 1.5rem;
-  margin: 1.2rem 0;
-}
-.modal .modal-body .game-display .game-tic-tac-toe .instructions-message ul li {
-  font-size: 1.1rem;
-  padding-left: 25%;
-  list-style-position: inside;
-}
-
-.modal .modal-body .game-display .game-minesweeper .selections, .modal .modal-body .game-display .game-connect-four .selections, .modal .modal-body .game-display .game-rock-paper-scissors .selections {
-  display: flex;
-  justify-content: space-around;
-  padding: 2rem;
-}
-.modal .modal-body .game-display .game-minesweeper .selections .selection, .modal .modal-body .game-display .game-connect-four .selections .selection, .modal .modal-body .game-display .game-rock-paper-scissors .selections .selection {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  font-family: inherit;
-  font-size: 5.75rem;
-  text-decoration: none;
-  padding: 0.75rem;
-  margin: 0;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  color: #222;
-  background: none;
-  border: none;
-  outline: none;
-  transition: 100ms;
-}
-.modal .modal-body .game-display .game-minesweeper .selections .selection:hover, .modal .modal-body .game-display .game-connect-four .selections .selection:hover, .modal .modal-body .game-display .game-rock-paper-scissors .selections .selection:hover {
-  transform: scale(1.2);
-}
-
-.modal .modal-body .game-display .game-rock-paper-scissors .results {
-  display: flex;
-  justify-content: space-evenly;
-  font-size: 1.5rem;
-}
-.modal .modal-body .game-display .game-rock-paper-scissors .results span .result-score {
-  padding-left: 0.5rem;
-  font-size: 1.95rem;
-}
-.modal .modal-body .game-display .game-rock-paper-scissors .results span i {
-  display: block;
-  font-size: 5.75rem;
-  opacity: 0.5;
-  padding: 0.5rem;
-}
-.modal .modal-body .game-display .game-rock-paper-scissors .game-display-btn-group-reset {
-  position: absolute;
-  left: 50%;
-  top: 90%;
-  transform: translateX(-50%);
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  font-family: inherit;
-  font-size: 0.85rem;
-  text-decoration: none;
-  padding: 0.6rem 1.2rem;
-  margin: 0;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
-  transition: all 0.5s ease-in-out;
-}
-.modal .modal-body .game-display .game-rock-paper-scissors .game-display-btn-group-reset i {
-  margin-right: 0.5rem;
-}
-.modal .modal-body .game-display .game-rock-paper-scissors .game-display-btn-group-reset:active {
-  box-shadow: none;
-}
-.modal .modal-body .game-display .game-rock-paper-scissors .game-display-btn-group-reset:disabled {
-  box-shadow: none;
-  opacity: 0.2;
-}
-.modal .modal-body .game-display .game-rock-paper-scissors .instructions-message {
-  font-size: 1.15rem;
-}
-.modal .modal-body .game-display .game-rock-paper-scissors .instructions-message p {
-  text-align: center;
-  text-decoration: underline;
-  margin: 0.85rem 0;
-}
-.modal .modal-body .game-display .game-rock-paper-scissors .instructions-message ul li {
-  padding-left: 12%;
-  list-style-position: inside;
-}
-
-.modal .modal-body .game-display .game-minesweeper .cf-board, .modal .modal-body .game-display .game-connect-four .cf-board, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board {
-  margin: 0 30px;
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  justify-items: center;
-  align-items: center;
-  column-gap: 1px;
-  grid-template-columns: repeat(7, auto);
-  background-color: blue;
-  border-bottom: 15px solid blue;
-  border-top: 15px solid blue;
-}
-.modal .modal-body .game-display .game-minesweeper .cf-board .col-end-cap, .modal .modal-body .game-display .game-connect-four .cf-board .col-end-cap, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .col-end-cap {
-  width: 75px;
-  height: 10px;
-  background-color: black;
-  cursor: pointer;
-}
-.modal .modal-body .game-display .game-minesweeper .cf-board .col-end-cap:hover, .modal .modal-body .game-display .game-connect-four .cf-board .col-end-cap:hover, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .col-end-cap:hover {
-  background-color: #333333;
-}
-.modal .modal-body .game-display .game-minesweeper .cf-board .cell, .modal .modal-body .game-display .game-connect-four .cf-board .cell, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell {
-  width: 75px;
-  height: 75px;
-  border: 5px solid blue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.15);
-}
-.modal .modal-body .game-display .game-minesweeper .cf-board .cell::before, .modal .modal-body .game-display .game-connect-four .cf-board .cell::before, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell::before, .modal .modal-body .game-display .game-minesweeper .cf-board .cell::after, .modal .modal-body .game-display .game-connect-four .cf-board .cell::after, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-}
-.modal .modal-body .game-display .game-minesweeper .cf-board .cell::before, .modal .modal-body .game-display .game-connect-four .cf-board .cell::before, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell::before {
-  background-color: #0000e6;
-  width: 65px;
-  height: 65px;
-}
-.modal .modal-body .game-display .game-minesweeper .cf-board .cell::after, .modal .modal-body .game-display .game-connect-four .cf-board .cell::after, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell::after {
-  width: 45.5px;
-  height: 45.5px;
-  background-color: white;
-}
-.modal .modal-body .game-display .game-minesweeper .cf-board .cell.covered.yellow::after, .modal .modal-body .game-display .game-connect-four .cf-board .cell.covered.yellow::after, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell.covered.yellow::after {
-  background-color: yellow;
-}
-.modal .modal-body .game-display .game-minesweeper .cf-board .cell.covered.red::after, .modal .modal-body .game-display .game-connect-four .cf-board .cell.covered.red::after, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell.covered.red::after {
-  background-color: red;
-}
-.modal .modal-body .game-display .game-minesweeper .cf-board .cell.try.yellow::after, .modal .modal-body .game-display .game-connect-four .cf-board .cell.try.yellow::after, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell.try.yellow::after {
-  background-color: #ffff80;
-}
-.modal .modal-body .game-display .game-minesweeper .cf-board .cell.try.red::after, .modal .modal-body .game-display .game-connect-four .cf-board .cell.try.red::after, .modal .modal-body .game-display .game-rock-paper-scissors .cf-board .cell.try.red::after {
-  background-color: #ff8080;
-}
-
-.modal .modal-body .game-display .game-connect-four .winning-message {
-  padding: 0.65rem 0;
-}
-.modal .modal-body .game-display .game-connect-four .winning-message #winning-message-text {
-  text-align: center;
-  font-size: 3.5rem;
-  margin: 1.2rem 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  justify-content: flex-end;
+  padding: 1.25rem 2rem;
+  background-color: #ff652f;
   z-index: 1;
 }
-.modal .modal-body .game-display .game-connect-four .winning-message #winning-message-text::after {
-  content: "!!!";
-}
-.modal .modal-body .game-display .game-connect-four .winning-message .game-display-btn-group-reset {
-  position: absolute;
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  font-family: inherit;
-  font-size: 1.2rem;
-  text-decoration: none;
-  padding: 1rem 1.2rem;
-  margin: 0;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
-  transition: all 0.5s ease-in-out;
-}
-.modal .modal-body .game-display .game-connect-four .winning-message .game-display-btn-group-reset i {
-  margin-right: 0.5rem;
-}
-.modal .modal-body .game-display .game-connect-four .winning-message .game-display-btn-group-reset:active {
-  box-shadow: none;
-}
-.modal .modal-body .game-display .game-connect-four .winning-message .game-display-btn-group-reset:disabled {
-  box-shadow: none;
-  opacity: 0.2;
-}
-.modal .modal-body .game-display .game-connect-four .instructions-message p {
-  text-align: center;
-  font-size: 1.2rem;
-  margin: 0.8rem 0;
-}
-
-.modal .modal-body .game-display .game-minesweeper .ms-board, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board, .modal .modal-body .game-display .game-connect-four .ms-board {
-  margin: 0 auto;
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  justify-items: center;
-  align-items: center;
-  grid-template-columns: repeat(9, auto);
-  gap: 1px;
-}
-.modal .modal-body .game-display .game-minesweeper .ms-board .cell, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board .cell, .modal .modal-body .game-display .game-connect-four .ms-board .cell {
-  width: 35px;
-  height: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.modal .modal-body .game-display .game-minesweeper .ms-board .cell.covered, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board .cell.covered, .modal .modal-body .game-display .game-connect-four .ms-board .cell.covered {
-  background-color: darkgrey;
-  cursor: pointer;
-  border: 5px outset darkgrey;
-}
-.modal .modal-body .game-display .game-minesweeper .ms-board .cell.uncovered, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board .cell.uncovered, .modal .modal-body .game-display .game-connect-four .ms-board .cell.uncovered {
+main {
   background-color: grey;
-  border: 1px solid grey;
-}
-.modal .modal-body .game-display .game-minesweeper .ms-board .cell.mine i, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board .cell.mine i, .modal .modal-body .game-display .game-connect-four .ms-board .cell.mine i {
-  color: red;
-}
-.modal .modal-body .game-display .game-minesweeper .ms-board .cell.flag i, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board .cell.flag i, .modal .modal-body .game-display .game-connect-four .ms-board .cell.flag i {
-  color: black;
-}
-.modal .modal-body .game-display .game-minesweeper .ms-board .cell.burst i, .modal .modal-body .game-display .game-rock-paper-scissors .ms-board .cell.burst i, .modal .modal-body .game-display .game-connect-four .ms-board .cell.burst i {
-  font-size: 1.75rem;
-  color: yellow;
-  background-color: red;
+  width: 100%;
+  height: 100vh;
+  padding: 15% 0;
 }
 
-@font-face {
-  font-family: Digital7Mono;
-  src: url("../../../fonts/Digital7Mono-B1g5.ttf");
-}
-.modal .modal-body .game-display .game-minesweeper .game-interface {
-  width: 315px;
-  margin: 0 auto;
-  padding: 20px 0;
+footer {
+  background-color: lightgrey;
+  font-size: 1.15rem;
+  width: 100vw;
+  position: sticky;
+  bottom: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.75rem;
 }
-.modal .modal-body .game-display .game-minesweeper .game-interface-mines-display {
-  font-family: Digital7Mono;
-  font-size: 1.85rem;
-  border: 1px solid grey;
-  padding: 10px 15px;
-  background-color: black;
-  color: red;
+footer #site-info ul {
+  list-style-type: none;
 }
-.modal .modal-body .game-display .game-minesweeper .game-interface .game-display-btn-group-reset {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  font-family: inherit;
-  font-size: 1.2rem;
-  text-decoration: none;
-  padding: 0.75rem 1rem;
-  margin: 0;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
-  transition: all 0.5s ease-in-out;
-}
-.modal .modal-body .game-display .game-minesweeper .game-interface .game-display-btn-group-reset i {
-  color: yellow;
-  font-size: 1.75rem;
-}
-.modal .modal-body .game-display .game-minesweeper .game-interface .game-display-btn-group-reset:active {
-  box-shadow: none;
-}
-.modal .modal-body .game-display .game-minesweeper .game-interface .game-display-btn-group-reset:disabled {
-  box-shadow: none;
-  opacity: 0.2;
-}
-.modal .modal-body .game-display .game-minesweeper .game-interface-countdown {
-  font-family: Digital7Mono;
-  font-size: 1.85rem;
-  border: 1px solid grey;
-  padding: 10px 15px;
-  background-color: black;
-  color: red;
-}
-.modal .modal-body .game-display .game-minesweeper .instructions-message p {
-  text-align: center;
-  margin: 0.9rem 0;
-  font-size: 1.2rem;
-}
-.modal .modal-body .game-display .game-minesweeper .instructions-message p:first-child {
-  font-size: 1.4rem;
-  text-decoration: underline;
-}
-
-.modal .modal-body .game-display {
-  width: 100%;
-  height: 65vh;
-  background-color: white;
-}
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  background: #282828;
-  color: #ff652f;
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
-}
-.modal .modal-header-close {
-  font-size: 2.5rem;
-  margin-right: 0.5rem;
-  align-self: flex-end;
-  margin-left: 0.5rem;
+footer #site-info ul li {
+  display: inline;
   cursor: pointer;
 }
-.modal .modal-header-text {
-  font-size: 1.75rem;
-  align-self: center;
+footer #site-info ul li a {
+  color: blue;
   text-decoration: underline;
 }
-.modal .modal-body {
-  margin: 1rem;
-  height: 100%;
+footer #site-info ul li:not(:last-child) {
+  margin-right: 1.2rem;
 }
-
-.hidden {
-  display: none;
-}
-
-main #games-grid-title {
-  color: white;
-  font-size: 1.75rem;
-  padding: 15vh 0 0 0;
-  text-align: center;
-  text-decoration: underline;
-}
-main #games-grid .games-grid-game {
-  width: 75vmin;
-  height: 60vmin;
-}
-main #games-grid .games-grid-game img {
-  width: 100%;
-  height: 85%;
-}
-main #games-grid .games-grid-game-description {
-  color: white;
-  width: 100%;
-  height: 15%;
-  background-color: #ff652f;
-  text-align: center;
-  font-size: 1.5rem;
-  padding-top: 0.75rem;
-}
-main #games-grid .game-1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-main .games-btn-group {
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 75vmin;
-  display: flex;
-  justify-content: space-between;
-}
-main .games-btn-group-btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  font-family: inherit;
-  font-size: 1.2rem;
-  text-decoration: none;
-  padding: 1rem 1.2rem;
-  margin: 0;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
-  transition: all 0.5s ease-in-out;
-}
-main .games-btn-group-btn:active {
-  box-shadow: none;
-}
-main .games-btn-group-btn:disabled {
-  box-shadow: none;
-  opacity: 0.2;
-}
-
-main #games-about-title {
-  color: white;
-  font-size: 1.75rem;
-  padding: 15vh 0 0 0;
-  text-align: center;
-  text-decoration: underline;
-}
-main #games-about-text {
-  margin: 5vw;
-}
-main #games-about-text p {
-  text-align: center;
-  font-size: 1.5rem;
-  padding-top: 0.75rem;
-  color: white;
-}
-
-body {
-  background-color: #282828;
+footer #copyright-info {
+  font-size: 1rem;
 }

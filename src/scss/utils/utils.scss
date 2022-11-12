@@ -1,3 +1,5 @@
+@use "sass:list"; 
+
 @mixin transition-ease {
     transition: all 0.5s ease-in-out;
 }
@@ -14,7 +16,22 @@
    left: 50%;
    transform: translate(-50%, -50%);
 }
+%center-object-horz {
+   left: 50%;
+   transform: translateX(-50%);
+}
+%center {
+   justify-content: center;
+   align-items: center;
+}
 
+@mixin set-grid($num-rows, $num-cols) {
+    grid-template-rows: repeat($num-rows, auto); 
+    grid-template-columns: repeat($num-cols, auto);                                         
+}
+.hidden {
+    display: none;
+}
 %flex {
    display: flex;
    flex-direction: column;
@@ -28,7 +45,4 @@
    flex-direction: column;
    justify-content: space-around;
    align-items: center;
-}
-.hidden {
-   display: none;
 }

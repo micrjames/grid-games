@@ -1,136 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-	   <meta charset="UTF-8">
-	   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	   <link rel="stylesheet" href="css/main.css">
-	   <title>Grid Games</title>
-	   <script src="https://kit.fontawesome.com/aaeb479cf8.js" crossorigin="anonymous"></script>
+   	<meta charset="UTF-8">
+   	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   	<link rel="stylesheet" href="css/main.css">
+   	<title>Grid Games</title>
+    <script src="https://kit.fontawesome.com/aaeb479cf8.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
-	   <header>
+	  <header>
 		  <nav>
 			 <menu>
-				<li>Home</li>
-				<li><a href="about.html">About Games</a></li>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
 			 </menu>
 		  </nav>
 	   </header>
 	   <main>
-		  <section id="games-grid">
-			 <h1 id="games-grid-title">Some grid-based games.</h1>
-             <figure class="games-grid-game game-1">
-				<img id="game-image" alt="" title="">
-				<figcaption id="game-description" class="games-grid-game-description"></figcaption>
-             </figure>
-		  </section>
-		  <section class="games-btn-group">
-			 <button id="games-btn-group-prev" class="games-btn-group-btn">
-				<i class="fa-solid fa-less-than"></i>
-			 </button>
-			 <button id="modal-trigger" class="games-btn-group-btn">
-				<i class="fa-solid fa-check-double"></i>
-			 </button>
-			 <button id="games-btn-group-next" class="games-btn-group-btn">
-			    <i class="fa-solid fa-greater-than"></i>
-			 </button>
-		  </section>
-		  <section class="modal hidden">
-			 <div class="modal-header">
-				<div class="modal-header-close">
-				   <i class="fa-solid fa-xmark"></i>
-				</div>
-				<div class="modal-header-text"></div>
-			 </div>
-			 <div class="modal-body">
-				<div class="game-display">
-				   <div class="game-tic-tac-toe">
-					   <div class="board" id="board">
-						  <div class="cell" data-cell></div>
-						  <div class="cell" data-cell></div>
-						  <div class="cell" data-cell></div>
-						  <div class="cell" data-cell></div>
-						  <div class="cell" data-cell></div>
-						  <div class="cell" data-cell></div>
-						  <div class="cell" data-cell></div>
-						  <div class="cell" data-cell></div>
-						  <div class="cell" data-cell></div>
-					   </div>
-					   <div class="winning-message">
-						  <div data-winning-message-text id="winning-message-text"></div>
-						  <div class="game-display-btn-group"> 
-							   <button class="game-display-btn-group-reset" id="restart-ttt">
-								  <i class="fa-solid fa-arrows-rotate"></i>
-								  Reset Game
-							   </button>
-						  </div>
-					   </div>
-					   <div class="instructions-message">
-						  <p>How to Play</p>
-						  <ul>
-							 <li>A paper and pencil game.</li>
-							 <li>Mark three cells the same in any direction to win.</li>
-							 <li>Otherwise, there's a draw.</li>
-						  </ul>
-					   </div>
-				   </div>
-				   <div class="game-rock-paper-scissors">
-					   <div class="game-display-btn-group"> 
-						   <button class="game-display-btn-group-reset" id="restart-rps">
-							  <i class="fa-solid fa-arrows-rotate"></i>
-								 Reset Game
-						   </button>
-					   </div>
-					   <div class="instructions-message">
-						  <p>How to Play</p>
-						  <ul>
-							 <li>Click on a hand above.</li>
-							 <li>Another hand will be chosen.</li>
-							 <li>Paper beats rock. Rock beats scissors. Scissors beats paper.</li>
-							 <li>It&apos;s just that simple.</li>
-						  </ul>
-					   </div>
-				</div>
-				<div class="game-connect-four">
-				   <div class="cf-board"></div>
-				   <div class="winning-message hidden">
-                       <div data-winning-message-text id="winning-message-text">Red Wins</div>
-                       <div class="game-display-btn-group"> 
-                           <button class="game-display-btn-group-reset" id="restart-cf">
-                               <i class="fa-solid fa-arrows-rotate"></i>
-                                   Reset Game
-                           </button>
-                       </div>
-                   </div>
-                   <div class="instructions-message">
-					  <p>
-					  Just get four in a row, diagonally, horizontally, or vertically.
-					  </p>
-                   </div>
-				</div>
-				<div class="game-minesweeper">
-				   <div class="game-interface">
-					  <span class="game-interface-mines-display"></span>
-					  <span class="game-display-btn-group">
-						 <button class="game-display-btn-group-reset" id="restart-ms">
-						 </button>
-					  </span>
-					  <span class="game-interface-countdown"></span>
-				   </div>
-				   <div class="ms-board"></div>
-				   <div class="instructions-message">
-					  <p>How to Play.</p>
-					  <p>Cmd-click or Alt-click to flag a cell. Click if you know that cell is clear.</p>
-				   </div>
-			    </div>
-			  </div>
-		  </section>
 	   </main>
-	   <footer>
-		  <section id="footer">
-			 &#169; Michael James, 2021
-		  </section>
+	   <footer id="ftr-bar">
+		   <section id="site-info">
+			   <ul>
+				  <li><a href="https://github.com/micrjames/grid-games" target="_blank">
+						&#960;</a>
+				  </li>
+			   </ul>
+		   </section>
+		   <section id="copyright-info">Copyright 2021, Michael James</section>
 	   </footer>
    	<script src="js/index.js" type="module"></script>
 	</body>

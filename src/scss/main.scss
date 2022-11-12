@@ -1,7 +1,11 @@
-@import 'utils/config', 'utils/utils', 'utils/button', 'parts/header', 'parts/footer', 'parts/main-plfd', 'parts/about';
+@import 'utils/config', 'parts/hdr-bar', 'parts/ftr-bar', 'parts/sections/main-container';
 
-$primary-color:  #282828;
-
-body {
-   background-color: $primary-color;
+header {
+	@include hdr-bar($header-color);
+}
+main {
+    @include main-container($main-bg-color, $main-text-color);
+}
+footer {
+    @include ftr-bar($footer-color);
 }
