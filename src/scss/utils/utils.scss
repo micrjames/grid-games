@@ -25,9 +25,18 @@
    align-items: center;
 }
 
-@mixin set-grid($num-rows, $num-cols) {
-    grid-template-rows: repeat($num-rows, auto); 
-    grid-template-columns: repeat($num-cols, auto);                                         
+@mixin set-grid($num-cols: null, $num-rows: null, $center: true) {
+    display: grid;
+	@if($center) {
+	   justify-content: center;
+	   align-content: center;
+	}
+    @if($num-rows) {
+	   grid-template-rows: repeat($num-rows, auto); 
+	}
+    @if($num-cols) {
+	   grid-template-columns: repeat($num-cols, auto);                                         
+	}
 }
 .hidden {
     display: none;
@@ -37,6 +46,7 @@
    flex-direction: column;
 }
 %flex-center {
+   display: flex;
    justify-content: center;
    align-content: center;
 }

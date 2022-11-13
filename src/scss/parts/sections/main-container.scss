@@ -60,6 +60,9 @@ $modal-text-color: $secondary-color;
    }
    #modal {
 	  @include modal($modal-width, $modal-bg-color, $modal-text-color, true);
+	  @include md {
+		 @include modal(0.75 * $modal-width, $modal-bg-color, $modal-text-color, true);
+	  }
 	  @include box-shadow(0, 3px, 10px, 0, rgb(0 0 0 / 0.2), false);
 
 	  &.hidden {
