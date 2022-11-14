@@ -17,7 +17,7 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
-main #modal #modal-body .game-display .game-tic-tac-toe .board .cell {
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -53,7 +53,7 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
-main #modal #modal-body .game-display .game-tic-tac-toe .board .cell {
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -78,7 +78,7 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
-main #modal #modal-body .game-display .game-tic-tac-toe .board .cell {
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -93,13 +93,13 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
-main #modal #modal-body .game-display .game-tic-tac-toe .board .cell {
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   display: flex;
   justify-content: center;
   align-content: center;
 }
 
-main #modal #modal-body .game-display .game-tic-tac-toe .board {
+main #modal #modal-body .game-display .game.tic-tac-toe .board {
   width: 100%;
   height: 75%;
   display: grid;
@@ -107,61 +107,83 @@ main #modal #modal-body .game-display .game-tic-tac-toe .board {
   align-content: center;
   grid-template-columns: repeat(3, auto);
 }
-main #modal #modal-body .game-display .game-tic-tac-toe .board .cell {
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   width: 100px;
   height: 100px;
   border: 1px solid black;
   cursor: pointer;
 }
-main #modal #modal-body .game-display .game-tic-tac-toe .board .cell:nth-child(-n+3) {
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell:nth-child(-n+3) {
   border-top: none;
 }
-main #modal #modal-body .game-display .game-tic-tac-toe .board .cell:nth-child(3n+1) {
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell:nth-child(3n+1) {
   border-left: none;
 }
-main #modal #modal-body .game-display .game-tic-tac-toe .board .cell:nth-child(3n+3) {
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell:nth-child(3n+3) {
   border-right: none;
 }
-main #modal #modal-body .game-display .game-tic-tac-toe .board .cell:nth-child(n+7) {
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell:nth-child(n+7) {
   border-bottom: none;
 }
 
-main #modal #modal-body .game-display .winning-message {
-  padding: 0.65rem 0;
+main #modal #modal-body .game-display .game.rock-paper-scissors .selections {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
 }
-main #modal #modal-body .game-display .winning-message-text {
-  text-align: center;
-  font-size: 1.5rem;
-  margin: 1.2rem 0;
-}
-main #modal #modal-body .game-display .winning-message .game-display-btn-group-reset {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+main #modal #modal-body .game-display .game.rock-paper-scissors .selections .selection {
   display: inline-block;
   background: #000;
   color: #fff;
   font-family: inherit;
-  font-size: 1.2rem;
+  font-size: 5.75rem;
   text-decoration: none;
-  padding: 0.75rem 0.95rem;
+  padding: 0.75rem;
   margin: 0;
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
-  transition: all 0.5s ease-in-out;
+  color: #222;
+  background: none;
+  border: none;
+  outline: none;
+  transition: 100ms;
 }
-main #modal #modal-body .game-display .winning-message .game-display-btn-group-reset i {
-  margin-right: 0.5rem;
+main #modal #modal-body .game-display .game.rock-paper-scissors .selections .selection:hover {
+  transform: scale(1.2);
 }
-main #modal #modal-body .game-display .winning-message .game-display-btn-group-reset:active {
-  box-shadow: none;
+
+main #modal #modal-body .game-display .game.rock-paper-scissors .results {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.5rem;
 }
-main #modal #modal-body .game-display .winning-message .game-display-btn-group-reset:disabled {
-  box-shadow: none;
-  opacity: 0.2;
+main #modal #modal-body .game-display .game.rock-paper-scissors .results span .result-score {
+  padding-left: 0.5rem;
+  font-size: 1.95rem;
 }
+main #modal #modal-body .game-display .game.rock-paper-scissors .results span i {
+  display: block;
+  font-size: 5.75rem;
+  opacity: 0.5;
+  padding: 0.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+main #modal #modal-header, main #modal {
+  display: flex;
+  flex-direction: column;
+}
+
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
 main #modal #modal-body .game-display .instructions-message {
   margin: 3.2rem 0;
 }
@@ -177,6 +199,14 @@ main #modal #modal-body .game-display .instructions-message ul li {
   list-style-position: inside;
 }
 
+main #modal #modal-body .game-display .game .winning-message {
+  padding: 0.65rem 0;
+}
+main #modal #modal-body .game-display .game .winning-message-text {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 1.2rem 0;
+}
 header {
   position: sticky;
   top: 0;

@@ -82,7 +82,7 @@
               </div>
               <div id="modal-body">
 				  <div class="game-display">
-					<div class="game-tic-tac-toe">
+					 <div id="ttt" class="game tic-tac-toe">
 						  <div class="board" id="board">
 							 <div class="cell"></div>
 							 <div class="cell"></div>
@@ -112,7 +112,28 @@
 							  </ul>
 						 </div>
 					</div>
-				 </div>
+					<div id="rps" class="game rock-paper-scissors">                                       
+						<div class="winning-message">
+							<div class="winning-message-text"></div>
+							<div class="game-display-btn-group"> 
+								<button class="game-display-btn-group-reset" id="restart-rps">
+									<i class="fa-solid fa-arrows-rotate"></i>
+									Reset Game
+								</button>
+							</div>
+						</div>
+                        <div class="instructions-message">
+                            <p>How to Play</p>
+                            <ul>
+                                <li>Click on a hand above.</li>
+                                <li>Another hand will be chosen.</li>
+                                <li>Paper beats rock. Rock beats scissors. Scissors beats paper.</li>
+                                <li>It&apos;s just that simple.</li>
+                            </ul>
+                       </div>
+					</div>
+
+				  </div>
 			  </div>
 		  </section>
 	   </main>
