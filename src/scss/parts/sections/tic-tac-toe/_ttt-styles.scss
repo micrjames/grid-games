@@ -1,14 +1,14 @@
-@import "set-cell", "../../../utils/utils";
+@import "set-board", "set-marks";
+
+$cell-size: 100px;
+$mark-size: $cell-size * .9;
 
 %ttt {
     .board {
-	    width: 100%;
-		height: 75%;
+	   /*
+	   @extend %set-board;
 
-		@include set-grid(3);
-
-		.cell {
-		   @include set-cell(100px, 100px, black); 
-		}
+	   @include set-marks-x($mark-size);
+	   */
 	}
 }

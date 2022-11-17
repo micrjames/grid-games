@@ -1,0 +1,28 @@
+@mixin set-marks-x($size) {
+	 .cell.x {
+		cursor: not-allowed;
+	 }
+	 .cell.x::before, .cell.x::after {
+		background-color: black;
+	 }
+	 .board.x .cell:not(.x):not(.circle):hover::before,
+	 .board.x .cell:not(.x):not(.circle):hover::after {
+		background-color: lightgrey;
+	 }
+	 .cell.x::before, .cell.x::after,
+	 .board.x .cell:not(.x):not(.circle):hover::before,
+	 .board.x .cell:not(.x):not(.circle):hover::after {
+		content: '';
+		position: absolute;
+		width: $size * .15;
+		height: $size;
+	 }
+	 .cell.x::before,
+	 .board.x .cell:not(.x):not(.circle):hover::before {
+		transform: rotate(45deg);
+	 }
+	 .cell.x::after,
+	 .board.x .cell:not(.x):not(.circle):hover::after {
+		transform: rotate(-45deg);
+	 }
+}

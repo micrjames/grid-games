@@ -1,10 +1,115 @@
-@import "../parts/sections/tic-tac-toe/ttt-styles", "../parts/sections/rock-paper-scissors/rps-styles", "../utils/utils", "../parts/sections/instructions", "../parts/sections/game-btns";
+@import "../parts/sections/tic-tac-toe/ttt-styles", "../parts/sections/rock-paper-scissors/rps-styles", "../utils/utils", "../parts/sections/instructions";
+
+$cell-size: 100px;
+$mark-size: $cell-size * .9;
 
 %modal-body {
     .game-display {
 	    .game {
 		   &.tic-tac-toe {
-			   @extend %ttt;
+			   // @extend %ttt;
+			   .board {
+					width: 100%;
+					height: 75%;
+					display: grid;
+					justify-content: center;
+					align-content: center;
+					justify-items: center;
+					align-items: center;
+					grid-template-columns: repeat(3, auto);
+
+				  .cell {
+					width: $cell-size;
+					height: $cell-size;
+					border: 1px solid black;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					position: relative;
+					cursor: pointer;
+
+					 &.x::before {
+					   background-color: black;
+					   content: '';
+					   position: absolute;
+					   width: $mark-size * .15;
+					   height: $mark-size;
+
+					   transform: rotate(45deg);
+					}
+					 &.x::after {
+					   background-color: black;
+					   content: '';
+					   position: absolute;
+					   width: $mark-size * .15;
+					   height: $mark-size;
+
+					   transform: rotate(-45deg);
+					 }
+					 &.circle::before {
+					   background-color: black;
+
+					   content: '';
+					   position: absolute;
+					   border-radius: 50%;
+
+					   width: $mark-size;
+					   height: $mark-size;
+					 }
+					 &.circle::after {
+					   content: '';
+					   position: absolute;
+					   border-radius: 50%;
+
+					   width: $mark-size * .7;
+					   height: $mark-size * .7;
+					   background-color: white;
+					 }
+				  }
+
+				  &.x {
+					 .cell:not(.x):not(.circle):hover::before {
+						  background-color: lightgrey;
+						  content: '';
+						  position: absolute;
+						  width: $mark-size * .15;
+						  height: $mark-size;
+
+						  transform: rotate(45deg);
+					 }
+					 .cell:not(.x):not(.circle):hover::after {
+						  background-color: lightgrey;
+						  content: '';
+						  position: absolute;
+						  width: $mark-size * .15;
+						  height: $mark-size;
+
+						  transform: rotate(-45deg);
+					 }
+				  }
+				  &.circle {
+					 .cell:not(.x):not(.circle):hover::before {
+						  background-color: lightgrey;
+
+						  content: '';
+						  position: absolute;
+						  border-radius: 50%;
+
+						  width: $mark-size;
+						  height: $mark-size;
+					 }
+					 .cell:not(.x):not(.circle):hover::after {
+						  width: $mark-size * .7;
+						  height: $mark-size * .7;
+
+						  content: '';
+						  position: absolute;
+						  border-radius: 50%;
+
+						  background-color: white;
+					 }
+				  }
+			   }
 		   }
 		   &.rock-paper-scissors {
 			   @extend %rps;
@@ -17,7 +122,27 @@
 				  margin: 1.2rem 0;
 			   }
 			   .game-display-btn-group {
-				  @extend %btn-group;
+				  &-reset {
+					  position: absolute;
+					  @extend %center-object-horz;
+
+					  @include button(1.2rem, 0.75rem 0.95rem, 0);
+					  @include box-shadow(6px, 2px, 9px, 2px, rgba(0, 0, 0, 0.6), false);
+					  @include transition-ease;
+
+					  i {
+						  margin-right: 0.5rem;
+					  }
+
+					  &:active {
+						  box-shadow: none;
+					  }
+
+					  &:disabled {
+						  box-shadow: none;
+						  opacity: 0.2;
+					  }
+				 }
 			   }
 		   }
 		}
