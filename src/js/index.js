@@ -4,6 +4,9 @@ import { spinalCase } from "./utils.js";
 import { rpsRestartBtn } from "./rock-paper-scissors/game_incs.js";
 import { startRPS, resetRPS } from "./rock-paper-scissors/game_logic.js";
 
+import { tttRestartBtn } from "./tic-tac-toe/game_incs.js";
+import { startTTT, resetTTT } from "./tic-tac-toe/game_logic.js";
+
 for(const game of games.children) {
     for(const el of game.children) {
 	    if(el.tagName === "FIGCAPTION") {
@@ -32,6 +35,10 @@ for(const game of games.children) {
 modalHdrCloseBtn.addEventListener("click", function(event) {
     modal.classList.add("hidden");
 });
+
+/* tic-tac-toe */
+startTTT();
+tttRestartBtn.addEventListener("click", resetTTT);
 
 /* rock-paper-scissors */
 startRPS();
