@@ -22,6 +22,12 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 header nav menu {
   list-style-type: none;
 }
@@ -57,6 +63,12 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   padding: 0;
@@ -81,6 +93,12 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 main #modal #modal-body .game-display .game .winning-message .game-display-btn-group-reset {
   left: 50%;
   transform: translateX(-50%);
@@ -93,6 +111,106 @@ main #modal #modal-body .game-display .game .winning-message .game-display-btn-g
 main #modal #modal-header, main #modal {
   display: flex;
   flex-direction: column;
+}
+
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main #modal #modal-body .game-display .game.tic-tac-toe .board {
+  width: 100%;
+  height: 75%;
+  justify-items: center;
+  align-items: center;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(3, auto);
+}
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  position: relative;
+  cursor: pointer;
+}
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell:nth-child(-n+3) {
+  border-top: none;
+}
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell:nth-child(3n+1) {
+  border-left: none;
+}
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell:nth-child(3n+3) {
+  border-right: none;
+}
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell:nth-child(n+7) {
+  border-bottom: none;
+}
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell.x::before {
+  background-color: black;
+  content: "";
+  position: absolute;
+  width: 13.5px;
+  height: 90px;
+  transform: rotate(45deg);
+}
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell.x::after {
+  background-color: black;
+  content: "";
+  position: absolute;
+  width: 13.5px;
+  height: 90px;
+  transform: rotate(-45deg);
+}
+main #modal #modal-body .game-display .game.tic-tac-toe .board.x .cell:not(.x):not(.circle):hover::before {
+  background-color: lightgrey;
+  content: "";
+  position: absolute;
+  width: 13.5px;
+  height: 90px;
+  transform: rotate(45deg);
+}
+main #modal #modal-body .game-display .game.tic-tac-toe .board.x .cell:not(.x):not(.circle):hover::after {
+  background-color: lightgrey;
+  content: "";
+  position: absolute;
+  width: 13.5px;
+  height: 90px;
+  transform: rotate(-45deg);
+}
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell.circle::before {
+  background-color: black;
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+}
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell.circle::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  width: 63px;
+  height: 63px;
+  background-color: white;
+}
+main #modal #modal-body .game-display .game.tic-tac-toe .board.circle .cell:not(.x):not(.circle):hover::before {
+  background-color: lightgrey;
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+}
+main #modal #modal-body .game-display .game.tic-tac-toe .board.circle .cell:not(.x):not(.circle):hover::after {
+  width: 63px;
+  height: 63px;
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background-color: white;
 }
 
 main #modal #modal-body .game-display .game.rock-paper-scissors .selections {
@@ -152,6 +270,12 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 main #modal #modal-body .game-display .instructions-message {
   margin: 3.2rem 0;
 }
@@ -167,90 +291,6 @@ main #modal #modal-body .game-display .instructions-message ul li {
   list-style-position: inside;
 }
 
-main #modal #modal-body .game-display .game.tic-tac-toe .board {
-  width: 100%;
-  height: 75%;
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  justify-items: center;
-  align-items: center;
-  grid-template-columns: repeat(3, auto);
-}
-main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  cursor: pointer;
-}
-main #modal #modal-body .game-display .game.tic-tac-toe .board .cell.x::before {
-  background-color: black;
-  content: "";
-  position: absolute;
-  width: 13.5px;
-  height: 90px;
-  transform: rotate(45deg);
-}
-main #modal #modal-body .game-display .game.tic-tac-toe .board .cell.x::after {
-  background-color: black;
-  content: "";
-  position: absolute;
-  width: 13.5px;
-  height: 90px;
-  transform: rotate(-45deg);
-}
-main #modal #modal-body .game-display .game.tic-tac-toe .board .cell.circle::before {
-  background-color: black;
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  width: 90px;
-  height: 90px;
-}
-main #modal #modal-body .game-display .game.tic-tac-toe .board .cell.circle::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  width: 63px;
-  height: 63px;
-  background-color: white;
-}
-main #modal #modal-body .game-display .game.tic-tac-toe .board.x .cell:not(.x):not(.circle):hover::before {
-  background-color: lightgrey;
-  content: "";
-  position: absolute;
-  width: 13.5px;
-  height: 90px;
-  transform: rotate(45deg);
-}
-main #modal #modal-body .game-display .game.tic-tac-toe .board.x .cell:not(.x):not(.circle):hover::after {
-  background-color: lightgrey;
-  content: "";
-  position: absolute;
-  width: 13.5px;
-  height: 90px;
-  transform: rotate(-45deg);
-}
-main #modal #modal-body .game-display .game.tic-tac-toe .board.circle .cell:not(.x):not(.circle):hover::before {
-  background-color: lightgrey;
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  width: 90px;
-  height: 90px;
-}
-main #modal #modal-body .game-display .game.tic-tac-toe .board.circle .cell:not(.x):not(.circle):hover::after {
-  width: 63px;
-  height: 63px;
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  background-color: white;
-}
 main #modal #modal-body .game-display .game .winning-message {
   padding: 0.65rem 0;
 }

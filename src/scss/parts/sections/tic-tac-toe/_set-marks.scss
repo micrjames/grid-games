@@ -1,28 +1,87 @@
 @mixin set-marks-x($size) {
-	 .cell.x {
-		cursor: not-allowed;
-	 }
-	 .cell.x::before, .cell.x::after {
-		background-color: black;
-	 }
-	 .board.x .cell:not(.x):not(.circle):hover::before,
-	 .board.x .cell:not(.x):not(.circle):hover::after {
-		background-color: lightgrey;
-	 }
-	 .cell.x::before, .cell.x::after,
-	 .board.x .cell:not(.x):not(.circle):hover::before,
-	 .board.x .cell:not(.x):not(.circle):hover::after {
-		content: '';
-		position: absolute;
-		width: $size * .15;
-		height: $size;
-	 }
-	 .cell.x::before,
-	 .board.x .cell:not(.x):not(.circle):hover::before {
-		transform: rotate(45deg);
-	 }
-	 .cell.x::after,
-	 .board.x .cell:not(.x):not(.circle):hover::after {
-		transform: rotate(-45deg);
-	 }
+    .cell { 
+        &.x::before {
+            background-color: black;
+            content: '';
+            position: absolute;
+            width: $size * .15;
+            height: $size;
+
+            transform: rotate(45deg);
+       }
+       &.x::after {
+            background-color: black;
+            content: '';
+            position: absolute;
+            width: $size * .15;
+            height: $size;
+ 
+            transform: rotate(-45deg);
+       }
+    }
+    &.x {                                                                                               
+       .cell:not(.x):not(.circle):hover::before {
+           background-color: lightgrey;
+           content: '';
+           position: absolute;
+           width: $size * .15;
+           height: $size;
+ 
+           transform: rotate(45deg);
+      } 
+      .cell:not(.x):not(.circle):hover::after {
+          background-color: lightgrey;
+          content: '';
+          position: absolute;
+          width: $size * .15;
+          height: $size;
+
+          transform: rotate(-45deg);
+     }
+   }
+}
+@mixin set-marks-circle($size) {
+   .cell {                                                                                              
+      &.circle::before {
+          background-color: black;
+
+          content: '';
+          position: absolute;
+          border-radius: 50%;
+
+          width: $size;
+          height: $size;
+     }
+     &.circle::after {
+          content: '';
+          position: absolute;
+          border-radius: 50%;
+
+          width: $size * .7;
+          height: $size * .7;
+          background-color: white;
+    }
+  }
+  &.circle {                                                                                          
+      .cell:not(.x):not(.circle):hover::before {
+        background-color: lightgrey;
+             
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+              
+        width: $size;
+        height: $size;
+     }    
+     .cell:not(.x):not(.circle):hover::after {
+        width: $size * .7;
+        height: $size * .7;
+              
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+              
+        background-color: white;
+    }    
+  }
 }

@@ -3,22 +3,8 @@
 @mixin set-cell($width, $height, $cell-color) {
    width: $width;
    height: $height;
-
    border: 1px solid $cell-color;
-
    @extend %flex-center;
+   position: relative;
    cursor: pointer;
-
-   &:nth-child(-n + 3) {
-	  border-top: none;
-   }
-   &:nth-child(3n + 1) {
-	  border-left: none;
-   }
-   &:nth-child(3n + 3) {
-	  border-right: none;
-   }
-   &:nth-child(n + 7) {
-	  border-bottom: none;
-   }
 }
