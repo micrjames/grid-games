@@ -1,10 +1,22 @@
 import { board, CLASS } from "./game_incs.js";
+import { mat } from "../incs.js";
 
 let circleTurn;
 const handleClick = function(event) {
     const cell = this;// event.target;
     const currentClass = circleTurn ? CLASS.CIRCLE : CLASS.X;
 
+    const pos = getPos(cell);
+    switch(currentClass) {
+	    case CLASS.CIRCLE:
+		   mat.circle.setElement(1, pos.x, pos.y);
+		   console.log(mat.circle.mat);
+		   break;
+	    case CLASS.X:
+		   mat.x.setElement(1, pos.x, pos.y);
+		   console.log(mat.x.mat);
+		   break;
+	}
     placeMark(cell, currentClass);
 
     swapTurn();
@@ -21,6 +33,12 @@ const setBoardHoverClass = function() {
 
 const placeMark = function(cell, currentClass) {
     cell.classList.add(currentClass);
+};
+
+const getPos = function(cell) {
+    const pos = cell.dataset.pos;
+    const splitPos = pos.split("-");
+    return { x: +splitPos[0], y: +splitPos[1] }; 
 };
 
 const endGame = function(draw) {

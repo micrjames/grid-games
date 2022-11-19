@@ -1,5 +1,6 @@
 import { cellEls, CLASS, winningMessageEl, instructionsMessageEl } from "./game_incs.js";
 import { handleClick, setBoardHoverClass } from "./ttt.js";
+import { mat } from "../incs.js";
 
 const startTTT = function() {
 	setup();
@@ -8,6 +9,9 @@ const startTTT = function() {
 
 const resetTTT = function() {
     setup();
+
+	mat.circle.clear();
+	mat.x.clear();
 };
 
 const setup = function() {

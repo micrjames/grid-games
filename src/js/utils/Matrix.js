@@ -1,10 +1,21 @@
 class Matrix {
    #mat = [];
+   #N;
 
    constructor(N) {
-	   for(let i = 0; i < N; i++) {
-		   this.#mat = [...this.#mat, Array(N).fill(0)];
+	   this.#N = N;
+	   this.set(N);
+   }
+
+   set() {
+	   for(let i = 0; i < this.#N; i++) {
+		   this.#mat = [...this.#mat, Array(this.#N).fill(0)];
 	   }
+   }
+
+   clear() {
+	   this.#mat = [];
+	   this.set();
    }
 
    get mat() {

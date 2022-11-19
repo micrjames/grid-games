@@ -1,6 +1,6 @@
 import { games, modal } from "./incs.js";
 import { modalHdrText, modalHdrCloseBtn, modalBody } from "./modal.js";
-import { spinalCase } from "./utils.js";
+import { spinalCase } from "./utils/utils.js";
 import { rpsRestartBtn } from "./rock-paper-scissors/game_incs.js";
 import { startRPS, resetRPS } from "./rock-paper-scissors/game_logic.js";
 
