@@ -7,6 +7,7 @@ import { startRPS, resetRPS } from "./rock-paper-scissors/game_logic.js";
 import { tttRestartBtn } from "./tic-tac-toe/game_incs.js";
 import { startTTT, resetTTT } from "./tic-tac-toe/game_logic.js";
 
+const gameDisplay = modalBody.children[0];
 for(const game of games.children) {
     for(const el of game.children) {
 	    if(el.tagName === "FIGCAPTION") {
@@ -15,11 +16,10 @@ for(const game of games.children) {
 			    const title = this.textContent.trim();
 
 			    modalHdrText.textContent = title;
-				const gameDisplay = modalBody.children[0];
-				for(const game of gameDisplay.children) {
+				for(const child of gameDisplay.children) {
 				   const spinaledTitle = spinalCase(title);
-				   if(game.classList.contains(spinaledTitle)) game.classList.remove("hidden");
-				   else game.classList.add("hidden");
+				   if(child.classList.contains(spinaledTitle)) child.classList.remove("hidden");
+				   else child.classList.add("hidden");
 				}
 
 			    modal.classList.remove("hidden"); 
@@ -34,6 +34,21 @@ for(const game of games.children) {
 
 modalHdrCloseBtn.addEventListener("click", function(event) {
     modal.classList.add("hidden");
+
+    for(const child of gameDisplay.children) {
+	    if(child.classList.contains("hidden")) {
+		    continue;
+		} else {
+		    switch(child.id) {
+			    case "ttt":
+				  resetTTT();
+				  break;
+			   case "rps":
+				  resetRPS();
+				  break;
+			}
+		}
+	}
 });
 
 /* tic-tac-toe */

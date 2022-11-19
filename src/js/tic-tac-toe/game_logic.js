@@ -2,6 +2,15 @@ import { cellEls, CLASS, winningMessageEl, instructionsMessageEl } from "./game_
 import { handleClick, setBoardHoverClass } from "./ttt.js";
 
 const startTTT = function() {
+	setup();
+    setBoardHoverClass();
+};
+
+const resetTTT = function() {
+    setup();
+};
+
+const setup = function() {
     for(const cellEl of cellEls) {
 	    if(cellEl.classList.contains(CLASS.X)) cellEl.classList.remove(CLASS.X);
 	    else if(cellEl.classList.contains(CLASS.CIRCLE)) cellEl.classList.remove(CLASS.CIRCLE);
@@ -10,13 +19,8 @@ const startTTT = function() {
 	    cellEl.addEventListener("click", handleClick);
 	}
 
-    setBoardHoverClass();
-
     winningMessageEl.classList.add("hidden");
     instructionsMessageEl.classList.remove("hidden");
-};
-
-const resetTTT = function() {
-};
+}
 
 export { startTTT, resetTTT };
