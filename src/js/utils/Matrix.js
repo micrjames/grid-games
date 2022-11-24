@@ -32,8 +32,12 @@ class Matrix {
 	   this.#mat[j][i] = val;
    }
 
+   setRow(val, which) {
+	   this.#mat[which] = val;
+   }
+
    getRow(which) {
-	   return this.#mat.filter((row, index) => index == which).flat();
+	   return this.#mat.filter((_, index) => index == which).flat();
    }
    getCol(which) {
        return this.#mat.map(row => row[which]);
@@ -49,14 +53,13 @@ class Matrix {
 	   });
    }
    get counterDiagonal() {
-	   let pivot = 0;
-	   return this.#mat.map((row, index) => {
-		   const revRow = row.reverse();
-		   if(index == pivot) {
-			  pivot++;
-			  return revRow[index];
-		   }
+	   const counterMatrix = new Matrix(this.#mat.size);
+	   this.#mat.forEach((row, index) => {
+		   const revRow = row.reduce((acc, item)=> [item].concat(acc), []);
+		   counterMatrix.setRow(revRow, index);
 	   });
+
+	   return counterMatrix.diagonal;
    }
 }
 

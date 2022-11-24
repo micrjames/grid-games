@@ -17,8 +17,6 @@ const handleClick = function(event) {
 		   break;
 	}
 
-    console.log(`circle matrix: ${mat.circle.mat}`);
-    console.log(`x matrix: ${mat.x.mat}`);
 	placeMark(cell, currentClass);
     if(checkWin(currentClass, pos)) {
 	    const titledClass = titleCase(currentClass); 
@@ -55,31 +53,26 @@ const endGame = function(draw) {
 const checkWin = function(currentClass, pos) {
     const matrix = mat[`${currentClass}`];
 
-    console.log(matrix.getRow(pos.row));
-    console.log(matrix.getCol(pos.col));
     // pos always intersects with some row and some column
     if(matrix.getRow(pos.row).every(el => el == 1)) return true;
     if(matrix.getCol(pos.col).every(el => el == 1)) return true; 
     
     // does pos intersect with diagonal?
-    // pos.col = pos.row
-    if(pos.col == pos.row){
-	   if(matrix.diagonal.every(el => el == 1)) {
-		  return true;
-	   }
+    // pos.col == pos.row
+    if(pos.col == pos.row) {
+	   if(matrix.diagonal.every(el => el == 1)) return true;
 	}
-    
-    // (0, 2) (1, 1) (2, 0)
-    // does pos intersect with counter diagonal?
-    if(pos.row == (matrix.size - 1) - pos.col) {
+
+    if(pos.row == ((matrix.size - 1) - pos.col)) {
 	   if(matrix.counterDiagonal.every(el => el == 1)) {
 		   return true;
 	   }
 	}
+
     return false;
 };
 
-const checkDraw = function(currentClass) {
+const checkDraw = function() {
     return false;
 };
 
