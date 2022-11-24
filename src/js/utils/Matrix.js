@@ -18,16 +18,22 @@ class Matrix {
 	   this.set();
    }
 
+   get size() {
+	   return this.#N;
+   }
+
    get mat() {
 	   return this.#mat;
    }
 
-   setElement(val, row, col) {
-	   this.#mat[row][col] = val;
+   setElement(val, j, i) {
+	   // since matrix is built from an array of rows,
+	  //  this order is necessary
+	   this.#mat[j][i] = val;
    }
 
    getRow(which) {
-	   return this.#mat.map(row => row[which]);
+	   return this.#mat.filter((row, index) => index == which).flat();
    }
    getCol(which) {
        return this.#mat.map(row => row[which]);
