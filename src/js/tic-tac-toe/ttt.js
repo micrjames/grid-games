@@ -1,32 +1,30 @@
-import { board, CLASS } from "./game_incs.js";
+import { board, CLASS, winningMessageEl, winningMessageText, instructionsMessageEl } from "./game_incs.js";
 import { mat } from "../incs.js";
 import { titleCase } from "../utils/utils.js";
 
 let circleTurn;
+let gameOverMsg;
+let gameOver = false;
+
 const handleClick = function(event) {
-    const cell = this;// event.target;
-    const currentClass = circleTurn ? CLASS.CIRCLE : CLASS.X;
+    const cell = this; // event.target;
+	const currentClass = circleTurn ? CLASS.CIRCLE : CLASS.X;
+	const pos = getPos(cell);
 
-    const pos = getPos(cell);
-    switch(currentClass) {
-	    case CLASS.CIRCLE:
-		   mat.circle.setElement(1, pos.row, pos.col);
-		   break;
-	    case CLASS.X:
-		   mat.x.setElement(1, pos.row, pos.col);
-		   break;
-	}
-
-	placeMark(cell, currentClass);
-    if(checkWin(currentClass, pos)) {
-	    const titledClass = titleCase(currentClass); 
-	    alert(`${titledClass} wins!`);
+	if(!gameOver) placeMark(cell, currentClass, pos);
+	if(checkWin(currentClass, pos)) {
+		const titledClass = titleCase(currentClass); 
+		gameOverMsg = `${titledClass} wins!`;
+		endGame(gameOverMsg);
 	} else if(checkDraw(currentClass)) {
-	    alert("There is a draw!");
+		gameOverMsg = "There is a draw!";
+		endGame(gameOverMsg);
 	}
 
-    swapTurn();
-    setBoardHoverClass();
+    if(!gameOver) {
+	   swapTurn();
+	   setBoardHoverClass();
+	}
 };
 
 const setBoardHoverClass = function() {
@@ -37,7 +35,15 @@ const setBoardHoverClass = function() {
     else board.classList.add(CLASS.X);
 };
 
-const placeMark = function(cell, currentClass) {
+const placeMark = function(cell, currentClass, pos) {
+    switch(currentClass) {
+	    case CLASS.CIRCLE:
+		   mat.circle.setElement(1, pos.row, pos.col);
+		   break;
+	    case CLASS.X:
+		   mat.x.setElement(1, pos.row, pos.col);
+		   break;
+	}
     cell.classList.add(currentClass);
 };
 
@@ -47,7 +53,10 @@ const getPos = function(cell) {
     return { row: +splitPos[0], col: +splitPos[1] }; 
 };
 
-const endGame = function(draw) {
+const endGame = function(msg) {
+    gameOver = true;
+    winningMessageText.textContent = msg;
+    toggleUIEls(gameOver);
 };
 
 const checkWin = function(currentClass, pos) {
@@ -63,6 +72,8 @@ const checkWin = function(currentClass, pos) {
 	   if(matrix.diagonal.every(el => el == 1)) return true;
 	}
 
+    // does pos intersect with counter diagonal?
+    // pos.row == matrix_size - pos.col
     if(pos.row == ((matrix.size - 1) - pos.col)) {
 	   if(matrix.counterDiagonal.every(el => el == 1)) {
 		   return true;
@@ -80,4 +91,18 @@ const swapTurn = function() {
     circleTurn = !circleTurn;
 };
 
-export { handleClick, setBoardHoverClass };
+const toggleUIEls = function(gameDone) {
+    if(gameDone) {
+	   winningMessageEl.classList.remove("hidden");
+       instructionsMessageEl.classList.add("hidden");
+	} else {
+	   winningMessageEl.classList.add("hidden");
+       instructionsMessageEl.classList.remove("hidden");
+	}
+}
+
+const setOver = function(done) {
+    gameOver = done;
+};
+
+export { handleClick, setBoardHoverClass, toggleUIEls, setOver };

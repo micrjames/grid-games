@@ -1,5 +1,5 @@
-import { cellEls, CLASS, winningMessageEl, instructionsMessageEl } from "./game_incs.js";
-import { handleClick, setBoardHoverClass } from "./ttt.js";
+import { cellEls, CLASS } from "./game_incs.js";
+import { handleClick, setBoardHoverClass, toggleUIEls, setOver } from "./ttt.js";
 import { mat } from "../incs.js";
 
 const startTTT = function() {
@@ -12,6 +12,8 @@ const resetTTT = function() {
 
 	mat.circle.clear();
 	mat.x.clear();
+
+    setOver(false);
 };
 
 const setup = function() {
@@ -23,8 +25,7 @@ const setup = function() {
 	    cellEl.addEventListener("click", handleClick);
 	}
 
-    winningMessageEl.classList.add("hidden");
-    instructionsMessageEl.classList.remove("hidden");
+    toggleUIEls(false);
 }
 
 export { startTTT, resetTTT };

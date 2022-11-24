@@ -292,6 +292,7 @@ main #modal #modal-body .game-display .instructions-message ul li {
 }
 
 main #modal #modal-body .game-display .game .winning-message {
+  margin-bottom: 1.5rem;
   padding: 0.65rem 0;
 }
 main #modal #modal-body .game-display .game .winning-message-text {
