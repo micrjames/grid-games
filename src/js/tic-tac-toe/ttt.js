@@ -84,7 +84,15 @@ const checkWin = function(currentClass, pos) {
 };
 
 const checkDraw = function() {
-    return false;
+    const circleMat = mat.circle.mat;
+    const xMat = mat.x.mat;
+    
+    const flatCircleMat = circleMat.flat();
+    const flatXMat = xMat.flat();
+
+    const addedFlatMats = flatCircleMat.map((el, index) => el + flatXMat[index]);
+
+    return addedFlatMats.every(el => el == 1);
 };
 
 const swapTurn = function() {

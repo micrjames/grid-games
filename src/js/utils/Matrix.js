@@ -55,11 +55,36 @@ class Matrix {
    get counterDiagonal() {
 	   const counterMatrix = new Matrix(this.#mat.size);
 	   this.#mat.forEach((row, index) => {
-		   const revRow = row.reduce((acc, item)=> [item].concat(acc), []);
+		   const revRow = row.reduce((acc, item) => [item].concat(acc), []);
 		   counterMatrix.setRow(revRow, index);
 	   });
 
 	   return counterMatrix.diagonal;
+   }
+
+   add(thatMat) {
+	   const matsArr = this.#mat.concat(thatMat.mat);
+	   const flatMats = matsArr.flat();
+	   const size = this.#mat.flat().length;
+	   const addedMats = flatMats.map((currentValue, currentIndex) => {
+		   if(currentIndex < size) return currentValue + flatMats[currentIndex + size]; 
+	   }).filter(el => el);
+	   const unFlatMats = addedMats.reduce((accumulator, _, currentIndex) => {
+		   return currentIndex % this.#N == 0 ? accumulator.concat([addedMats.slice(currentIndex, currentIndex + 2)]) : accumulator
+	   }, []);
+	   return unFlatMats;
+   }
+   multiply(thatMat) {
+	   return this.#mat.map((row, rowIndex) => row.map((_, colIndex) => {
+		  const row = this.getRow(rowIndex);
+		  const col = thatMat.getCol(colIndex);
+		  return row.reduce((accumulator, currentValue, currentIndex) => {
+			 return currentValue * col[currentIndex] + accumulator;
+		  }, 0);
+	   }));
+   }
+   multiply_scalar(scalar) {
+	   return this.#mat.map(row => row.map(el => scalar * el));
    }
 }
 
