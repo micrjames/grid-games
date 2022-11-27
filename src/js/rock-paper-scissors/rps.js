@@ -1,4 +1,4 @@
-import { buildEl, addIcon } from "./utils.js";
+import { buildEl, addIcon } from "../utils/utils.js";
 import { rps, iconClassNames } from "./game_incs.js";
 
 let plyrScore;
