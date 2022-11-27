@@ -7,6 +7,9 @@ import { startRPS, resetRPS } from "./rock-paper-scissors/game_logic.js";
 import { tttRestartBtn } from "./tic-tac-toe/game_incs.js";
 import { startTTT, resetTTT } from "./tic-tac-toe/game_logic.js";
 
+import { msRestartBtn } from "./minesweeper/game_incs.js";
+import { startMS, resetMS } from "./minesweeper/game_logic.js";
+
 const gameDisplay = modalBody.children[0];
 for(const game of games.children) {
     for(const el of game.children) {
@@ -46,6 +49,9 @@ modalHdrCloseBtn.addEventListener("click", function(event) {
 			   case "rps":
 				  resetRPS();
 				  break;
+			   case "ms":
+				  resetMS();
+				  break;
 			}
 		}
 	}
@@ -58,3 +64,7 @@ tttRestartBtn.addEventListener("click", resetTTT);
 /* rock-paper-scissors */
 startRPS();
 rpsRestartBtn.addEventListener("click", resetRPS);
+
+/* minesweeper */
+startMS();
+msRestartBtn.addEventListener("click", resetMS);

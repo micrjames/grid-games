@@ -6,11 +6,11 @@ const numCols = 9;
 const gameDisplay = modalBody.children[0];
 const ms = gameDisplay.children.namedItem("ms");
 
-const interface = ms.children[0];
-const minesDisplay = interface.children[0];
-const btnGroup = interface.children[1];
-const countdownDisplay = interface.children[2];
+const interfaceDisplay = ms.children[0];
+const minesDisplay = interfaceDisplay.children[0];
+const btnGroup = interfaceDisplay.children[1];
+const countdownDisplay = interfaceDisplay.children[2];
 const msRestartBtn = btnGroup.children.namedItem("restart-ms");
 const board = ms.children.namedItem("board");
 
-export { minesDisplay, countdownDisplay, msRestartBtn, board };
+export { numRows, numCols, minesDisplay, countdownDisplay, msRestartBtn, board };

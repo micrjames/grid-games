@@ -52,9 +52,15 @@ const removeIcon = function(context, name) {
    context.removeChild(context.lastChild);
 };
 
+const removeChildren = function(context) {
+   while(context.firstChild) {
+       context.removeChild(context.lastChild);
+   }
+};
+
 const switchClasses = function(context, before, after) {
    context.classList.remove(before);
    context.classList.add(after);
 };
 
-export { spinalCase, titleCase, buildEl, addIcon, removeIcon, switchClasses };
+export { spinalCase, titleCase, buildEl, addIcon, removeIcon, switchClasses, removeChildren };
