@@ -1,3 +1,5 @@
+import { Timer } from "../utils/Timer.js";
+
 // Convert a string to spinal case. Spinal case in all-lowercase-words-joined-by-dashes.
 const spinalCase = str => {
    const strArr = str.toLowerCase().split(' ');
@@ -63,4 +65,31 @@ const switchClasses = function(context, before, after) {
    context.classList.add(after);
 };
 
-export { spinalCase, titleCase, buildEl, addIcon, removeIcon, switchClasses, removeChildren };
+const createTimer = function(timerEl, secsRemaining, doEnd) {
+   let secsRemainingText;
+   let timer = new Timer(1000);
+   timer.start(() => {
+	   secsRemaining--;
+	   if(secsRemaining >= 10) {
+		  secsRemainingText = secsRemaining;
+	   } else {
+		  if(secsRemaining < 1) {
+			 timer.cancel();
+			 
+			 // game is over when the timer clock runs out
+			 doEnd();
+		  }
+		  secsRemainingText = `0${secsRemaining}`;
+	   }
+	   timerEl.textContent = secsRemainingText;
+   });
+
+   return timer;
+};
+
+const changeBtnIcon = function(btn, name) {
+   removeChildren(btn);
+   addIcon(btn, name);
+};
+
+export { spinalCase, titleCase, buildEl, addIcon, removeIcon, switchClasses, removeChildren, createTimer, changeBtnIcon };

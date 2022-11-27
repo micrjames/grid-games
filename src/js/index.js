@@ -66,5 +66,4 @@ startRPS();
 rpsRestartBtn.addEventListener("click", resetRPS);
 
 /* minesweeper */
-startMS();
 msRestartBtn.addEventListener("click", resetMS);
