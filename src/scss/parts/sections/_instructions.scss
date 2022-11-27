@@ -2,14 +2,18 @@
 	margin: 3.2rem 0;
 	p {
 		text-align: center;
-		text-decoration: underline;
-		font-size: 1.5rem;
+		font-size: 1.15rem;
 		margin: 1.2rem 0;
+
+		&:first-child {
+		    font-size: 1.4rem;
+			text-decoration: underline;
+		}
    }
    ul {
 		li {
 			font-size: 1.1rem;
-			padding-left: 25%;
+			padding-left: 15%;
 			list-style-position: inside;
 		}
    }

@@ -8,7 +8,7 @@ a {
   color: white;
 }
 
-main #modal #modal-body .game-display .game .winning-message .game-display-btn-group-reset {
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -49,7 +49,7 @@ header nav menu li:hover {
   font-weight: bolder;
 }
 
-main #modal #modal-body .game-display .game .winning-message .game-display-btn-group-reset {
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -79,7 +79,45 @@ a {
   color: white;
 }
 
-main #modal #modal-body .game-display .game .winning-message .game-display-btn-group-reset {
+main #modal #modal-body .game-display .game.minesweeper .board {
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(9, auto);
+  gap: 1px;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell.covered {
+  background-color: darkgrey;
+  cursor: pointer;
+  border: 5px outset darkgrey;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell.uncovered {
+  background-color: grey;
+  border: 1px solid grey;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell.mine i {
+  color: red;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell.flag i {
+  color: black;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell.burst i {
+  font-size: 1.75rem;
+  color: yellow;
+  background-color: red;
+}
+
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -99,7 +137,7 @@ main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   align-items: center;
 }
 
-main #modal #modal-body .game-display .game .winning-message .game-display-btn-group-reset {
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -256,7 +294,7 @@ main #modal #modal-body .game-display .game.rock-paper-scissors .results span i 
   padding: 0.5rem;
 }
 
-main #modal #modal-body .game-display .game .winning-message .game-display-btn-group-reset {
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -281,27 +319,40 @@ main #modal #modal-body .game-display .instructions-message {
 }
 main #modal #modal-body .game-display .instructions-message p {
   text-align: center;
-  text-decoration: underline;
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   margin: 1.2rem 0;
+}
+main #modal #modal-body .game-display .instructions-message p:first-child {
+  font-size: 1.4rem;
+  text-decoration: underline;
 }
 main #modal #modal-body .game-display .instructions-message ul li {
   font-size: 1.1rem;
-  padding-left: 25%;
+  padding-left: 15%;
   list-style-position: inside;
 }
 
-main #modal #modal-body .game-display .game .winning-message {
-  margin-bottom: 1.5rem;
-  padding: 0.65rem 0;
+@font-face {
+  font-family: Digital7Mono;
+  src: url("../../fonts/Digital7Mono-B1g5.ttf");
 }
-main #modal #modal-body .game-display .game .winning-message-text {
-  text-align: center;
-  font-size: 1.5rem;
-  margin: 1.2rem 0;
+main #modal #modal-body .game-display .game .game-interface {
+  width: 315px;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-main #modal #modal-body .game-display .game .winning-message .game-display-btn-group-reset {
-  position: absolute;
+main #modal #modal-body .game-display .game .game-interface-mines-display {
+  font-family: Digital7Mono;
+  font-size: 1.85rem;
+  border: 1px solid grey;
+  padding: 10px 15px;
+  background-color: black;
+  color: red;
+}
+main #modal #modal-body .game-display .game .game-interface .game-display-btn-group .game-display-btn-group-reset {
   display: inline-block;
   background: #000;
   color: #fff;
@@ -316,13 +367,59 @@ main #modal #modal-body .game-display .game .winning-message .game-display-btn-g
   box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
   transition: all 0.5s ease-in-out;
 }
-main #modal #modal-body .game-display .game .winning-message .game-display-btn-group-reset i {
-  margin-right: 0.5rem;
+main #modal #modal-body .game-display .game .game-interface .game-display-btn-group .game-display-btn-group-reset i {
+  color: yellow;
+  font-size: 1.65rem;
 }
-main #modal #modal-body .game-display .game .winning-message .game-display-btn-group-reset:active {
+main #modal #modal-body .game-display .game .game-interface .game-display-btn-group .game-display-btn-group-reset:active {
   box-shadow: none;
 }
-main #modal #modal-body .game-display .game .winning-message .game-display-btn-group-reset:disabled {
+main #modal #modal-body .game-display .game .game-interface .game-display-btn-group .game-display-btn-group-reset:disabled {
+  box-shadow: none;
+  opacity: 0.2;
+}
+main #modal #modal-body .game-display .game .game-interface-countdown {
+  font-family: Digital7Mono;
+  font-size: 1.85rem;
+  border: 1px solid grey;
+  padding: 10px 15px;
+  background-color: black;
+  color: red;
+}
+main #modal #modal-body .game-display .game .winning-message {
+  margin-bottom: 1.5rem;
+  padding: 0.65rem 0;
+}
+main #modal #modal-body .game-display .game .winning-message-text {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 1.2rem 0;
+}
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
+  position: absolute;
+}
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group .game-display-btn-group-reset {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 0.75rem 0.95rem;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s ease-in-out;
+}
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group .game-display-btn-group-reset i {
+  margin-right: 0.5rem;
+}
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group .game-display-btn-group-reset:active {
+  box-shadow: none;
+}
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group .game-display-btn-group-reset:disabled {
   box-shadow: none;
   opacity: 0.2;
 }

@@ -1,4 +1,9 @@
-@import "../parts/sections/tic-tac-toe/ttt-styles", "../parts/sections/rock-paper-scissors/rps-styles", "../utils/utils", "../parts/sections/instructions";
+@import "../parts/sections/minesweeper/set-ms-board", "../parts/sections/tic-tac-toe/ttt-styles", "../parts/sections/rock-paper-scissors/rps-styles", "../utils/utils", "../parts/sections/instructions", "../parts/sections/gd-btn-group";
+
+@font-face {
+  font-family: Digital7Mono;
+  src: url('../../fonts/Digital7Mono-B1g5.ttf');
+}
 
 $cell-size: 100px;
 $mark-size: $cell-size * .9;
@@ -7,10 +12,44 @@ $mark-size: $cell-size * .9;
     .game-display {
 	    .game {
 		   &.tic-tac-toe {
-			@extend %ttt;
+			   @extend %ttt;
 		   }
 		   &.rock-paper-scissors {
 			   @extend %rps;
+		   }
+		   &.minesweeper {
+			  @extend %set-board;
+		   }
+		   .game-interface {
+				width: calc(35px * 9);
+				margin: 0 auto;
+				padding: 20px 0;
+
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				&-mines-display {
+					 font-family: Digital7Mono;
+					 font-size: 1.85rem;
+					 border: 1px solid grey;
+					 padding: 10px 15px;
+					 background-color: black;
+					 color: red;
+				}
+				.game-display-btn-group {
+					 @include gd-btn-group {
+						 color: yellow;
+						 font-size: 1.65rem;
+					 }
+				}
+				&-countdown {
+					 font-family: Digital7Mono;
+					 font-size: 1.85rem;
+					 border: 1px solid grey;
+					 padding: 10px 15px;
+					 background-color: black;
+					 color: red;
+				}
 		   }
 		   .winning-message {
 			   @if(&:last-child) {
@@ -22,28 +61,14 @@ $mark-size: $cell-size * .9;
 				  font-size: 1.5rem;
 				  margin: 1.2rem 0;
 			   }
+		   }
+		   .winning-message {
 			   .game-display-btn-group {
-				  &-reset {
-					  position: absolute;
-					  @extend %center-object-horz;
-
-					  @include button(1.2rem, 0.75rem 0.95rem, 0);
-					  @include box-shadow(6px, 2px, 9px, 2px, rgba(0, 0, 0, 0.6), false);
-					  @include transition-ease;
-
-					  i {
-						  margin-right: 0.5rem;
-					  }
-
-					  &:active {
-						  box-shadow: none;
-					  }
-
-					  &:disabled {
-						  box-shadow: none;
-						  opacity: 0.2;
-					  }
-				 }
+				   position: absolute;
+				   @extend %center-object-horz;
+				   @include gd-btn-group {
+						margin-right: 0.5rem;
+				   }
 			   }
 		   }
 		}
