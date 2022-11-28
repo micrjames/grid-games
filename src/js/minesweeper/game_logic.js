@@ -1,4 +1,4 @@
-import { createBoard, initMS } from "./ms.js";
+import { createBoard, initMS, startTimer, stopTimer } from "./ms.js";
 import { board, msRestartBtn, minesDisplay, countdownDisplay } from "./game_incs.js";
 import { removeChildren } from "../utils/utils.js";
 
@@ -10,8 +10,14 @@ const startMS = function() {
 };
 
 const resetMS = function() {
+    restartMS();
+    startTimer(countdownDisplay, msRestartBtn);
+};
+
+const restartMS = function() {
+    stopTimer(); 
     removeChildren(board);
     startMS();
 };
 
-export { startMS, resetMS };
+export { startMS, restartMS, resetMS };

@@ -8,7 +8,7 @@ import { tttRestartBtn } from "./tic-tac-toe/game_incs.js";
 import { startTTT, resetTTT } from "./tic-tac-toe/game_logic.js";
 
 import { msRestartBtn } from "./minesweeper/game_incs.js";
-import { startMS, resetMS } from "./minesweeper/game_logic.js";
+import { startMS, restartMS, resetMS } from "./minesweeper/game_logic.js";
 
 const gameDisplay = modalBody.children[0];
 for(const game of games.children) {
@@ -50,7 +50,7 @@ modalHdrCloseBtn.addEventListener("click", function(event) {
 				  resetRPS();
 				  break;
 			   case "ms":
-				  resetMS();
+				  restartMS();
 				  break;
 			}
 		}
@@ -66,4 +66,5 @@ startRPS();
 rpsRestartBtn.addEventListener("click", resetRPS);
 
 /* minesweeper */
+startMS();
 msRestartBtn.addEventListener("click", resetMS);
