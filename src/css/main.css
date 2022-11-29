@@ -109,7 +109,7 @@ main #modal #modal-body .game-display .game.minesweeper .board .cell.mine i {
   color: red;
 }
 main #modal #modal-body .game-display .game.minesweeper .board .cell.flag i {
-  color: black;
+  color: red;
 }
 main #modal #modal-body .game-display .game.minesweeper .board .cell.burst i {
   font-size: 1.75rem;

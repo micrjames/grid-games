@@ -5,9 +5,10 @@ import Matrix from "../utils/Matrix.js";
 
 let cellsMat;
 let timer;
-let totalNumMines = numMines;
+let totalNumMines;
 let secsRemaining = 60;
 const initMS = function(restartBtn, displays) {
+    totalNumMines = numMines;
     if(restartBtn.children.length) removeIcon(restartBtn, "face-grin-wide");
 	addIcon(restartBtn, "face-grin-wide");
     displays[0].textContent = totalNumMines;
@@ -47,17 +48,32 @@ const createBoard = function() {
 };
 
 const clickCell = function(event) {
-   if(event.metakey) {
+   const board = this.parentElement;
+   const gameInterface = board.parentElement.children[0];
+   const minesDisplay = gameInterface.children[0];
+   const btnGroup = gameInterface.children[1];
+   const restartBtn = btnGroup.children[0];
+   if(event.metaKey) {
+	  if(totalNumMines > 0) {
+		 if(this.children.length) {
+			 if(this.classList.contains("flag")) {
+				 removeIcon(this, "flag");
+				 totalNumMines++;
+			 }
+		 } else {
+			 addIcon(this, "flag", true);
+			 totalNumMines--;
+		 }
+		 console.log(totalNumMines);
+		 if(totalNumMines < 10) totalNumMines = `0${totalNumMines}`;
+		 minesDisplay.textContent = totalNumMines;
+	  }
    } else {
 	  if(this.classList.contains("covered")) {
 		 switchClasses(this, "covered", "uncovered");
 
 		 if(this.classList.contains("mine")) {
 			 switchClasses(this, "mine", "burst");
-			 const board = this.parentElement;
-			 const gameInterface = board.parentElement.children[0];
-			 const btnGroup = gameInterface.children[1];
-			 const restartBtn = btnGroup.children[0];
 			 changeBtnIcon(restartBtn, "face-dizzy");
 			 for(const child of board.children) {
 				 switchClasses(child, "covered", "uncovered");
@@ -66,6 +82,10 @@ const clickCell = function(event) {
 				 } else if(child.classList.contains("burst")) {
 					addIcon(child, "burst");
 				 }
+				 else if(child.classList.contains("flag")) {
+					removeIcon(child, "flag");
+				 }
+	
 				 child.removeEventListener("click", clickCell);
 			 }
 
