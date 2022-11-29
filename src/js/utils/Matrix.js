@@ -31,6 +31,9 @@ class Matrix {
 	  //  this order is necessary
 	   this.#mat[j][i] = val;
    }
+   getElement(j, i) {
+	  return this.#mat[j][i];
+   }
 
    setRow(val, which) {
 	   this.#mat[which] = val;

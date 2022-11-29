@@ -53,20 +53,11 @@ const clickCell = function(event) {
    const minesDisplay = gameInterface.children[0];
    const btnGroup = gameInterface.children[1];
    const restartBtn = btnGroup.children[0];
+   
+   const [row, col] = enumCells(board, this);
    if(event.metaKey) {
 	  if(totalNumMines > 0) {
-		 if(this.children.length) {
-			 if(this.classList.contains("flag")) {
-				 removeIcon(this, "flag");
-				 totalNumMines++;
-			 }
-		 } else {
-			 addIcon(this, "flag", true);
-			 totalNumMines--;
-		 }
-		 console.log(totalNumMines);
-		 if(totalNumMines < 10) totalNumMines = `0${totalNumMines}`;
-		 minesDisplay.textContent = totalNumMines;
+		  manageFlag(this, minesDisplay);
 	  }
    } else {
 	  if(this.classList.contains("covered")) {
@@ -76,16 +67,7 @@ const clickCell = function(event) {
 			 switchClasses(this, "mine", "burst");
 			 changeBtnIcon(restartBtn, "face-dizzy");
 			 for(const child of board.children) {
-				 switchClasses(child, "covered", "uncovered");
-				 if(child.classList.contains("mine")) {
-					addIcon(child, "bomb");
-				 } else if(child.classList.contains("burst")) {
-					addIcon(child, "burst");
-				 }
-				 else if(child.classList.contains("flag")) {
-					removeIcon(child, "flag");
-				 }
-	
+				 manageCellState(child);	
 				 child.removeEventListener("click", clickCell);
 			 }
 
@@ -103,6 +85,49 @@ const placeMines = function() {
 		minePlacement.col = new Random(0, cellsMat.size - 1).int;
 		cellsMat.setElement(1, minePlacement.row, minePlacement.col);
     });
+};
+
+const numMinesNear = function() {
+};
+
+const manageFlag = function(cell, minesDisplay) {
+   if(cell.children.length) {
+	   if(cell.classList.contains("flag")) {
+		   removeIcon(cell, "flag");
+		   totalNumMines++;
+	   }
+   } else {
+	   addIcon(cell, "flag", true);
+	   totalNumMines--;
+   }
+   if(totalNumMines < 10) totalNumMines = `0${totalNumMines}`;
+   minesDisplay.textContent = totalNumMines;
+};
+
+const manageCellState = function(cell) {
+   switchClasses(cell, "covered", "uncovered");
+   if(cell.classList.contains("mine")) {
+	  addIcon(cell, "bomb");
+   } else if(cell.classList.contains("burst")) {
+	  addIcon(cell, "burst");
+   }
+   else if(cell.classList.contains("flag")) {
+	  removeIcon(child, "flag");
+   } 
+};
+
+const enumCells = function(board, cell) {
+   const cells = board.children;
+   let row;
+   let col;
+   for(let i = 0; i < cells.length; i++) {
+	   if(cells[i] === cell) {
+		  row = Math.floor(i / numRows);
+		  col = i % numCols;
+	   }
+   }
+
+   return [row, col];
 };
 
 export { createBoard, initMS, startTimer, stopTimer, placeMines, clickCell };
