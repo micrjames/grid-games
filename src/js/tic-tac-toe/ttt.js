@@ -1,5 +1,4 @@
-import { board, CLASS, winningMessageEl, winningMessageText, instructionsMessageEl } from "./game_incs.js";
-import { mat } from "../incs.js";
+import { board, CLASS, mat, winningMessageEl, winningMessageText, instructionsMessageEl } from "./game_incs.js";
 import { titleCase } from "../utils/utils.js";
 
 let circleTurn;

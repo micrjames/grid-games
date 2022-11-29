@@ -1,6 +1,5 @@
-import { cellEls, CLASS } from "./game_incs.js";
+import { cellEls, CLASS, mat } from "./game_incs.js";
 import { handleClick, setBoardHoverClass, toggleUIEls, setOver } from "./ttt.js";
-import { mat } from "../incs.js";
 
 const startTTT = function() {
 	setup();

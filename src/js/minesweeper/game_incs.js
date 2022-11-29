@@ -1,4 +1,5 @@
 import { modalBody } from "../modal.js";
+import { range } from "../utils/range.js"
 
 const numRows = 9;                                                                                   
 const numCols = 9;
@@ -13,4 +14,8 @@ const countdownDisplay = interfaceDisplay.children[2];
 const msRestartBtn = btnGroup.children.namedItem("restart-ms");
 const board = ms.children.namedItem("board");
 
-export { numRows, numCols, minesDisplay, countdownDisplay, msRestartBtn, board };
+const minePlacement = {};
+const numMines = 10;
+const mineNumRange = [...range(numMines+1)];
+
+export { numRows, numCols, minesDisplay, countdownDisplay, msRestartBtn, board, minePlacement, numMines, mineNumRange };

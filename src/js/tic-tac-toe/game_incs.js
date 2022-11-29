@@ -1,3 +1,4 @@
+import Matrix from "../utils/Matrix.js";
 import { modalBody } from "../modal.js";
 
 const gameDisplay = modalBody.children[0];
@@ -19,4 +20,8 @@ const CLASS = {
     CIRCLE: "circle"
 };
 
-export { board, cellEls, CLASS, winningMessageEl, winningMessageText, instructionsMessageEl, tttRestartBtn };
+const mat = {};
+mat.circle = new Matrix(3);
+mat.x = new Matrix(3);
+
+export { board, cellEls, CLASS, winningMessageEl, winningMessageText, instructionsMessageEl, tttRestartBtn, mat };
