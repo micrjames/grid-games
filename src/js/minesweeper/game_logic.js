@@ -1,4 +1,4 @@
-import { createBoard, initMS, startTimer, stopTimer } from "./ms.js";
+import { createBoard, initMS, startTimer, stopTimer, clickCell } from "./ms.js";
 import { board, msRestartBtn, minesDisplay, countdownDisplay } from "./game_incs.js";
 import { removeChildren } from "../utils/utils.js";
 
@@ -11,6 +11,10 @@ const startMS = function() {
 
 const resetMS = function() {
     restartMS();
+    const cells = board.children;
+    for(const cell of cells) {
+		cell.addEventListener("click", clickCell);
+	}
     startTimer(countdownDisplay, msRestartBtn);
 };
 

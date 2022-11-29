@@ -40,7 +40,6 @@ const createBoard = function() {
    for(let i = 0; i < numRows * numCols; i++) {
        const cell = createCell();
 	   if(minesArr[i] == 1) cell.classList.add("mine");
-       cell.addEventListener("click", clickCell);
 
 	   cellFragment.appendChild(cell);
    }
@@ -86,4 +85,4 @@ const placeMines = function() {
     });
 };
 
-export { createBoard, initMS, startTimer, stopTimer, placeMines };
+export { createBoard, initMS, startTimer, stopTimer, placeMines, clickCell };
