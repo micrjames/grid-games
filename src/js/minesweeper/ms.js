@@ -58,7 +58,6 @@ const clickCell = function(event) {
    } else {
 	  if(this.classList.contains("covered")) {
 		 if(!numMinesNearby) {
-			 const mineRemovals = [...range(4)];
 			 let initCell = this;
 
 			 getMinesNearby(row, col, (nextRow, nextCol) => {
@@ -115,7 +114,9 @@ const manageCellState = function(cell) {
 	  }
 	  addIcon(cell, "bomb");
    } else if(cell.classList.contains("burst")) {
-	  removeIcon(cell, "bomb");
+	  if(cell.classList.contains("flag")) {
+		 removeIcon(cell, "flag");
+	  }
 	  addIcon(cell, "burst");
    } else if(cell.classList.contains("flag")) {
 	  removeIcon(cell, "flag");
