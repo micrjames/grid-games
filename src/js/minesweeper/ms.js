@@ -1,9 +1,10 @@
-import { numRows, numCols, minePlacement, numMines, mineNumRange } from "./game_incs.js";
+import { numRows, numCols, minePlacement, numMines, mineNumRange, board, minesDisplay, msRestartBtn } from "./game_incs.js";
 import { addIcon, removeIcon, createTimer, changeBtnIcon, switchClasses } from "../utils/utils.js";
 import Random from "../utils/Random.js";
 import Matrix from "../utils/Matrix.js";
+import { range } from "../utils/range.js";
 
-let cellsMat;
+let minesMat;
 let timer;
 let totalNumMines;
 let secsRemaining = 60;
@@ -36,7 +37,7 @@ const createCell = function() {
 };
 
 const createBoard = function() {
-   const minesArr = cellsMat.mat.flat()
+   const minesArr = minesMat.mat.flat()
    const cellFragment = document.createDocumentFragment();
    for(let i = 0; i < numRows * numCols; i++) {
        const cell = createCell();
@@ -48,24 +49,29 @@ const createBoard = function() {
 };
 
 const clickCell = function(event) {
-   const board = this.parentElement;
-   const gameInterface = board.parentElement.children[0];
-   const minesDisplay = gameInterface.children[0];
-   const btnGroup = gameInterface.children[1];
-   const restartBtn = btnGroup.children[0];
-   
    const [row, col] = enumCells(board, this);
+   const numMinesNearby = numMinesNear(row, col);
    if(event.metaKey) {
 	  if(totalNumMines > 0) {
 		  manageFlag(this, minesDisplay);
 	  }
    } else {
 	  if(this.classList.contains("covered")) {
-		 switchClasses(this, "covered", "uncovered");
+		 if(!numMinesNearby) {
+			 const mineRemovals = [...range(4)];
+			 let initCell = this;
+
+			 getMinesNearby(row, col, (nextRow, nextCol) => {
+				switchClasses(initCell, "covered", "uncovered"); 
+			 }); 
+		 }
+		 else {
+			switchClasses(this, "covered", "uncovered");
+		 }
 
 		 if(this.classList.contains("mine")) {
 			 switchClasses(this, "mine", "burst");
-			 changeBtnIcon(restartBtn, "face-dizzy");
+			 changeBtnIcon(msRestartBtn, "face-dizzy");
 			 for(const child of board.children) {
 				 manageCellState(child);	
 				 child.removeEventListener("click", clickCell);
@@ -79,15 +85,12 @@ const clickCell = function(event) {
 };
 
 const placeMines = function() {
-    cellsMat = new Matrix(numCols);
+    minesMat = new Matrix(numCols);
     mineNumRange.forEach(_ => {
-		minePlacement.row = new Random(0, cellsMat.size - 1).int;
-		minePlacement.col = new Random(0, cellsMat.size - 1).int;
-		cellsMat.setElement(1, minePlacement.row, minePlacement.col);
+		minePlacement.row = new Random(0, minesMat.size - 1).int;
+		minePlacement.col = new Random(0, minesMat.size - 1).int;
+		minesMat.setElement(1, minePlacement.row, minePlacement.col);
     });
-};
-
-const numMinesNear = function() {
 };
 
 const manageFlag = function(cell, minesDisplay) {
@@ -107,13 +110,16 @@ const manageFlag = function(cell, minesDisplay) {
 const manageCellState = function(cell) {
    switchClasses(cell, "covered", "uncovered");
    if(cell.classList.contains("mine")) {
+	  if(cell.classList.contains("flag")) {
+		 removeIcon(cell, "flag");
+	  }
 	  addIcon(cell, "bomb");
    } else if(cell.classList.contains("burst")) {
+	  removeIcon(cell, "bomb");
 	  addIcon(cell, "burst");
-   }
-   else if(cell.classList.contains("flag")) {
-	  removeIcon(child, "flag");
-   } 
+   } else if(cell.classList.contains("flag")) {
+	  removeIcon(cell, "flag");
+	}
 };
 
 const enumCells = function(board, cell) {
@@ -128,6 +134,37 @@ const enumCells = function(board, cell) {
    }
 
    return [row, col];
+};
+
+const minesNearby = function(j, i) {
+   let checkEls = [];
+
+   getMinesNearby(j, i, (nextRow, nextCol) => {
+	  checkEls = [...checkEls, minesMat.getElement(nextRow, nextCol)];
+   }); 
+   return checkEls;
+};
+
+const getMinesNearby = function(j, i, cb) {
+   const row = j-1;
+   const col = i-1;
+   let nextRow;
+   let nextCol;
+
+   for(let rowIt = 0; rowIt < 3; rowIt++) {
+	  for(let colIt = 0; colIt < 3; colIt++) {
+		  nextRow = row + rowIt;
+		  nextCol = col + colIt;
+		  if(nextRow >= 0 && nextRow < numRows && nextCol >= 0 && nextCol < numCols)
+			 cb(nextRow, nextCol);
+		  else continue;
+	  }
+   }
+};
+
+const numMinesNear = function(j, i) {
+   const checkEls = minesNearby(j, i); 
+   return checkEls.reduce((totalMines, isMine) => totalMines + isMine);
 };
 
 export { createBoard, initMS, startTimer, stopTimer, placeMines, clickCell };
