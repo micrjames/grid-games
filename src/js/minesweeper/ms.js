@@ -1,10 +1,11 @@
-import { numRows, numCols, minePlacement, numMines, mineNumRange, board, minesDisplay, msRestartBtn } from "./game_incs.js";
+import { numRows, numCols, minePlacement, numMines, mineNumRange, board, cells, minesDisplay, msRestartBtn } from "./game_incs.js";
 import { addIcon, removeIcon, createTimer, changeBtnIcon, switchClasses } from "../utils/utils.js";
 import Random from "../utils/Random.js";
 import Matrix from "../utils/Matrix.js";
 import { range } from "../utils/range.js";
 
 let minesMat;
+let delsMat;
 let timer;
 let totalNumMines;
 let secsRemaining = 60;
@@ -16,6 +17,7 @@ const initMS = function(restartBtn, displays) {
     displays[1].textContent = secsRemaining;
     
     placeMines();
+    delsMat = new Matrix(minesMat.size);
 };
 
 const startTimer = function(countdownDisplay, resetBtn) {
@@ -58,11 +60,17 @@ const clickCell = function(event) {
    } else {
 	  if(this.classList.contains("covered")) {
 		 if(!numMinesNearby) {
-			 let initCell = this;
-
 			 getMinesNearby(row, col, (nextRow, nextCol) => {
-				switchClasses(initCell, "covered", "uncovered"); 
+				delsMat.setElement({ row: nextRow, col: nextCol }, nextRow, nextCol);
 			 }); 
+			 delsMat.mat.forEach(delsRow => {
+				 delsRow.forEach(del => {
+					 if(del) {
+						 const cellIndex = del.row * numCols + del.col;
+						 switchClasses(cells[cellIndex], "covered", "uncovered");
+					 }
+				 });
+			 });
 		 }
 		 else {
 			switchClasses(this, "covered", "uncovered");

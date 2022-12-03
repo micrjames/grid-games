@@ -13,9 +13,10 @@ const btnGroup = interfaceDisplay.children[1];
 const countdownDisplay = interfaceDisplay.children[2];
 const msRestartBtn = btnGroup.children.namedItem("restart-ms");
 const board = ms.children.namedItem("board");
+const cells = board.children;
 
 const minePlacement = {};
 const numMines = 10;
 const mineNumRange = [...range(numMines+1)];
 
-export { numRows, numCols, minesDisplay, countdownDisplay, msRestartBtn, board, minePlacement, numMines, mineNumRange };
+export { numRows, numCols, minesDisplay, countdownDisplay, msRestartBtn, board, minePlacement, numMines, mineNumRange, cells };
