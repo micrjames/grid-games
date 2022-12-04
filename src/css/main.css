@@ -221,6 +221,9 @@ main #modal #modal-body .game-display .game.minesweeper .board .cell.burst i {
   color: yellow;
   background-color: red;
 }
+main #modal #modal-body .game-display .game.minesweeper .board .cell.numbers {
+  color: blue;
+}
 
 main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
   left: 50%;

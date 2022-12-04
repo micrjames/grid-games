@@ -69,6 +69,7 @@ const clickCell = function(event) {
 			switchClasses(this, "covered", "uncovered");
 			if(!this.classList.contains("mine"))
 			   addIcon(this, `${numMinesNearby}`, false, "solid");
+			   this.classList.add("numbers");
 		 }
 		 doGameOver(this);
 	  }
@@ -193,6 +194,7 @@ const addNumOnCell = function(row, col) {
 	   const cellIndex = nextRow * numCols + nextCol;
 	   if(!cells[cellIndex].children.length)
 		   addIcon(cells[cellIndex], `${numMinesNearPeriph}`, false, "solid");
+	       cells[cellIndex].classList.add("numbers");
    }); 
 };
 

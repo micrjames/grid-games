@@ -1,3 +1,5 @@
+@use "sass:string";
+
 %set-ms-board {
    .board {
 	 margin: 0 auto;
@@ -47,6 +49,9 @@
 			  color: yellow;
 			  background-color: red;
 		   }
+		}
+		&.numbers {
+			color: blue;
 		}
 	 }
 
