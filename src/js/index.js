@@ -10,6 +10,8 @@ import { startTTT, resetTTT } from "./tic-tac-toe/game_logic.js";
 import { msRestartBtn } from "./minesweeper/game_incs.js";
 import { startMS, restartMS, resetMS } from "./minesweeper/game_logic.js";
 
+import { startCF } from "./connect-four/game_logic.js";
+
 const gameDisplay = modalBody.children[0];
 for(const game of games.children) {
     for(const el of game.children) {
@@ -26,10 +28,13 @@ for(const game of games.children) {
 				}
 
 			    modal.classList.remove("hidden"); 
+			   /*
 			    const figCaption = this.parentElement;
 				const figure = figCaption.parentElement
 				const posY = figure.offsetTop;
-			    modal.style.top = posY + "px";
+				*/
+			    modal.style.top = "75px";
+			    window.scrollTo(0, 0);
 			});
 		}
 	}
@@ -52,6 +57,8 @@ modalHdrCloseBtn.addEventListener("click", function(event) {
 			   case "ms":
 				  restartMS();
 				  break;
+			   case "cf":
+				  break;
 			}
 		}
 	}
@@ -68,3 +75,6 @@ rpsRestartBtn.addEventListener("click", resetRPS);
 /* minesweeper */
 startMS();
 msRestartBtn.addEventListener("click", resetMS);
+
+/* connect-four */
+startCF();

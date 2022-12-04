@@ -79,6 +79,111 @@ a {
   color: white;
 }
 
+main #modal #modal-body .game-display .game.connect-four .board {
+  margin: 0 30px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  column-gap: 1px;
+  grid-template-columns: repeat(7, auto);
+  background-color: blue;
+  border-bottom: 15px solid blue;
+  border-top: 15px solid blue;
+}
+main #modal #modal-body .game-display .game.connect-four .board .col-end-cap {
+  width: 35px;
+  height: 10px;
+  background-color: black;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  main #modal #modal-body .game-display .game.connect-four .board .col-end-cap {
+    width: 50px;
+  }
+}
+@media (min-width: 992px) {
+  main #modal #modal-body .game-display .game.connect-four .board .col-end-cap {
+    width: 75px;
+  }
+}
+main #modal #modal-body .game-display .game.connect-four .board .col-end-cap:hover {
+  background-color: #333333;
+}
+main #modal #modal-body .game-display .game.connect-four .board .cell {
+  width: 35px;
+  height: 35px;
+  border: 5px solid blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+@media (min-width: 768px) {
+  main #modal #modal-body .game-display .game.connect-four .board .cell {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media (min-width: 992px) {
+  main #modal #modal-body .game-display .game.connect-four .board .cell {
+    width: 75px;
+    height: 75px;
+  }
+}
+main #modal #modal-body .game-display .game.connect-four .board .cell::before, main #modal #modal-body .game-display .game.connect-four .board .cell::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+main #modal #modal-body .game-display .game.connect-four .board .cell::before {
+  background-color: #0000e6;
+  width: 35px;
+  height: 35px;
+}
+@media (min-width: 768px) {
+  main #modal #modal-body .game-display .game.connect-four .board .cell::before {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media (min-width: 992px) {
+  main #modal #modal-body .game-display .game.connect-four .board .cell::before {
+    width: 75px;
+    height: 75px;
+  }
+}
+main #modal #modal-body .game-display .game.connect-four .board .cell::after {
+  width: 24.5px;
+  height: 24.5px;
+  background-color: white;
+}
+@media (min-width: 768px) {
+  main #modal #modal-body .game-display .game.connect-four .board .cell::after {
+    width: 35px;
+    height: 35px;
+  }
+}
+@media (min-width: 992px) {
+  main #modal #modal-body .game-display .game.connect-four .board .cell::after {
+    width: 52.5px;
+    height: 52.5px;
+  }
+}
+main #modal #modal-body .game-display .game.connect-four .board .cell.covered.yellow::after {
+  background-color: yellow;
+}
+main #modal #modal-body .game-display .game.connect-four .board .cell.covered.red::after {
+  background-color: red;
+}
+main #modal #modal-body .game-display .game.connect-four .board .cell.try.yellow::after {
+  background-color: #ffff80;
+}
+main #modal #modal-body .game-display .game.connect-four .board .cell.try.red::after {
+  background-color: #ff8080;
+}
+
 main #modal #modal-body .game-display .game.minesweeper .board {
   margin: 0 auto;
   display: grid;
