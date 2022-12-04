@@ -5,7 +5,6 @@ import Matrix from "../utils/Matrix.js";
 
 let minesMat;
 let delsMat;
-let numsMat;
 let timer;
 let totalNumMines;
 let secsRemaining = 60;
@@ -18,7 +17,6 @@ const initMS = function(restartBtn, displays) {
     
     placeMines();
     delsMat = new Matrix(minesMat.size);
-    numsMat = new Matrix(minesMat.size);
 };
 
 const startTimer = function(countdownDisplay, resetBtn) {
@@ -66,15 +64,9 @@ const clickCell = function(event) {
 	  if(this.classList.contains("covered")) {
 		 if(!numMinesNearby) {
 			deleteCells(row, col);
-			getMinesNearby(row, col, (nextRow, nextCol) => {
-			    const numMinesNearPeriph = numMinesNear(nextRow, nextCol);
-				const cellIndex = nextRow * numCols + nextCol;
-			    if(!cells[cellIndex].children.length)
-				    addIcon(cells[cellIndex], `${numMinesNearPeriph}`, false, "solid");
-			}); 
+			addNumOnCell(row, col);
 		 } else {
 			switchClasses(this, "covered", "uncovered");
-		    console.log(numMinesNearby);
 			if(!this.classList.contains("mine"))
 			   addIcon(this, `${numMinesNearby}`, false, "solid");
 		 }
@@ -193,6 +185,15 @@ const deleteCells = function(row, col) {
 			}
 		});
 	});
+};
+
+const addNumOnCell = function(row, col) {
+   getMinesNearby(row, col, (nextRow, nextCol) => {
+	   const numMinesNearPeriph = numMinesNear(nextRow, nextCol);
+	   const cellIndex = nextRow * numCols + nextCol;
+	   if(!cells[cellIndex].children.length)
+		   addIcon(cells[cellIndex], `${numMinesNearPeriph}`, false, "solid");
+   }); 
 };
 
 export { createBoard, initMS, startTimer, stopTimer, placeMines, clickCell };
