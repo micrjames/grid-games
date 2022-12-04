@@ -1,10 +1,11 @@
-import { numRows, numCols, minePlacement, numMines, mineNumRange, board, cells, minesDisplay, msRestartBtn } from "./game_incs.js";
+import { numRows, numCols, minePlacement, numMines, mineNumRange, cells, minesDisplay, msRestartBtn } from "./game_incs.js";
 import { addIcon, removeIcon, createTimer, changeBtnIcon, switchClasses } from "../utils/utils.js";
 import Random from "../utils/Random.js";
 import Matrix from "../utils/Matrix.js";
 
 let minesMat;
 let delsMat;
+let numsMat;
 let timer;
 let totalNumMines;
 let secsRemaining = 60;
@@ -17,6 +18,7 @@ const initMS = function(restartBtn, displays) {
     
     placeMines();
     delsMat = new Matrix(minesMat.size);
+    numsMat = new Matrix(minesMat.size);
 };
 
 const startTimer = function(countdownDisplay, resetBtn) {
@@ -54,7 +56,7 @@ const createBoard = function() {
 };
 
 const clickCell = function(event) {
-   const [row, col] = enumCells(board, this);
+   const [row, col] = enumCells(this);
    const numMinesNearby = numMinesNear(row, col);
    if(event.metaKey) {
 	  if(totalNumMines > 0) {
@@ -64,8 +66,17 @@ const clickCell = function(event) {
 	  if(this.classList.contains("covered")) {
 		 if(!numMinesNearby) {
 			deleteCells(row, col);
+			getMinesNearby(row, col, (nextRow, nextCol) => {
+			    const numMinesNearPeriph = numMinesNear(nextRow, nextCol);
+				const cellIndex = nextRow * numCols + nextCol;
+			    if(!cells[cellIndex].children.length)
+				    addIcon(cells[cellIndex], `${numMinesNearPeriph}`, false, "solid");
+			}); 
 		 } else {
 			switchClasses(this, "covered", "uncovered");
+		    console.log(numMinesNearby);
+			if(!this.classList.contains("mine"))
+			   addIcon(this, `${numMinesNearby}`, false, "solid");
 		 }
 		 doGameOver(this);
 	  }
@@ -112,7 +123,7 @@ const manageCellState = function(cell) {
 	}
 };
 
-const enumCells = function(board, cell) {
+const enumCells = function(cell) {
    let row;
    let col;
    for(let i = 0; i < cells.length; i++) {
