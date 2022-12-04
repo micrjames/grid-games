@@ -7,7 +7,7 @@ let minesMat;
 let delsMat;
 let timer;
 let totalNumMines;
-let secsRemaining = 60;
+let secsRemaining = 500;
 const initMS = function(restartBtn, displays) {
     totalNumMines = numMines;
     if(restartBtn.children.length) removeIcon(restartBtn, "face-grin-wide");
@@ -67,9 +67,10 @@ const clickCell = function(event) {
 			addNumOnCell(row, col);
 		 } else {
 			switchClasses(this, "covered", "uncovered");
-			if(!this.classList.contains("mine"))
+			if(!this.classList.contains("mine")) {
 			   addIcon(this, `${numMinesNearby}`, false, "solid");
 			   this.classList.add("numbers");
+			}
 		 }
 		 doGameOver(this);
 	  }
@@ -172,6 +173,14 @@ const doGameOver = function(cell) {
 	   // stop the timer when the game is over
 	   stopTimer();
    }
+   if(checkWin()) {
+	   changeBtnIcon(msRestartBtn, "face-grin-stars");
+	   for(const child of cells) {
+		   child.removeEventListener("click", clickCell);
+	   }
+	   // stop the timer when the game is over
+	   stopTimer();
+   }
 };
 
 const deleteCells = function(row, col) {
@@ -196,6 +205,20 @@ const addNumOnCell = function(row, col) {
 		   addIcon(cells[cellIndex], `${numMinesNearPeriph}`, false, "solid");
 	       cells[cellIndex].classList.add("numbers");
    }); 
+};
+
+const checkWin = function() {
+   let winningCells = [];
+   for(const child of cells) {
+	   if(child.classList.contains("flag") || child.classList.contains("uncovered")) {
+		   winningCells = [...winningCells, child];
+	   }
+   }
+
+   const boardSize = numRows * numCols;
+   if(winningCells.length == boardSize) 
+	  return true;
+   return false;
 };
 
 export { createBoard, initMS, startTimer, stopTimer, placeMines, clickCell };

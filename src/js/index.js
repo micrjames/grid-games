@@ -10,7 +10,8 @@ import { startTTT, resetTTT } from "./tic-tac-toe/game_logic.js";
 import { msRestartBtn } from "./minesweeper/game_incs.js";
 import { startMS, restartMS, resetMS } from "./minesweeper/game_logic.js";
 
-import { startCF } from "./connect-four/game_logic.js";
+import { cfRestartBtn } from "./connect-four/game_incs.js";
+import { startCF, resetCF } from "./connect-four/game_logic.js";
 
 const gameDisplay = modalBody.children[0];
 for(const game of games.children) {
@@ -58,6 +59,7 @@ modalHdrCloseBtn.addEventListener("click", function(event) {
 				  restartMS();
 				  break;
 			   case "cf":
+				  resetCF();
 				  break;
 			}
 		}
@@ -78,3 +80,4 @@ msRestartBtn.addEventListener("click", resetMS);
 
 /* connect-four */
 startCF();
+cfRestartBtn.addEventListener("click", resetCF);

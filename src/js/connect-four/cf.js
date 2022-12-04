@@ -44,7 +44,6 @@ const handleHover = function() {
     for(const whichRow of [6, 5, 4, 3, 2, 1]) {
 	   let childIndex = capID + whichRow * data.numCols; 
 	   whichBoardChild = theBoardChildren.item(childIndex);
-	   console.log(whichRow);
 	   if(!whichBoardChild.classList.contains("covered")) {
 		   break;
 	   }
