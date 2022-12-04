@@ -2,7 +2,6 @@ import { numRows, numCols, minePlacement, numMines, mineNumRange, board, cells, 
 import { addIcon, removeIcon, createTimer, changeBtnIcon, switchClasses } from "../utils/utils.js";
 import Random from "../utils/Random.js";
 import Matrix from "../utils/Matrix.js";
-import { range } from "../utils/range.js";
 
 let minesMat;
 let delsMat;
@@ -60,33 +59,11 @@ const clickCell = function(event) {
    } else {
 	  if(this.classList.contains("covered")) {
 		 if(!numMinesNearby) {
-			 getMinesNearby(row, col, (nextRow, nextCol) => {
-				delsMat.setElement({ row: nextRow, col: nextCol }, nextRow, nextCol);
-			 }); 
-			 delsMat.mat.forEach(delsRow => {
-				 delsRow.forEach(del => {
-					 if(del) {
-						 const cellIndex = del.row * numCols + del.col;
-						 switchClasses(cells[cellIndex], "covered", "uncovered");
-					 }
-				 });
-			 });
-		 }
-		 else {
+			deleteCells(row, col);
+		 } else {
 			switchClasses(this, "covered", "uncovered");
 		 }
-
-		 if(this.classList.contains("mine")) {
-			 switchClasses(this, "mine", "burst");
-			 changeBtnIcon(msRestartBtn, "face-dizzy");
-			 for(const child of board.children) {
-				 manageCellState(child);	
-				 child.removeEventListener("click", clickCell);
-			 }
-
-			 // stop the timer when the game is over
-			 stopTimer();
-		 }
+		 doGameOver(this);
 	  }
    }
 };
@@ -174,6 +151,34 @@ const getMinesNearby = function(j, i, cb) {
 const numMinesNear = function(j, i) {
    const checkEls = minesNearby(j, i); 
    return checkEls.reduce((totalMines, isMine) => totalMines + isMine);
+};
+
+const doGameOver = function(cell) {
+   if(cell.classList.contains("mine")) {
+	   switchClasses(cell, "mine", "burst");
+	   changeBtnIcon(msRestartBtn, "face-dizzy");
+	   for(const child of board.children) {
+		   manageCellState(child);	
+		   child.removeEventListener("click", clickCell);
+	   }
+
+	   // stop the timer when the game is over
+	   stopTimer();
+   }
+};
+
+const deleteCells = function(row, col) {
+	getMinesNearby(row, col, (nextRow, nextCol) => {
+	   delsMat.setElement({ row: nextRow, col: nextCol }, nextRow, nextCol);
+	}); 
+	delsMat.mat.forEach(delsRow => {
+		delsRow.forEach(del => {
+			if(del) {
+				const cellIndex = del.row * numCols + del.col;
+				switchClasses(cells[cellIndex], "covered", "uncovered");
+			}
+		});
+	});
 };
 
 export { createBoard, initMS, startTimer, stopTimer, placeMines, clickCell };
