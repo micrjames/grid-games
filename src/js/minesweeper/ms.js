@@ -23,6 +23,10 @@ const startTimer = function(countdownDisplay, resetBtn) {
     stopTimer();
     timer = createTimer(countdownDisplay, secsRemaining, () => {
 	    changeBtnIcon(resetBtn, "face-dizzy");
+
+	    for(const cell of cells) {
+		    cell.removeEventListener("click", clickCell)
+		}
 	});
 };
 const stopTimer = function() {
@@ -109,7 +113,6 @@ const manageCellState = function(cell) {
 };
 
 const enumCells = function(board, cell) {
-   const cells = board.children;
    let row;
    let col;
    for(let i = 0; i < cells.length; i++) {
@@ -157,7 +160,7 @@ const doGameOver = function(cell) {
    if(cell.classList.contains("mine")) {
 	   switchClasses(cell, "mine", "burst");
 	   changeBtnIcon(msRestartBtn, "face-dizzy");
-	   for(const child of board.children) {
+	   for(const child of cells) {
 		   manageCellState(child);	
 		   child.removeEventListener("click", clickCell);
 	   }
