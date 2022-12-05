@@ -162,17 +162,6 @@ const numMinesNear = function(j, i) {
 };
 
 const doGameOver = function(cell) {
-   if(cell.classList.contains("mine")) {
-	   switchClasses(cell, "mine", "burst");
-	   changeBtnIcon(msRestartBtn, "face-dizzy");
-	   for(const child of cells) {
-		   manageCellState(child);	
-		   child.removeEventListener("click", clickCell);
-	   }
-
-	   // stop the timer when the game is over
-	   stopTimer();
-   }
    if(checkWin()) {
 	   changeBtnIcon(msRestartBtn, "face-grin-stars");
 	   for(const child of cells) {
@@ -180,6 +169,18 @@ const doGameOver = function(cell) {
 	   }
 	   // stop the timer when the game is over
 	   stopTimer();
+   } else {
+	  if(cell.classList.contains("mine")) {
+		  switchClasses(cell, "mine", "burst");
+		  changeBtnIcon(msRestartBtn, "face-dizzy");
+		  for(const child of cells) {
+			  manageCellState(child);	
+			  child.removeEventListener("click", clickCell);
+		  }
+
+		  // stop the timer when the game is over
+		  stopTimer();
+	  }
    }
 };
 
