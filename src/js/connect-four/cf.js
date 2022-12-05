@@ -1,6 +1,8 @@
-import { data } from "./game_incs.js";
+import { data, board, winningMessageText } from "./game_incs.js";
+import { range } from "../utils/range.js";
 
 let whichBoardChild;
+let yellowTurn = true;
 
 const createEndCaps = function(numCols) {
    const endCapFragment = document.createDocumentFragment();                                          
@@ -31,8 +33,19 @@ const createCells = function(numRows, numCols) {
 const handleClick = function() {
     whichBoardChild.classList.add("covered");
 
-    data.yellow = !data.yellow;
-    whichBoardChild = null;
+    swapPlayer();
+    if(checkLose()) {
+	    winningMessageText.textContent = "Game Over.";
+	    endCap.removeEventListener("click", handleClick)
+	    endCap.removeEventListener("mouseover", handleHover);
+	    endCap.removeEventListener("mouseout", handleOut);
+	}
+    if(checkWin()) {
+	    winningMessageText.textContent = "You win!";
+	    endCap.removeEventListener("click", handleClick)
+	    endCap.removeEventListener("mouseover", handleHover);
+	    endCap.removeEventListener("mouseout", handleOut);
+	}
 };
 
 const handleHover = function() {
@@ -49,7 +62,7 @@ const handleHover = function() {
 	   }
 	}
     whichBoardChild.classList.add("try");
-    if(data.yellow) whichBoardChild.classList.add("yellow");
+    if(yellowTurn) whichBoardChild.classList.add("yellow");
     else whichBoardChild.classList.add("red");
 };
 
@@ -59,6 +72,31 @@ const handleOut = function() {
    for(const child of theBoardChildren) {
       if(child.classList.contains("try")) child.classList.remove("try");
    }
+};
+
+const checkLose = function() {
+   let winningCells = [];
+   for(const child of board.children) {
+	   if(child.classList.contains("yellow") || child.classList.contains("red")) {
+		   winningCells = [...winningCells, child];
+	   }
+   }
+
+   const boardSize = data.numRows * data.numCols;
+   if(winningCells.length == boardSize) 
+	  return true;
+   return false;
+};
+
+const checkWin = function() {
+   for(const col of [...range(data.numCols - 3)]) {
+	   for(const row of [...range(data.numRows - 3)]) {
+	   }
+   }
+};
+
+const swapPlayer = function() {
+    yellowTurn = !yellowTurn;
 };
 
 export { createEndCaps, createCells };

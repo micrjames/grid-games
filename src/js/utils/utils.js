@@ -15,7 +15,7 @@ const titleCase = str => {
 	const strArr = str.split(' ');
     const titled = strArr.map(word => {
 	    const upperStart = word[0].toUpperCase();
-	   	const restWord = word.slice(1, word.length);
+	    const restWord = word.slice(1, str.length);
 	    return upperStart + restWord.toLowerCase();
 	}); 
     const titledStr = titled.join(' ');
