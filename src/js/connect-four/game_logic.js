@@ -3,11 +3,7 @@ import { createEndCaps, createCells } from "./cf.js";
 import { removeChildren } from "../utils/utils.js";
 
 const startCF = function() {
-   const CFEndCapFragment = createEndCaps(data.numCols);                                          
-   const CFCellFragment = createCells(data.numRows, data.numCols);
-
-   board.appendChild(CFEndCapFragment);
-   board.appendChild(CFCellFragment);
+   buildBoard();
 
    winningMessageText.textContent = "";
 };
@@ -15,6 +11,14 @@ const startCF = function() {
 const resetCF = function() {
    removeChildren(board);
    startCF();
+};
+
+const buildBoard = function() {
+   const CFEndCapFragment = createEndCaps(data.numCols);         
+   const CFCellFragment = createCells(data.numRows, data.numCols);
+
+   board.appendChild(CFEndCapFragment);
+   board.appendChild(CFCellFragment);
 };
 
 export { startCF, resetCF };
