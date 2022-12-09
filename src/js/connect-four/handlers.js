@@ -1,37 +1,31 @@
-import { data, board, winningMessageText, CLASS, mat } from "./game_incs.js";
-import { swapTurn } from "./utils.js";
-import { range } from "../utils/range.js";
+import { board, CLASS } from "./game_incs.js";
+import { swapTurn, placePiece, getPieceWhere } from "./utils.js";
 
-let whichBoardChild;
 let yellowTurn = true;
 let currentClass = "yellow";
+let whichCell = {};
+whichCell.pos = {};
 
 const handleClick = function() {
-    whichBoardChild.classList.add("covered");
- 
-    swapTurn();  
+    placePiece(whichCell.cell, currentClass, whichCell.pos);
+
+    yellowTurn = swapTurn(yellowTurn);  
     currentClass = yellowTurn ? CLASS.YELLOW : CLASS.RED;
 };
 
 const handleHover = function() {
-    const capID = +this.id;
- 
-    const theBoardChildren = board.children;
- 
-    for(const whichRow of [...range(data.numRows + 1)].reverse()) {
-        let childIndex = capID + whichRow * data.numCols; 
-        whichBoardChild = theBoardChildren.item(childIndex);
-        if(!whichBoardChild.classList.contains("covered")) break;
-    }
-    whichBoardChild.classList.add("try");
-    whichBoardChild.classList.add(currentClass);
+    const { cell, row, col } = getPieceWhere(board.children, +this.id);
+    whichCell = {
+	    cell,
+	    pos: { row, col }
+	};
+    whichCell.cell.classList.add("try");
+    whichCell.cell.classList.add(currentClass);
 };
  
 const handleOut = function() {
-    const theBoardChildren = board.children;
-    for(const child of theBoardChildren) {
-        if(child.classList.contains("try")) child.classList.remove("try");
-    }
+    if(whichCell.cell.classList.contains("try"))
+	   whichCell.cell.classList.remove("try");
 };
 
 export { handleClick, handleHover, handleOut };

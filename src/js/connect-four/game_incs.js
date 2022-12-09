@@ -6,6 +6,7 @@ const data = {
     "numCols": 6,
     "yellow": true
 };
+
 const CLASS = {
    YELLOW: "yellow",
    RED: "red"
