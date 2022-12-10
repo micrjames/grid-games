@@ -65,6 +65,19 @@ const switchClasses = function(context, before, after) {
    context.classList.add(after);
 };
 
+const removeClasses = function(context, ...classes) {
+    for(const className of classes) {
+	    if(context.classList.contains(className))        
+		   context.classList.remove(className);
+	}
+};
+
+const addClasses = function(context, ...classes) {
+    for(const className of classes) {
+	    context.classList.add(className);
+	}
+};
+
 const createTimer = function(timerEl, secsRemaining, doEnd) {
    let secsRemainingText;
    let timer = new Timer(1000);
@@ -92,4 +105,4 @@ const changeBtnIcon = function(btn, name) {
    addIcon(btn, name);
 };
 
-export { spinalCase, titleCase, buildEl, addIcon, removeIcon, switchClasses, removeChildren, createTimer, changeBtnIcon };
+export { spinalCase, titleCase, buildEl, addIcon, removeIcon, switchClasses, removeChildren, createTimer, changeBtnIcon, removeClasses, addClasses };

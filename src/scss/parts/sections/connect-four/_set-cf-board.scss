@@ -20,11 +20,8 @@ $cell-size: 35px;
 	 border-top: 15px solid blue;
 
 	 .col-end-cap {
-		width: 35px;
+		width: 50px;
 		height: 10px;
-		@include md {
-		    width: 50px;
-		}
 		@include lg {
 		   width: 75px;
 		}
@@ -38,12 +35,8 @@ $cell-size: 35px;
 	 }
 
 	 .cell {
-		width: 35px;
-		height: 35px;
-		@include md {
-		    width: 50px;
-			height: 50px;
-		}
+		width: 50px;
+		height: 50px;
 		@include lg {
 		   width: 75px;
 		   height: 75px;
@@ -65,24 +58,16 @@ $cell-size: 35px;
 
 		&::before {
 		   background-color: darken(blue, 5);
-		   width: 35px;
-		   height: 35px;// 65px;
-		   @include md {
-			   width: 50px;
-			   height: 50px;
-		   }
+		   width: 50px;
+		   height: 50px;
 		   @include lg {
 			  width: 75px;
 			  height: 75px;
 		   }
 		}
 		&::after {
-		   width: 35px * .7;
-		   height: 35px * .7;// 65px;
-		   @include md {
-			   width: 50px * .7;
-			   height: 50px * .7;
-		   }
+		   width: 50px * .7;
+		   height: 50px * .7;
 		   @include lg {
 			  width: 75px * .7;
 			  height: 75px * .7;
