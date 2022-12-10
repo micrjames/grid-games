@@ -1,11 +1,9 @@
-import { board, CLASS } from "./game_incs.js";
+import { board, CLASS, data, whichCell } from "./game_incs.js";
 import { swapTurn, placePiece, getPieceWhere } from "./utils.js";
-import { removeClasses, addClasses } from "../utils/utils.js";
+import { removeClasses, addClasses, isObjEmpty } from "../utils/utils.js";
 
-let yellowTurn = true;
-let currentClass = "yellow";
-let whichCell = {};
-whichCell.pos = {};
+let yellowTurn;
+let currentClass;
 
 const handleClick = function() {
     placePiece(whichCell.cell, currentClass, whichCell.pos);
@@ -15,11 +13,13 @@ const handleClick = function() {
 };
 
 const handleHover = function() {
+    if(isObjEmpty(whichCell)) {
+	   yellowTurn = data.yellow;
+	   currentClass = CLASS.YELLOW;
+	}
     const { cell, row, col } = getPieceWhere(board.children, +this.id);
-    whichCell = {
-	    cell,
-	    pos: { row, col }
-	};
+    whichCell.cell = cell;
+	whichCell.pos = { row, col }
     addClasses(whichCell.cell, "try", currentClass);
 };
  

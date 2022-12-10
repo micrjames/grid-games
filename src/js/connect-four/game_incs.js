@@ -6,7 +6,7 @@ const data = {
     "numCols": 6,
     "yellow": true
 };
-
+const whichCell = {};
 const CLASS = {
    YELLOW: "yellow",
    RED: "red"
@@ -23,4 +23,4 @@ const winningMessageText = winningMessage.children[0];
 const btnGroup = winningMessage.children[1];
 const cfRestartBtn = btnGroup.children.namedItem("restart-cf");
 
-export { data, board, CLASS, mat, winningMessageText, cfRestartBtn };
+export { whichCell, data, board, CLASS, mat, winningMessageText, cfRestartBtn };

@@ -78,6 +78,18 @@ const addClasses = function(context, ...classes) {
 	}
 };
 
+const isObjEmpty = function(obj) {
+    return Object.keys(obj).length == 0
+};
+
+const removeProperties = function(obj) {
+    for(const key in obj) {
+	    if(obj.hasOwnProperty(key)) {
+		    delete obj[key];
+		}
+	}
+};
+
 const createTimer = function(timerEl, secsRemaining, doEnd) {
    let secsRemainingText;
    let timer = new Timer(1000);
@@ -105,4 +117,4 @@ const changeBtnIcon = function(btn, name) {
    addIcon(btn, name);
 };
 
-export { spinalCase, titleCase, buildEl, addIcon, removeIcon, switchClasses, removeChildren, createTimer, changeBtnIcon, removeClasses, addClasses };
+export { spinalCase, titleCase, buildEl, addIcon, removeIcon, switchClasses, removeChildren, createTimer, changeBtnIcon, removeClasses, addClasses, isObjEmpty, removeProperties };

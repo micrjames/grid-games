@@ -1,10 +1,18 @@
-import { data, CLASS, mat } from "./game_incs.js";
+import { data, CLASS, mat, whichCell, winningMessageText } from "./game_incs.js";
 import { range } from "../utils/range.js";
+import { removeProperties } from "../utils/utils.js";
 
 const swapTurn = function(turn) {
     turn = !turn;
     return turn;
 }; 
+
+const clearVals = function() {
+    mat.yellow.clear();
+    mat.red.clear();
+    removeProperties(whichCell);
+    winningMessageText.textContent = "";
+};
 
 const placePiece = function(cell, currentClass, pos) {
     switch(currentClass) {
@@ -32,4 +40,4 @@ const getPieceWhere = function(cells, col) {
     return { cell: whichCell, row, col };
 };
 
-export { swapTurn, placePiece, getPieceWhere }; 
+export { swapTurn, placePiece, getPieceWhere, clearVals }; 

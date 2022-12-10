@@ -1,14 +1,14 @@
-import { data, board, winningMessageText } from "./game_incs.js";
+import { data, board } from "./game_incs.js";
 import { createEndCaps, createCells } from "./cf.js";
 import { removeChildren } from "../utils/utils.js";
+import { clearVals } from "./utils.js";
 
 const startCF = function() {
    buildBoard();
-
-   winningMessageText.textContent = "";
 };
 
 const resetCF = function() {
+   clearVals();
    removeChildren(board);
    startCF();
 };
