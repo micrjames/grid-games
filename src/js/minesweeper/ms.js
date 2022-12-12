@@ -1,7 +1,8 @@
-import { numRows, numCols, minePlacement, numMines, mineNumRange, cells, minesDisplay, msRestartBtn } from "./game_incs.js";
+import { numRows, numCols, numMines, mineNumRange, cells, minesDisplay, msRestartBtn } from "./game_incs.js";
 import { addIcon, removeIcon, createTimer, changeBtnIcon, switchClasses } from "../utils/utils.js";
-import Random from "../utils/Random.js";
 import Matrix from "../utils/Matrix.js";
+import { shuffle } from "../utils/shuffle.js";
+import { range } from "../utils/range.js";
 
 let minesMat;
 let delsMat;
@@ -79,11 +80,17 @@ const clickCell = function(event) {
 
 const placeMines = function() {
     minesMat = new Matrix(numCols);
-    mineNumRange.forEach(_ => {
-		minePlacement.row = new Random(0, minesMat.size - 1).int;
-		minePlacement.col = new Random(0, minesMat.size - 1).int;
-		minesMat.setElement(1, minePlacement.row, minePlacement.col);
-    });
+
+    const matIdxArr = [...range(numRows * numCols)];
+    const shuffledArray = shuffle(matIdxArr);
+    const slicedAndShuffledArray = shuffledArray.slice(0, mineNumRange.length);
+    
+    slicedAndShuffledArray.forEach(place => {
+	    const mineRow = Math.floor(place / numRows);
+	    const mineCol = place % numCols;
+
+	    minesMat.setElement(1, mineRow, mineCol);
+	});
 };
 
 const manageFlag = function(cell, minesDisplay) {
@@ -131,6 +138,7 @@ const enumCells = function(cell) {
 };
 
 const minesNearby = function(j, i) {
+   console.log(minesMat);
    let checkEls = [];
 
    getMinesNearby(j, i, (nextRow, nextCol) => {

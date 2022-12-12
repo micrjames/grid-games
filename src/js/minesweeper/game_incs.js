@@ -15,8 +15,7 @@ const msRestartBtn = btnGroup.children.namedItem("restart-ms");
 const board = ms.children.namedItem("board");
 const cells = board.children;
 
-const minePlacement = {};
 const numMines = 10;
-const mineNumRange = [...range(numMines+1)];
+const mineNumRange = [...range(numMines)];
 
-export { numRows, numCols, minesDisplay, countdownDisplay, msRestartBtn, board, minePlacement, numMines, mineNumRange, cells };
+export { numRows, numCols, minesDisplay, countdownDisplay, msRestartBtn, board, numMines, mineNumRange, cells };

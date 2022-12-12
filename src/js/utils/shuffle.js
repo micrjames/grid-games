@@ -1,4 +1,4 @@
-const { Random } = require("../Random/Random.js");
+import Random from "./Random.js";
 
 const shuffle = function(array) {
     const randNum = new Random(0);

@@ -32,7 +32,7 @@ class Matrix {
 	   this.#mat[j][i] = val;
    }
    getElement(j, i) {
-	  return this.#mat[j][i];
+	   return this.#mat[j][i];
    }
 
    setRow(val, which) {
@@ -46,8 +46,8 @@ class Matrix {
        return this.#mat.map(row => row[which]);
    }
    
-   get diagonal() {
-	   let pivot = 0;
+   getDiagonal(k) {
+	   let pivot = k;
 	   return this.#mat.map((row, index) => {
 		   if(index == pivot) {
 			  pivot++;
@@ -55,14 +55,22 @@ class Matrix {
 		   }
 	   });
    }
-   get counterDiagonal() {
+   getCounterDiagonal(k) {
 	   const counterMatrix = new Matrix(this.#mat.size);
 	   this.#mat.forEach((row, index) => {
 		   const revRow = row.reduce((acc, item) => [item].concat(acc), []);
 		   counterMatrix.setRow(revRow, index);
 	   });
 
-	   return counterMatrix.diagonal;
+	   const reverseCounterDiagonal = counterMatrix.getDiagonal(k);
+	   const counterDiagonal = reverseCounterDiagonal.reverse();
+	   return counterDiagonal;
+   }
+   get main_diagonal() {
+	   return this.getDiagonal(0);
+   }
+   get main_counterDiagonal() {
+	   return this.getCounterDiagonal(0);
    }
 
    add(thatMat) {
