@@ -1,7 +1,6 @@
 import { board, cellEls, CLASS, mat } from "./game_incs.js";
-import { handleClick } from "./ttt.js";
+import { handleClick, setOver } from "./ttt.js";
 import { toggleUIEls, setBoardHoverClass } from "./ttt_game.js";
-import { setOver } from "./utils.js";
 
 const startTTT = function() {
 	setup();

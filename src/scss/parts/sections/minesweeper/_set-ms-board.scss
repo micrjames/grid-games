@@ -1,4 +1,4 @@
-@use "sass:string";
+@import "./cell";
 
 %set-ms-board {
    .board {
@@ -17,43 +17,7 @@
 	 gap: 1px;
 
 	 .cell {
-		width: 35px;
-		height: 35px;
-
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
-		&.covered {
-		   background-color: darkgrey;
-		   cursor: pointer;
-		   border: 5px outset darkgrey;
-		}
-		&.uncovered {
-		   background-color: grey;
-		   border: 1px solid grey;
-		}
-		&.mine {
-		   i {
-			  color: red;
-		   }
-		}
-		&.flag {
-		   i {
-			  color: red;
-		   }
-		}
-		&.burst {
-		   i {
-			  font-size: 1.75rem;
-			  color: yellow;
-			  background-color: red;
-		   }
-		}
-		&.numbers {
-			color: blue;
-		}
+		 @include cell(35px);
 	 }
-
    }
 }

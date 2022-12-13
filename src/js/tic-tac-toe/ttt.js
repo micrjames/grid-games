@@ -24,5 +24,8 @@ const handleClick = function(event) {
 	   setBoardHoverClass(board, circleTurn, CLASS);
 	}
 };
+const setOver = function(done) {
+    gameOver = done;
+};
 
-export { handleClick };
+export { handleClick, setOver };

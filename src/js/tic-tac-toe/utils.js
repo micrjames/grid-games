@@ -9,9 +9,4 @@ const getPos = function(cell) {
     return { row: +splitPos[0], col: +splitPos[1] }; 
 };
 
-const setOver = function(done) {                                                                        
-    const gameOver = done;
-    return gameOver;
-};
-
-export { swapTurn, getPos, setOver };
+export { swapTurn, getPos };
