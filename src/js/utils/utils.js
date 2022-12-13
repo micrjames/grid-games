@@ -1,4 +1,4 @@
-import { Timer } from "../utils/Timer.js";
+import { Timer } from "./Timer.js";
 
 // Convert a string to spinal case. Spinal case in all-lowercase-words-joined-by-dashes.
 const spinalCase = str => {
@@ -117,4 +117,9 @@ const changeBtnIcon = function(btn, name) {
    addIcon(btn, name);
 };
 
-export { spinalCase, titleCase, buildEl, addIcon, removeIcon, switchClasses, removeChildren, createTimer, changeBtnIcon, removeClasses, addClasses, isObjEmpty, removeProperties };
+const changeSectionVisibility = function(context1, context2) {                                         
+    context1.classList.remove("hidden");
+    context2.classList.add("hidden");
+};
+
+export { spinalCase, titleCase, buildEl, addIcon, removeIcon, switchClasses, removeChildren, createTimer, changeBtnIcon, removeClasses, addClasses, isObjEmpty, removeProperties, changeSectionVisibility };

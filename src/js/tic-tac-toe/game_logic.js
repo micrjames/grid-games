@@ -1,9 +1,11 @@
-import { cellEls, CLASS, mat } from "./game_incs.js";
-import { handleClick, setBoardHoverClass, toggleUIEls, setOver } from "./ttt.js";
+import { board, cellEls, CLASS, mat } from "./game_incs.js";
+import { handleClick } from "./ttt.js";
+import { toggleUIEls, setBoardHoverClass } from "./ttt_game.js";
+import { setOver } from "./utils.js";
 
 const startTTT = function() {
 	setup();
-    setBoardHoverClass();
+    setBoardHoverClass(board, true, CLASS);
 };
 
 const resetTTT = function() {
