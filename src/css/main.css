@@ -312,12 +312,12 @@ main #modal #modal-body .game-display .game.tic-tac-toe .board .cell.circle::bef
   height: 90px;
 }
 main #modal #modal-body .game-display .game.tic-tac-toe .board .cell.circle::after {
+  background-color: white;
   content: "";
   position: absolute;
   border-radius: 50%;
   width: 63px;
   height: 63px;
-  background-color: white;
 }
 main #modal #modal-body .game-display .game.tic-tac-toe .board.circle .cell:not(.x):not(.circle):hover::before {
   background-color: lightgrey;
@@ -328,12 +328,12 @@ main #modal #modal-body .game-display .game.tic-tac-toe .board.circle .cell:not(
   height: 90px;
 }
 main #modal #modal-body .game-display .game.tic-tac-toe .board.circle .cell:not(.x):not(.circle):hover::after {
-  width: 63px;
-  height: 63px;
+  background-color: white;
   content: "";
   position: absolute;
   border-radius: 50%;
-  background-color: white;
+  width: 63px;
+  height: 63px;
 }
 
 main #modal #modal-body .game-display .game.rock-paper-scissors .selections {
