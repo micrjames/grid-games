@@ -1,14 +1,13 @@
-import { numRows, numCols, numMines, mineNumRange, cells, minesDisplay, msRestartBtn } from "./game_incs.js";
-import { addIcon, removeIcon, createTimer, changeBtnIcon, switchClasses } from "../utils/utils.js";
+import { numRows, numCols, numMines, mineNumRange, cells, minesDisplay, msRestartBtn, secsRemaining } from "./game_incs.js";
+import { addIcon, removeIcon, changeBtnIcon, switchClasses } from "../utils/utils.js";
 import Matrix from "../utils/Matrix.js";
 import { shuffle } from "../utils/shuffle.js";
 import { range } from "../utils/range.js";
+import { stopTimer } from "./ms_timer.js";
 
 let minesMat;
 let delsMat;
-let timer;
 let totalNumMines;
-let secsRemaining = 500;
 const initMS = function(restartBtn, displays) {
     totalNumMines = numMines;
     if(restartBtn.children.length) removeIcon(restartBtn, "face-grin-wide");
@@ -16,42 +15,10 @@ const initMS = function(restartBtn, displays) {
     displays[0].textContent = totalNumMines;
     displays[1].textContent = secsRemaining;
     
-    placeMines();
+    minesMat = placeMines();
     delsMat = new Matrix(minesMat.size);
-};
 
-const startTimer = function(countdownDisplay, resetBtn) {
-    stopTimer();
-    timer = createTimer(countdownDisplay, secsRemaining, () => {
-	    changeBtnIcon(resetBtn, "face-dizzy");
-
-	    for(const cell of cells) {
-		    cell.removeEventListener("click", clickCell)
-		}
-	});
-};
-const stopTimer = function() {
-    if(timer) timer.cancel();
-};
-
-const createCell = function() {
-    const cell = document.createElement("div");
-    cell.classList.add("cell");
-    cell.classList.add("covered");
-
-    return cell;
-};
-
-const createBoard = function() {
-   const minesArr = minesMat.mat.flat()
-   const cellFragment = document.createDocumentFragment();
-   for(let i = 0; i < numRows * numCols; i++) {
-       const cell = createCell();
-	   if(minesArr[i] == 1) cell.classList.add("mine");
-
-	   cellFragment.appendChild(cell);
-   }
-   return cellFragment;
+    return minesMat;
 };
 
 const clickCell = function(event) {
@@ -79,7 +46,7 @@ const clickCell = function(event) {
 };
 
 const placeMines = function() {
-    minesMat = new Matrix(numCols);
+    let minesMat = new Matrix(numCols);
 
     const matIdxArr = [...range(numRows * numCols)];
     const shuffledArray = shuffle(matIdxArr);
@@ -91,6 +58,8 @@ const placeMines = function() {
 
 	    minesMat.setElement(1, mineRow, mineCol);
 	});
+    
+    return minesMat;
 };
 
 const manageFlag = function(cell, minesDisplay) {
@@ -230,4 +199,4 @@ const checkWin = function() {
    return false;
 };
 
-export { createBoard, initMS, startTimer, stopTimer, placeMines, clickCell };
+export { initMS, placeMines, clickCell };

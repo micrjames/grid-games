@@ -3,6 +3,7 @@ import { range } from "../utils/range.js"
 
 const numRows = 9;                                                                                   
 const numCols = 9;
+const secsRemaining = 100;
 
 const gameDisplay = modalBody.children[0];
 const ms = gameDisplay.children.namedItem("ms");
@@ -18,4 +19,4 @@ const cells = board.children;
 const numMines = 10;
 const mineNumRange = [...range(numMines)];
 
-export { numRows, numCols, minesDisplay, countdownDisplay, msRestartBtn, board, numMines, mineNumRange, cells };
+export { numRows, numCols, minesDisplay, countdownDisplay, msRestartBtn, board, numMines, mineNumRange, cells, secsRemaining };

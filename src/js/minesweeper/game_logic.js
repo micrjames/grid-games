@@ -1,11 +1,13 @@
-import { createBoard, initMS, startTimer, stopTimer, clickCell } from "./ms.js";
-import { board, msRestartBtn, minesDisplay, countdownDisplay } from "./game_incs.js";
+import { initMS, clickCell } from "./ms.js";
+import { numRows, numCols, board, msRestartBtn, minesDisplay, countdownDisplay, secsRemaining } from "./game_incs.js";
 import { removeChildren } from "../utils/utils.js";
+import { startTimer, stopTimer } from "./ms_timer.js";
+import { createBoard } from "./ms_game.js";
 
 const startMS = function() {
     // const randCellsArr = initMS(msRestartBtn, [ms_minesDisplay, ms_countdownDownDisplay]);
-    initMS(msRestartBtn, [minesDisplay, countdownDisplay]); 
-    const cellFragment = createBoard();
+    const minesMat = initMS(msRestartBtn, [minesDisplay, countdownDisplay]); 
+    const cellFragment = createBoard(numRows * numCols, minesMat);
     board.appendChild(cellFragment);
 };
 
@@ -15,7 +17,7 @@ const resetMS = function() {
     for(const cell of cells) {
 		cell.addEventListener("click", clickCell);
 	}
-    startTimer(countdownDisplay, msRestartBtn);
+    startTimer(secsRemaining, countdownDisplay, msRestartBtn);
 };
 
 const restartMS = function() {
