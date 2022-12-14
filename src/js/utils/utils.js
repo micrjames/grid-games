@@ -98,4 +98,30 @@ const changeSectionVisibility = function(context1, context2) {
     context2.classList.add("hidden");
 };
 
-export { spinalCase, titleCase, buildEl, addIcon, removeIcon, switchClasses, removeChildren, changeBtnIcon, removeClasses, addClasses, isObjEmpty, removeProperties, changeSectionVisibility };
+const idxToRC = function(index, numRows, numCols) {
+    const row = Math.floor(index / numRows);
+    const col = index % numCols;
+    return [row, col];
+};
+const rcToIdx = function(row, col, numCols) {
+    return row * numCols + col; 
+};
+
+const addListeners = function(contextsArr, listenersObj, cb = null) {
+    for(const context of contextsArr) {
+	    if(cb) cb(context);
+	    for(const listenerObj of listenersObj) {
+		    context.addEventListener(listenerObj.eventType, listenerObj.cbFn);
+		}
+	}
+};
+const removeListeners = function(contextsArr, listenersObj, cb = null) {
+    for(const context of contextsArr) {
+	    if(cb) cb(context);
+	    for(const listenerObj of listenersObj) {
+		    context.removeEventListener(listenerObj.eventType, listenerObj.cbFn);
+		}
+	}
+};
+
+export { spinalCase, titleCase, buildEl, addIcon, removeIcon, switchClasses, removeChildren, changeBtnIcon, removeClasses, addClasses, isObjEmpty, removeProperties, changeSectionVisibility, idxToRC, rcToIdx, addListeners, removeListeners };
