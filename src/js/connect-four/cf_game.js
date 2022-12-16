@@ -14,9 +14,19 @@ const checkWin = function(mat, currentClass, pos) {
 
     // does pos intersect with any diagonal?
     // pos.col + k == pos.row
-   
+    if(pos.col == pos.row) {
+	    const diagonal = matrix.main_diagonal;
+
+	    if(findRunOfFour(diagonal, pos.row)) return true;
+	}
+
     // does pos intersect with any counter diagonal?
     // pos.row == matrix_size - pos.col + k
+    if(pos.row == ((matrix.size - 1) - pos.col)) {
+	   const counter_diagonal = matrix.main_counterDiagonal;
+	   
+	   if(findRunOfFour(counter_diagonal, pos.row)) return true;
+	}
 
     return false;
 };
