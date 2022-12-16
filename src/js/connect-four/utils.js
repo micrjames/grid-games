@@ -1,6 +1,7 @@
 import { data, CLASS, mat, whichCell, winningMessageText } from "./game_incs.js";
 import { range } from "../utils/range.js";
 import { removeProperties } from "../utils/utils.js";
+import { remZeroes, removedZeroesIdx, getArrRuns, matchRun } from "./array_ops.js"; 
 
 const swapTurn = function(turn) {
     turn = !turn;
@@ -40,4 +41,14 @@ const getPieceWhere = function(cells, col) {
     return { cell: whichCell, row, col };
 };
 
-export { swapTurn, placePiece, getPieceWhere, clearVals }; 
+const findRunOfFour = function(arr, runIndex) {
+	const idxArr = remZeroes(arr);
+	const divPts = removedZeroesIdx(idxArr);
+
+	const runsArr = getArrRuns(idxArr);
+
+    const targetRun = 4;
+	return matchRun(runsArr, targetRun, runIndex);
+};
+
+export { swapTurn, placePiece, getPieceWhere, clearVals, findRunOfFour }; 

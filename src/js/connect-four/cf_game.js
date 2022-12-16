@@ -1,12 +1,16 @@
 import { winningMessageText } from "./game_incs.js";
+import { findRunOfFour } from "./utils.js";
 
 const checkWin = function(mat, currentClass, pos) {
    	const matrix = mat[`${currentClass}`];
 
     // pos always intersects with some row and some column
     // , but only four pieces in a row or column
-    if(matrix.getRow(pos.row).filter(el => el).length == 4) return true;
-    if(matrix.getCol(pos.col).filter(el => el).length == 4) return true;
+    const row = matrix.getRow(pos.row);
+    if(findRunOfFour(row, pos.col)) return true;
+
+    const column = matrix.getCol(pos.col);
+    if(findRunOfFour(column, pos.row)) return true;
 
     // does pos intersect with any diagonal?
     // pos.col + k == pos.row
