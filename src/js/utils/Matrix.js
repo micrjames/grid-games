@@ -47,16 +47,23 @@ class Matrix {
    }
    
    getDiagonal(k) {
+	   let diagonal = [];
 	   let pivot = k;
-	   return this.#mat.map((row, index) => {
-		   if(index == pivot) {
-			  pivot++;
-			  return row[index];
+	   for(let rowIndex = 0; rowIndex < this.#N; rowIndex++) {
+		   for(let colIndex = 0; colIndex < this.#N; colIndex++) {
+			     if(colIndex == pivot) {
+					pivot++;
+					diagonal = [...diagonal, this.#mat[rowIndex][colIndex]];
+
+					break;
+				 }
 		   }
-	   });
+	   }
+
+	   return diagonal;
    }
    getCounterDiagonal(k) {
-	   const counterMatrix = new Matrix(this.#mat.size);
+	   const counterMatrix = new Matrix(this.#N);
 	   this.#mat.forEach((row, index) => {
 		   const revRow = row.reduce((acc, item) => [item].concat(acc), []);
 		   counterMatrix.setRow(revRow, index);

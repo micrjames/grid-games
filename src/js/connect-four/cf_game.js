@@ -13,19 +13,23 @@ const checkWin = function(mat, currentClass, pos) {
     if(findRunOfFour(column, pos.row)) return true;
 
     // does pos intersect with any diagonal?
-    // pos.col + k == pos.row
-    if(pos.col == pos.row) {
-	    const diagonal = matrix.main_diagonal;
+    // pos.row == pos.col - k, for k >= 0
+    for(let k = 0; k < matrix.size - 1; k++) {
+	   if(pos.row == pos.col - k) {
+		   const diagonal = matrix.getDiagonal(k);
 
-	    if(findRunOfFour(diagonal, pos.row)) return true;
+		   if(findRunOfFour(diagonal, pos.row)) return true;
+	   }
 	}
 
     // does pos intersect with any counter diagonal?
-    // pos.row == matrix_size - pos.col + k
-    if(pos.row == ((matrix.size - 1) - pos.col)) {
-	   const counter_diagonal = matrix.main_counterDiagonal;
-	   
-	   if(findRunOfFour(counter_diagonal, pos.row)) return true;
+    // pos.row == (matrix_size - k) - pos.col
+    for(let k = 0; k < matrix.size - 1; k++) {
+	   if(pos.row == ((matrix.size - 1 - k) - pos.col)) {
+		  const diagonal = matrix.getCounterDiagonal(k);
+		  
+		  if(findRunOfFour(diagonal, pos.row)) return true;
+	   }
 	}
 
     return false;
