@@ -48,16 +48,29 @@ class Matrix {
    
    getDiagonal(k) {
 	   let diagonal = [];
-	   let pivot = k;
-	   for(let rowIndex = 0; rowIndex < this.#N; rowIndex++) {
-		   for(let colIndex = 0; colIndex < this.#N; colIndex++) {
-			     if(colIndex == pivot) {
-					pivot++;
-					diagonal = [...diagonal, this.#mat[rowIndex][colIndex]];
+	   let pivot = Math.abs(k);
+	   if (k >= 0) {
+		  for(let rowIndex = 0; rowIndex < this.#N; rowIndex++) {
+			  for(let colIndex = 0; colIndex < this.#N; colIndex++) {
+					if(colIndex == pivot) {
+					   pivot++;
+					   diagonal = [...diagonal, this.#mat[rowIndex][colIndex]];
 
-					break;
-				 }
-		   }
+					   break;
+					}
+			  }
+		  }
+	   } else {
+		  for(let colIndex = 0; colIndex < this.#N; colIndex++) {
+			  for(let rowIndex = 0; rowIndex < this.#N; rowIndex++) {
+					if(rowIndex == pivot) {
+					   pivot++;
+					   diagonal = [...diagonal, this.#mat[rowIndex][colIndex]];
+
+					   break;
+					}
+			  }
+		  }
 	   }
 
 	   return diagonal;
@@ -81,16 +94,11 @@ class Matrix {
    }
 
    add(thatMat) {
-	   const matsArr = this.#mat.concat(thatMat.mat);
-	   const flatMats = matsArr.flat();
-	   const size = this.#mat.flat().length;
-	   const addedMats = flatMats.map((currentValue, currentIndex) => {
-		   if(currentIndex < size) return currentValue + flatMats[currentIndex + size]; 
-	   }).filter(el => el);
-	   const unFlatMats = addedMats.reduce((accumulator, _, currentIndex) => {
-		   return currentIndex % this.#N == 0 ? accumulator.concat([addedMats.slice(currentIndex, currentIndex + 2)]) : accumulator
-	   }, []);
-	   return unFlatMats;
+	   return this.#mat.map((row, rowIndex) => {
+		   return row.map((el, elIndex) => {
+			   return el + thatMat.mat[rowIndex][elIndex];
+		   });
+	   });
    }
    multiply(thatMat) {
 	   return this.#mat.map((row, rowIndex) => row.map((_, colIndex) => {

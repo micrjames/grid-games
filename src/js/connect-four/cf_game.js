@@ -3,6 +3,8 @@ import { findRunOfFour } from "./utils.js";
 
 const checkWin = function(mat, currentClass, pos) {
    	const matrix = mat[`${currentClass}`];
+    const matrix_size = matrix.size;
+    const matrix_bounds = matrix_size - 1;
 
     // pos always intersects with some row and some column
     // , but only four pieces in a row or column
@@ -13,8 +15,8 @@ const checkWin = function(mat, currentClass, pos) {
     if(findRunOfFour(column, pos.row)) return true;
 
     // does pos intersect with any diagonal?
-    // pos.row == pos.col - k, for k >= 0
-    for(let k = 0; k < matrix.size - 1; k++) {
+    // pos.row == pos.col - k, for -(matrix_size) <= k >= matrix_size
+    for(let k = -1 * matrix_bounds; k < matrix_bounds; k++) {
 	   if(pos.row == pos.col - k) {
 		   const diagonal = matrix.getDiagonal(k);
 
@@ -24,7 +26,7 @@ const checkWin = function(mat, currentClass, pos) {
 
     // does pos intersect with any counter diagonal?
     // pos.row == (matrix_size - k) - pos.col
-    for(let k = 0; k < matrix.size - 1; k++) {
+    for(let k = -1 * matrix_bounds; k < matrix_bounds; k++) {
 	   if(pos.row == ((matrix.size - 1 - k) - pos.col)) {
 		  const diagonal = matrix.getCounterDiagonal(k);
 		  
