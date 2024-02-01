@@ -59,7 +59,7 @@ header {
 }
 main {
   width: 100vw;
-  height: 75vh;
+  height: 100vh;
   background-color: grey;
   padding: 5% 0;
 }
