@@ -1,10 +1,10 @@
 @import 'utils/config', 'parts/hdr-bar', 'parts/ftr-bar', 'parts/sections/main-container';
 
 header {
-	@include hdr-bar($header-color);
+   @include hdr-bar($header-color);
 }
 main {
-	@include main-container($main-bg-color, $main-text-color);
+   @include main-container($main-bg-color, $main-text-color);
 }
 footer {
     @include ftr-bar($footer-color);

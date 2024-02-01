@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-   	<meta charset="UTF-8">
-   	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-   	<link rel="stylesheet" href="css/main.css">
-   	<title>Grid Games</title>
-    <script src="https://kit.fontawesome.com/aaeb479cf8.js" crossorigin="anonymous"></script>
+	   <meta charset="UTF-8">
+	   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	   <link rel="stylesheet" href="css/main.css">
+	   <title>Grid Games</title>
+	   <script src="https://kit.fontawesome.com/aaeb479cf8.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
 	  <header>
@@ -18,159 +18,7 @@
 	   </header>
 	   <main id="main">
 		  <h1>Some grid-based games.</h1>
-		  <section id="games-grid" class="games-grid">                                                    
-			  <figure class="games-grid-game">
-				  <img class="game-image"
-					   alt="image of tic tac toe game"
-					   title="Tic Tac Toe Game Board"
-					   src="./images/ttt.png"
-				  >
-				  <figcaption class="games-grid-game-description">
-					 <button class="games-grid-game-description-btn">
-						Tic Tac Toe
-						<i class="fa-solid fa-check-double"></i>
-					 </button>
-				  </figcaption>
-			  </figure>
-			  <figure class="games-grid-game">
-				  <img class="game-image"
-					   alt="image of rock paper scissors game"
-					   title="Rock Paper Scissors Game Board"
-					   src="./images/rps.png"
-				  >
-				  <figcaption class="games-grid-game-description">
-					 <button class="games-grid-game-description-btn">
-						Rock Paper Scissors
-						<i class="fa-solid fa-check-double"></i>
-					 </button>
-				  </figcaption>
-			  </figure>
-			  <figure class="games-grid-game">
-				  <img class="game-image"
-					   alt="image of minesweeper game"
-					   title="Minesweeper Game Board"
-					   src="./images/ms.png"
-				  >
-				  <figcaption class="games-grid-game-description">
-					 <button class="games-grid-game-description-btn">
-						Minesweeper
-						<i class="fa-solid fa-check-double"></i>
-					 </button>
-				  </figcaption>
-			  </figure>
-			  <figure class="games-grid-game">
-				  <img class="game-image"
-					   alt="image of connect four game"
-					   title="Connect Four Game Board"
-					   src="./images/cf.png"
-				  >
-				  <figcaption class="games-grid-game-description">
-					 <button class="games-grid-game-description-btn">
-						Connect Four
-						<i class="fa-solid fa-check-double"></i>
-					 </button>
-				  </figcaption>
-			  </figure>
-		  </section>
-		  <section id="modal" class="hidden">                                                             
-              <div id="modal-header">
-                  <div id="modal-header-close">
-					 <i class="fa-solid fa-xmark"></i>
-				  </div>
-				  <div id="modal-header-text"></div>
-              </div>
-              <div id="modal-body">
-				  <div class="game-display">
-					 <div id="ttt" class="game tic-tac-toe">
-						  <div class="board" id="board">
-							 <div class="cell" data-pos="0-0"></div>
-							 <div class="cell" data-pos="0-1"></div>
-							 <div class="cell" data-pos="0-2"></div>
-							 <div class="cell" data-pos="1-0"></div>
-							 <div class="cell" data-pos="1-1"></div>
-							 <div class="cell" data-pos="1-2"></div>
-							 <div class="cell" data-pos="2-0"></div>
-							 <div class="cell" data-pos="2-1"></div>
-							 <div class="cell" data-pos="2-2"></div>
-						  </div>
-						  <div class="winning-message">
-							 <div class="winning-message-text"></div>
-							 <div class="game-display-btn-group"> 
-								<button class="game-display-btn-group-reset" id="restart-ttt">
-									<i class="fa-solid fa-arrows-rotate"></i>
-									Reset Game
-								</button>
-							  </div>
-						  </div>
-						  <div class="instructions-message">
-							  <p>How to Play</p>
-							  <ul>
-								  <li>A paper and pencil game.</li>
-								  <li>Mark three cells the same in any direction to win.</li>
-								  <li>Otherwise, there's a draw.</li>
-							  </ul>
-						 </div>
-					</div>
-					<div id="rps" class="game rock-paper-scissors">                                       
-						<div class="winning-message">
-							<div class="winning-message-text"></div>
-							<div class="game-display-btn-group"> 
-								<button class="game-display-btn-group-reset" id="restart-rps">
-									<i class="fa-solid fa-arrows-rotate"></i>
-									Reset Game
-								</button>
-							</div>
-						</div>
-                        <div class="instructions-message">
-                            <p>How to Play</p>
-                            <ul>
-                                <li>Click on a hand above.</li>
-                                <li>Another hand will be chosen.</li>
-                                <li>Paper beats rock. Rock beats scissors. Scissors beats paper.</li>
-                                <li>It&apos;s just that simple.</li>
-                            </ul>
-                       </div>
-					</div>
-					<div id="ms" class="game minesweeper">
-					   <div class="game-interface">
-						   <span class="game-interface-mines-display"></span>
-						   <span class="game-display-btn-group">
-							   <button class="game-display-btn-group-reset" id="restart-ms"></button>
-						   </span>
-						   <span class="game-interface-countdown"></span>
-					   </div>
-					   <div class="board" id="board"></div>
-					   <div class="instructions-message">
-						   <p>How to Play</p>
-						   <ul>
-							  <li>Cmd-click or Alt-click to flag a cell.</li>
-							  <li>Click if you know a cell is clear.</li>
-							  <li>If it isn't, then there will be a clue to how mines are surrounding it.</li>
-							  <li>Flag all mines and uncover the remaining cells to win.</li>
-							  <li>Uncover a mine or run out of time to lose.</li>
-						   </ul>
-					   </div>
-					</div>
-					<div id="cf" class="game connect-four">
-					   <div class="board" id="board"></div>
-					   <div class="winning-message">
-						   <div class="winning-message-text"></div>
-						   <div class="game-display-btn-group"> 
-							   <button class="game-display-btn-group-reset" id="restart-cf">
-								   <i class="fa-solid fa-arrows-rotate"></i>
-								   Reset Game
-							   </button>
-						   </div>
-					   </div>
-					   <div class="instructions-message">
-						  <p>How to Play</p>
-						  <p>
-						  Just get four in a row, diagonally, horizontally, or vertically.
-						  </p>
-					   </div>
-					</div>
-				  </div>
-			  </div>
+		  <section id="games-grid" class="games-grid">
 		  </section>
 	   </main>
 	   <footer id="ftr-bar">

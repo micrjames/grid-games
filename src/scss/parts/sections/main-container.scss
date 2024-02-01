@@ -1,4 +1,4 @@
-@import '../../utils/utils', '../../utils/button', '../../utils/res-mq', '../../utils/config', '../../modal/modal';
+@import '../../utils/utils', '../../utils/config';
 
 $primary-color:  white;// #282828;
 $secondary-color: #ff652f;
@@ -8,6 +8,7 @@ $modal-text-color: $secondary-color;
 
 @mixin main-container($bg-color, $text-color) {
    width: 100vw;
+   height: 75vh;
    background-color: $bg-color;
 
    padding: 5% 0;
@@ -21,52 +22,5 @@ $modal-text-color: $secondary-color;
 	  width: 75%;
 	  height: 100%;
 
-	  margin: 0 auto;
-
-	  @include md {
-		  display: flex;
-		  justify-content: space-between;
-		  flex-wrap: wrap;
-	  }
-
-	  &-game {
-		 width: 100%;
-		 height: 25%;
-		 @include md {
-			 width: 40%;
-		 }
-		 background-color: darken($bg-color, 30%);
-
-		 margin: 2rem 0;
-
-		 img {
-			width: 100%;
-			height: 85%;
-		 }
-
-		 &-description {
-			width: 100%;
-			height: 15%;
-			text-align: center;
-			background-color: darken($bg-color, 50%);
-			padding-top: 0.75rem;
-
-			&-btn {
-			    @include button(1.05rem, 0.95rem 0.75rem, 0);
-			    background-color: darken($bg-color, 10%);
-			}
-		 }
-	  }
-   }
-   #modal {
-	  @include modal($modal-width, $modal-bg-color, $modal-text-color, true);
-	  @include md {
-		 @include modal(0.75 * $modal-width, $modal-bg-color, $modal-text-color, true);
-	  }
-	  @include box-shadow(0, 3px, 10px, 0, rgb(0 0 0 / 0.2), false);
-
-	  &.hidden {
-		  display: none;
-	  }
    }
 }
