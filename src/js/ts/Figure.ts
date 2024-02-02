@@ -1,16 +1,15 @@
 export class Figure {
    private figCaption: Element;
-   private buttonText: string;
-   constructor(figure: Element, cb: () => void) {
+   constructor(figure: Element, cb: (text: string) => void) {
 	  this.figCaption = figure.children[1];
 	  this.btn.addEventListener("click", () => {
-		 cb();
+		 cb(this.btnText);
 	  });
    }
    private get btn(): Element {
 	  return this.figCaption.children[0];
    }
-   get btnText(): string {
+   private get btnText(): string {
 	  return this.btn.textContent.trim();
    }
 }

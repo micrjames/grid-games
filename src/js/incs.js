@@ -3,6 +3,5 @@ const main = body.children.namedItem("main");
 
 const games_grid = main.children.namedItem("games-grid");
 const figures = games_grid.children;
-const figure = figures[0];
 
 const modalEl = main.children.namedItem("modal");
