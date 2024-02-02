@@ -1,4 +1,4 @@
-@import '../../utils/utils', '../../utils/button', '../../utils/res-mq', '../../utils/config';
+@import '../../utils/utils', '../../utils/button', '../../utils/res-mq', '../../utils/config', '../../modal/modal';
 
 $primary-color:  white;// #282828;
 $secondary-color: #ff652f;
@@ -69,4 +69,16 @@ $modal-text-color: $secondary-color;
 	  }
 
    }
+   #modal {                                                                             
+	  // modal($width, $bg-color, $text-color, $close-right:false, $centered:true, $height:-1, $bg-body-colo    r: $bg-color, $bg-header-color: $bg-color)
+	  @include modal($modal-width, grey, $modal-text-color, true, true, 50%, grey, grey);
+      @include md {
+		 @include modal(0.75 * $modal-width, grey, $modal-text-color, true, true, 50%, grey, grey);
+      }
+      @include box-shadow(0, 3px, 10px, 0, rgb(0 0 0 / 0.2), false);
+ 
+      &.hidden {
+		 display: none;
+      }
+  }
 }

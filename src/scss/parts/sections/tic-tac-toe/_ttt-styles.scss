@@ -1,0 +1,14 @@
+@import "set-board", "set-marks";
+
+$cell-size: 100px;
+$mark-size: $cell-size * .9;
+$width: 100%;
+$height: 75%;
+
+%ttt {
+    .board {
+	  @include set-board($width, $height);
+	  @include set-marks-x($mark-size);
+	  @include set-marks-circle($mark-size);
+    }
+}
