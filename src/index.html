@@ -98,7 +98,7 @@
 				  </figcaption>
 			   </figure>
 		  </section>
-		  <section id="modal">
+		  <section id="modal" class="hidden">
 			   <div id="modal-header">
 				  <i id="modal-header-close" class="fa-solid fa-xmark"></i>
 				  <div id="modal-header-text">games</div>
@@ -117,6 +117,10 @@
 		   </section>
 		   <section id="copyright-info">Copyright 2021, Michael James</section>
 	   </footer>
-   	<script src="js/index.js" type="module"></script>
+	   <script>
+		  const exports = {};
+	   </script>
+	   <script data-main="js/index" src="js/require.js"></script>
+	   <script src="js/index.js" type="module"></script>
 	</body>
 </html>

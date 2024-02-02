@@ -3,7 +3,7 @@
 $primary-color:  white;// #282828;
 $secondary-color: #ff652f;
 $modal-width: 75%;
-$modal-bg-color: $primary-color;
+$modal-bg-color: grey;
 $modal-text-color: $secondary-color;
 
 @mixin main-container($bg-color, $text-color, $full-height: false) {
@@ -70,10 +70,10 @@ $modal-text-color: $secondary-color;
 
    }
    #modal {                                                                             
-	  // modal($width, $bg-color, $text-color, $close-right:false, $centered:true, $height:-1, $bg-body-colo    r: $bg-color, $bg-header-color: $bg-color)
-	  @include modal($modal-width, grey, $modal-text-color, true, true, 50%, grey, grey);
+	  // modal($width, $bg-color, $text-color, $close-right:false, $centered:true, $height:-1, $bg-body-color: $bg-color, $bg-header-color: $bg-color)
+	  @include modal($modal-width, $modal-bg-color, $modal-text-color, true, true, 50%);
       @include md {
-		 @include modal(0.75 * $modal-width, grey, $modal-text-color, true, true, 50%, grey, grey);
+		 @include modal(0.75 * $modal-width, $modal-bg-color, $modal-text-color, true, true, 50%);
       }
       @include box-shadow(0, 3px, 10px, 0, rgb(0 0 0 / 0.2), false);
  
