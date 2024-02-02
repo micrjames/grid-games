@@ -25,7 +25,7 @@
    align-items: center;
 }
 
-@mixin set-grid($num-cols: null, $num-rows: null, $center: true) {
+@mixin set-grid($num-rows: null, $num-cols: null, $center: true) {
     display: grid;
 	@if($center) {
 	   justify-content: center;

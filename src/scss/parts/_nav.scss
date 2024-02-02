@@ -1,4 +1,4 @@
-@import '../utils/utils';
+@import '../utils/utils', '../utils/config';
 
 %nav {
    menu {
@@ -8,9 +8,11 @@
            display: inline;
            cursor: pointer;
            padding: 1rem 0.5rem;
+		   background-color: $header-color;
  
            a {
                text-decoration: none;
+			   background-color: inherit;
 			   color: white;
            }
  

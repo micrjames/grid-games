@@ -4,7 +4,7 @@ header {
    @include hdr-bar($header-color);
 }
 main {
-   @include main-container($main-bg-color, $main-text-color, true);
+   @include main-container($main-bg-color, $main-text-color);
 }
 footer {
     @include ftr-bar($footer-color);
