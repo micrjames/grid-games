@@ -1,0 +1,18 @@
+%ellipsis {
+   font-size: 30px;
+
+   &::after {
+	 overflow: hidden;
+	 display: inline-block;
+	 vertical-align: bottom;   
+	 animation: animate steps(4,end) 900ms infinite;
+	 content: "\2026";
+	 width: 0px;
+   }
+
+   @keyframes animate {
+	 to {
+	   width: 1.25em;    
+	 }
+   }
+}

@@ -20,6 +20,10 @@
    left: 50%;
    transform: translateX(-50%);
 }
+%center-object-vert {
+   top: 50%;
+   transform: translateY(-50%);
+}
 %center {
    justify-content: center;
    align-items: center;
