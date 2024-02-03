@@ -1,0 +1,38 @@
+@import '../../../utils/shapes';
+
+@mixin set-marks-x($size) {
+    .cell { 
+        &.x::before {
+			@include x-left(black, $size, .15);
+       }
+       &.x::after {
+		    @include x-right(black, $size, .15);
+       }
+    }
+    &.x {                                                                                               
+       .cell:not(.x):not(.circle):hover::before {
+		   @include x-left(lightgrey, $size, .15);
+      } 
+      .cell:not(.x):not(.circle):hover::after {
+		   @include x-right(lightgrey, $size, .15);
+     }
+   }
+}
+@mixin set-marks-circle($size) {
+   .cell {                                                                                              
+      &.circle::before {
+		  @include circle(black, $size, 1);
+     }
+     &.circle::after {
+		  @include circle(grey, $size, .7);
+    }
+  }
+  &.circle {                                                                                          
+      .cell:not(.x):not(.circle):hover::before {
+		@include circle(lightgrey, $size, 1);
+     }    
+     .cell:not(.x):not(.circle):hover::after {
+		@include circle(grey, $size, .7);
+    }    
+  }
+}
