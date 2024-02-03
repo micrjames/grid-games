@@ -7,10 +7,7 @@ $cell-color: black;
 	width: $width;
 	height: $height; 
 
-    justify-items: center;                                                                            
-    align-items: center;
-	@include set-grid(3);
-
+    @include set-grid(3, 3);
 	.cell {
 	     @include set-cell($cell-size, $cell-size, $cell-color);
 		 &:nth-child(-n + 3) {

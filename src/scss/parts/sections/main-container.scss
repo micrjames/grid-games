@@ -71,7 +71,7 @@ $modal-text-color: $secondary-color;
    }
    #modal {                                                                             
 	  // modal($width, $bg-color, $text-color, $close-right:false, $centered:true, $height:-1, $bg-body-color: $bg-color, $bg-header-color: $bg-color)
-	  @include modal($modal-width, $modal-bg-color, $modal-text-color, true, true, 50%);
+	  @include modal($modal-width, $modal-bg-color, $modal-text-color, true, true, 75%);
       @include md {
 		 @include modal(0.75 * $modal-width, $modal-bg-color, $modal-text-color, true, true, 50%);
       }

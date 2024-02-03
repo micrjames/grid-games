@@ -1,4 +1,4 @@
-@import "../parts/sections/tic-tac-toe/ttt-styles", "../utils/utils", "../utils/ellipsis", "../parts/sections/instructions", "../parts/sections/gd-btn-group";
+@import "../parts/sections/ttt/ttt-styles", "../utils/utils", "../utils/ellipsis";
 
 @font-face {
   font-family: Digital7Mono;
@@ -18,5 +18,12 @@ $mark-size: $cell-size * .9;
 	  &.ellipsis {
 		 @extend %ellipsis;
 	  }
+   }
+   .game-display {
+	   .game {
+		   &.tic-tac-toe {
+			   @extend %ttt;
+		   }
+	   }
    }
 }
