@@ -1,8 +1,4 @@
-requirejs(['js/figure.min.js', 'js/modal.min.js', 'js/incs.js', 'js/utils/utils.js', 'js/utils/domHelpers.js'], function() {
-   const CLASS = {
-	  X: "x",
-	  CIRCLE: "circle"
-   };
+requirejs(['js/figure.min.js', 'js/modal.min.js', 'js/incs.js', 'js/utils/utils.js', 'js/utils/domHelpers.js', 'js/ts/TTT.js'], function() {
    const span = createSpan("ellipsis", "Coming Soon");
    for(const figure of figures) {
 	  new Figure(figure, text => {
@@ -18,22 +14,12 @@ requirejs(['js/figure.min.js', 'js/modal.min.js', 'js/incs.js', 'js/utils/utils.
 			   if(span.parentElement === modal.body)
 				  modal.body.removeChild(span);
 			   /*********/
-			   let circleTurn = true;
-			   const board = game.children.namedItem("board");
-			   board.classList.add("circle");
-			   const cellEls = board.children;
-			   for(const cellEl of cellEls) {
-				  cellEl.addEventListener("click", () => {
-					 const currentClass = circleTurn ? CLASS.CIRCLE : CLASS.X;
-					 cellEl.classList.add(currentClass);
-
-					 circleTurn = !circleTurn;
-					 board.classList.remove(CLASS.X);
-					 board.classList.remove(CLASS.CIRCLE);
-
-					 if(circleTurn) board.classList.add(CLASS.CIRCLE);
-					 else board.classList.add(CLASS.X);
-				  });
+			   switch(game) {
+				  case gameDisplay.firstElementChild : {
+					 const board = game.children.namedItem("board");
+					 const ttt = new TTT(board);
+					 ttt.setMarks();
+				  }
 			   }
 			   /*********/
 			} else {

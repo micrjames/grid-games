@@ -9,6 +9,7 @@
   "author": "me",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^20.11.16",
     "browser-sync": "^2.27.7",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
