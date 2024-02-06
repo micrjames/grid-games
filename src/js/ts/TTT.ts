@@ -221,6 +221,7 @@ export class TTT {
 				const currentClass = this.circleTurn ? this.CLASS.CIRCLE : this.CLASS.X;
 				this.cells[i].pos = this.cells[i].pos;
 				console.log(this.cells[i].pos)
+				console.log('circle turn?', this.circleTurn);
 				this.setMark(i, currentClass);
 				if(this.checkWin(currentClass, this.cells[i].pos)) {
 					const titledClass = titleCase(currentClass);
@@ -247,6 +248,7 @@ export class TTT {
 	  }
 	  console.log(this.MAT.X.toString());
 	  console.log(this.MAT.CIRCLE.toString());
+	  console.log('circle turn?', this.circleTurn);
 	  this.cells[which].cell.classList.add(className);
    }
 
@@ -268,18 +270,6 @@ export class TTT {
    start() {
 	  this.setup();
 	  this.setBoardHoverClass();
-   }
-   reset() {
-	  this.MAT.CIRCLE.clear();
-	  this.MAT.X.clear();
-
-	  this.circleTurn = true;
-	  this.gameOver = false;
-
-	  this.start();
-
-	  console.log(this.MAT.CIRCLE.toString());
-	  console.log(this.MAT.X.toString());
    }
 
    checkWin(currentClass: string, pos: POS) {

@@ -21,11 +21,12 @@ requirejs(['js/figure.min.js', 'js/modal.min.js', 'js/incs.js', 'js/utils/utils.
 					 const gameDisplayBtnGroup = winningMsg.children[1];
 					 const resetBtn = gameDisplayBtnGroup.firstElementChild;
 
-					 const ttt = new TTT(board);
+					 let ttt = new TTT(board);
 					 ttt.setMarks();
 
 					resetBtn.addEventListener("click", () => {
-						ttt.reset();
+						tttt = null;
+						ttt = new TTT(board);
 						ttt.setMarks();
 					});
 				  }

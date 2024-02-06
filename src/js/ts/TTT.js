@@ -218,6 +218,7 @@ var TTT = /** @class */ (function () {
                     var currentClass = _this.circleTurn ? _this.CLASS.CIRCLE : _this.CLASS.X;
                     _this.cells[i].pos = _this.cells[i].pos;
                     console.log(_this.cells[i].pos);
+                    console.log('circle turn?', _this.circleTurn);
                     _this.setMark(i, currentClass);
                     if (_this.checkWin(currentClass, _this.cells[i].pos)) {
                         var titledClass = titleCase(currentClass);
@@ -248,6 +249,7 @@ var TTT = /** @class */ (function () {
         }
         console.log(this.MAT.X.toString());
         console.log(this.MAT.CIRCLE.toString());
+        console.log('circle turn?', this.circleTurn);
         this.cells[which].cell.classList.add(className);
     };
     TTT.prototype.setup = function () {
@@ -270,15 +272,6 @@ var TTT = /** @class */ (function () {
     TTT.prototype.start = function () {
         this.setup();
         this.setBoardHoverClass();
-    };
-    TTT.prototype.reset = function () {
-        this.MAT.CIRCLE.clear();
-        this.MAT.X.clear();
-        this.circleTurn = true;
-        this.gameOver = false;
-        this.start();
-        console.log(this.MAT.CIRCLE.toString());
-        console.log(this.MAT.X.toString());
     };
     TTT.prototype.checkWin = function (currentClass, pos) {
         var matrix = this.MAT["".concat(currentClass.toUpperCase())];
