@@ -1,4 +1,4 @@
-@import "../parts/sections/ttt/ttt-styles", "../utils/utils", "../utils/ellipsis";
+@import "../parts/sections/instructions", "../parts/sections/gd-btn-group", "../parts/sections/ttt/ttt-styles", "../utils/utils", "../utils/ellipsis";
 
 @font-face {
   font-family: Digital7Mono;
@@ -23,6 +23,44 @@ $mark-size: $cell-size * .9;
 	   .game {
 		   &.tic-tac-toe {
 			   @extend %ttt;
+		   }
+		   /*
+		   &.rock-paper-scissors {
+			   @extend %rps;
+		   }
+		   &.minesweeper {
+			  @extend %set-ms-board;
+		   }
+		   &.connect-four {
+			  @extend %set-cf-board;
+		   }
+		   */
+		   .winning-message {
+			   @if(&:last-child) {
+				   margin-bottom: 1.5rem;
+			   }
+			   padding: 0.65rem 0;
+			   &-text {
+				  text-align: center;
+				  font-size: 1.5rem;
+				  margin: 1.2rem 0;
+			   }
+		   }
+		   .winning-message {
+			   .game-display-btn-group {
+				   position: absolute;
+				   @extend %center-object-horz;
+				   @include gd-btn-group {
+						margin-right: 0.5rem;
+
+						&.fa-arrows-rotate::before, &.fa-refresh::before, &.fa-sync::before {
+						   background-color: black;
+						}
+				   }
+			   }
+		   }
+		   .instructions-message {
+			  @extend %instructions;
 		   }
 	   }
    }

@@ -217,19 +217,22 @@ export class TTT {
    setMarks() {
 	  for(let i = 0; i < this.cells.length; i++) {
 		 this.cells[i].handleClick(() => {
-			const currentClass = this.circleTurn ? this.CLASS.CIRCLE : this.CLASS.X;
-			this.cells[i].pos = this.cells[i].pos;
-			console.log(this.cells[i].pos)
-			if(!this.gameOver) this.setMark(i, currentClass);
-			// if(checkWin(mat, currentClass, pos)) {
-			// 	const titledClass = titleClass(currentClass));
-			// 	gameOver = endGame(`${titledClass} wins!`, gameOver);
-			//  } else if(checkDraw(mat))
-			//  gameOver = endGame("There is a draw!", gameover);
 			if(!this.gameOver) {
-			   this.circleTurn = !this.circleTurn;
-			   this.setBoardHoverClass();
-			}
+				const currentClass = this.circleTurn ? this.CLASS.CIRCLE : this.CLASS.X;
+				this.cells[i].pos = this.cells[i].pos;
+				console.log(this.cells[i].pos)
+				this.setMark(i, currentClass);
+				if(this.checkWin(currentClass, this.cells[i].pos)) {
+					const titledClass = titleCase(currentClass);
+					this.endGame(`${titledClass} wins!`);
+				} else if(this.checkDraw()) {
+					console.log("There is a draw!");
+					this.endGame("There is a draw!");
+				}
+			
+			    this.circleTurn = !this.circleTurn;
+			    this.setBoardHoverClass();
+			 }
 		 });
 	  }
    }
@@ -253,7 +256,7 @@ export class TTT {
 	    else if(this.cells[i].cell.classList.contains(this.CLASS.CIRCLE)) this.cells[i].cell.classList.remove(this.CLASS.CIRCLE);
 	  }
 
-	  // toggleUIEls(false);
+	  this.toggleUIEls(this._board.nextElementSibling);
    }
    setBoardHoverClass() {
 	  this._board.classList.remove(this.CLASS.X);
@@ -267,26 +270,81 @@ export class TTT {
 	  this.setBoardHoverClass();
    }
    reset() {
-	  this.setup();
+	  this.MAT.CIRCLE.clear();
+	  this.MAT.X.clear();
 
-	  // mat.circle.clear();
-	  // mat.x.clear();
-
+	  this.circleTurn = true;
 	  this.gameOver = false;
+
+	  this.start();
+
+	  console.log(this.MAT.CIRCLE.toString());
+	  console.log(this.MAT.X.toString());
    }
 
-   endGame(msg: string, gameOver: boolean) {
-	   // gameOver = true;
-	   // winningMessageText.textContent = msg;
-	   // toggleUIEls(gameOver);
-   };
-/*
-   const toggleUIEls = function(gameDone) {
-	   if(gameDone) {
-		   changeSectionVisibility(winningMessageEl, instructionsMessageEl);
+   checkWin(currentClass: string, pos: POS) {
+	  const matrix = this.MAT[`${currentClass.toUpperCase()}`];
+ 
+      // pos always intersects with some row and some column
+      if(matrix.getRow(pos.row).every(el => el == 1)) return true;
+      if(matrix.getCol(pos.col).every(el => el == 1)) return true; 
+     
+      // does pos intersect with diagonal?
+      // pos.col == pos.row
+      if(pos.col == pos.row) {
+        if(matrix.main_diagonal.every(el => el == 1)) return true;
+      }
+   
+      // does pos intersect with counter diagonal?
+      // pos.row == matrix_size - pos.col
+      if(pos.row == ((matrix.size - 1) - pos.col)) {
+        if(matrix.main_counterDiagonal.every(el => el == 1)) {
+            return true;
+	    }
+      }
+ 
+      return false;
+   }
+
+   checkDraw() {
+      const circleMat = this.MAT.CIRCLE.mat;                                                                   
+      const xMat = this.MAT.X.mat;
+     
+      const flatCircleMat = circleMat.flat();
+      const flatXMat = xMat.flat();
+
+      const addedFlatMats = flatCircleMat.map((el, index) => el + flatXMat[index]);
+ 
+      return addedFlatMats.every(el => el == 1);
+    }
+    endGame(msg: string) {
+	  this.gameOver = !this.gameOver;
+	  this.toggleUIEls(this._board.nextElementSibling, msg);
+    }
+
+   	toggleUIEls(winningMsg: Element, msg?: string) {
+	   const instructionsMsg = winningMsg?.nextElementSibling;
+	   if(this.gameOver) {
+		   const winningMsgText = winningMsg.children[0];
+		   winningMsgText.textContent = msg;
+		   changeSectionVisibility(winningMsg, instructionsMsg);
 	   } else {
-		   changeSectionVisibility(instructionsMessageEl, winningMessageEl);
+		   changeSectionVisibility(instructionsMsg, winningMsg);
 	   }
    }
-*/
 }
+
+const changeSectionVisibility = function(context1, context2) {                                        
+    context1.classList.remove("hidden");
+    context2.classList.add("hidden");
+};
+const titleCase = str => {
+	const strArr = str.split(' ');
+    const titled = strArr.map(word => {
+	    const upperStart = word[0].toUpperCase();
+	    const restWord = word.slice(1, str.length);
+	    return upperStart + restWord.toLowerCase();
+	}); 
+    const titledStr = titled.join(' ');
+    return titledStr;
+};

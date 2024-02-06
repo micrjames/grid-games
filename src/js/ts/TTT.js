@@ -214,17 +214,19 @@ var TTT = /** @class */ (function () {
         var _this = this;
         var _loop_1 = function (i) {
             this_1.cells[i].handleClick(function () {
-                var currentClass = _this.circleTurn ? _this.CLASS.CIRCLE : _this.CLASS.X;
-                _this.cells[i].pos = _this.cells[i].pos;
-                console.log(_this.cells[i].pos);
-                if (!_this.gameOver)
-                    _this.setMark(i, currentClass);
-                // if(checkWin(mat, currentClass, pos)) {
-                // 	const titledClass = titleClass(currentClass));
-                // 	gameOver = endGame(`${titledClass} wins!`, gameOver);
-                //  } else if(checkDraw(mat))
-                //  gameOver = endGame("There is a draw!", gameover);
                 if (!_this.gameOver) {
+                    var currentClass = _this.circleTurn ? _this.CLASS.CIRCLE : _this.CLASS.X;
+                    _this.cells[i].pos = _this.cells[i].pos;
+                    console.log(_this.cells[i].pos);
+                    _this.setMark(i, currentClass);
+                    if (_this.checkWin(currentClass, _this.cells[i].pos)) {
+                        var titledClass = titleCase(currentClass);
+                        _this.endGame("".concat(titledClass, " wins!"));
+                    }
+                    else if (_this.checkDraw()) {
+                        console.log("There is a draw!");
+                        _this.endGame("There is a draw!");
+                    }
                     _this.circleTurn = !_this.circleTurn;
                     _this.setBoardHoverClass();
                 }
@@ -255,7 +257,7 @@ var TTT = /** @class */ (function () {
             else if (this.cells[i].cell.classList.contains(this.CLASS.CIRCLE))
                 this.cells[i].cell.classList.remove(this.CLASS.CIRCLE);
         }
-        // toggleUIEls(false);
+        this.toggleUIEls(this._board.nextElementSibling);
     };
     TTT.prototype.setBoardHoverClass = function () {
         this._board.classList.remove(this.CLASS.X);
@@ -270,17 +272,73 @@ var TTT = /** @class */ (function () {
         this.setBoardHoverClass();
     };
     TTT.prototype.reset = function () {
-        this.setup();
-        // mat.circle.clear();
-        // mat.x.clear();
+        this.MAT.CIRCLE.clear();
+        this.MAT.X.clear();
+        this.circleTurn = true;
         this.gameOver = false;
+        this.start();
+        console.log(this.MAT.CIRCLE.toString());
+        console.log(this.MAT.X.toString());
     };
-    TTT.prototype.endGame = function (msg, gameOver) {
-        // gameOver = true;
-        // winningMessageText.textContent = msg;
-        // toggleUIEls(gameOver);
+    TTT.prototype.checkWin = function (currentClass, pos) {
+        var matrix = this.MAT["".concat(currentClass.toUpperCase())];
+        // pos always intersects with some row and some column
+        if (matrix.getRow(pos.row).every(function (el) { return el == 1; }))
+            return true;
+        if (matrix.getCol(pos.col).every(function (el) { return el == 1; }))
+            return true;
+        // does pos intersect with diagonal?
+        // pos.col == pos.row
+        if (pos.col == pos.row) {
+            if (matrix.main_diagonal.every(function (el) { return el == 1; }))
+                return true;
+        }
+        // does pos intersect with counter diagonal?
+        // pos.row == matrix_size - pos.col
+        if (pos.row == ((matrix.size - 1) - pos.col)) {
+            if (matrix.main_counterDiagonal.every(function (el) { return el == 1; })) {
+                return true;
+            }
+        }
+        return false;
     };
-    ;
+    TTT.prototype.checkDraw = function () {
+        var circleMat = this.MAT.CIRCLE.mat;
+        var xMat = this.MAT.X.mat;
+        var flatCircleMat = circleMat.flat();
+        var flatXMat = xMat.flat();
+        var addedFlatMats = flatCircleMat.map(function (el, index) { return el + flatXMat[index]; });
+        return addedFlatMats.every(function (el) { return el == 1; });
+    };
+    TTT.prototype.endGame = function (msg) {
+        this.gameOver = !this.gameOver;
+        this.toggleUIEls(this._board.nextElementSibling, msg);
+    };
+    TTT.prototype.toggleUIEls = function (winningMsg, msg) {
+        var instructionsMsg = winningMsg === null || winningMsg === void 0 ? void 0 : winningMsg.nextElementSibling;
+        if (this.gameOver) {
+            var winningMsgText = winningMsg.children[0];
+            winningMsgText.textContent = msg;
+            changeSectionVisibility(winningMsg, instructionsMsg);
+        }
+        else {
+            changeSectionVisibility(instructionsMsg, winningMsg);
+        }
+    };
     return TTT;
 }());
 exports.TTT = TTT;
+var changeSectionVisibility = function (context1, context2) {
+    context1.classList.remove("hidden");
+    context2.classList.add("hidden");
+};
+var titleCase = function (str) {
+    var strArr = str.split(' ');
+    var titled = strArr.map(function (word) {
+        var upperStart = word[0].toUpperCase();
+        var restWord = word.slice(1, str.length);
+        return upperStart + restWord.toLowerCase();
+    });
+    var titledStr = titled.join(' ');
+    return titledStr;
+};

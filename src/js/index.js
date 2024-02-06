@@ -17,8 +17,17 @@ requirejs(['js/figure.min.js', 'js/modal.min.js', 'js/incs.js', 'js/utils/utils.
 			   switch(game) {
 				  case gameDisplay.firstElementChild : {
 					 const board = game.children.namedItem("board");
+					 const winningMsg = board.nextElementSibling;
+					 const gameDisplayBtnGroup = winningMsg.children[1];
+					 const resetBtn = gameDisplayBtnGroup.firstElementChild;
+
 					 const ttt = new TTT(board);
 					 ttt.setMarks();
+
+					resetBtn.addEventListener("click", () => {
+						ttt.reset();
+						ttt.setMarks();
+					});
 				  }
 			   }
 			   /*********/

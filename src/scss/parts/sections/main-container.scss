@@ -64,6 +64,12 @@ $modal-text-color: $secondary-color;
 			&-btn {
 			    @include button(0.85rem, 0.5rem 0.35rem, 0);
 			    background-color: darken($bg-color, 10%);
+
+				i {
+				   &.fa-solid::before, &.fa-check-double {
+					  background-color: inherit;
+				   }
+				}
 			}
 		 }
 	  }
@@ -73,7 +79,7 @@ $modal-text-color: $secondary-color;
 	  // modal($width, $bg-color, $text-color, $close-right:false, $centered:true, $height:-1, $bg-body-color: $bg-color, $bg-header-color: $bg-color)
 	  @include modal($modal-width, $modal-bg-color, $modal-text-color, true, true, 75%);
       @include md {
-		 @include modal(0.75 * $modal-width, $modal-bg-color, $modal-text-color, true, true, 50%);
+		 @include modal(0.75 * $modal-width, $modal-bg-color, $modal-text-color, true, true, 70%);
       }
       @include box-shadow(0, 3px, 10px, 0, rgb(0 0 0 / 0.2), false);
  

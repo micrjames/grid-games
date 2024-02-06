@@ -10,7 +10,7 @@ a {
   color: white;
 }
 
-main .games-grid {
+main .games-grid, main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -69,7 +69,7 @@ header nav menu li:hover {
   font-weight: bolder;
 }
 
-main .games-grid {
+main .games-grid, main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -94,7 +94,7 @@ main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   align-items: center;
 }
 
-main .games-grid {
+main .games-grid, main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -130,7 +130,25 @@ a {
   color: white;
 }
 
-main .games-grid {
+main #modal #modal-body .game-display .game .instructions-message {
+  margin: 3.2rem 0;
+}
+main #modal #modal-body .game-display .game .instructions-message p {
+  text-align: center;
+  font-size: 1.15rem;
+  margin: 1.2rem 0;
+}
+main #modal #modal-body .game-display .game .instructions-message p:first-child {
+  font-size: 1.4rem;
+  text-decoration: underline;
+}
+main #modal #modal-body .game-display .game .instructions-message ul li {
+  font-size: 1.1rem;
+  padding-left: 15%;
+  list-style-position: inside;
+}
+
+main .games-grid, main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -155,7 +173,7 @@ main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   align-items: center;
 }
 
-main .games-grid {
+main .games-grid, main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -273,7 +291,7 @@ main #modal #modal-body .game-display .game.tic-tac-toe .board.circle .cell:not(
   height: 63px;
 }
 
-main .games-grid {
+main .games-grid, main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -323,6 +341,59 @@ main #modal #modal-body span {
   position: absolute;
   font-size: 2.75rem;
   margin-left: 35%;
+}
+main #modal #modal-body .game-display .game {
+  /*
+  &.rock-paper-scissors {
+   @extend %rps;
+  }
+  &.minesweeper {
+  @extend %set-ms-board;
+  }
+  &.connect-four {
+  @extend %set-cf-board;
+  }
+  */
+}
+main #modal #modal-body .game-display .game .winning-message {
+  margin-bottom: 1.5rem;
+  padding: 0.65rem 0;
+}
+main #modal #modal-body .game-display .game .winning-message-text {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 1.2rem 0;
+}
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
+  position: absolute;
+}
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group .game-display-btn-group-reset {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 0.75rem 0.95rem;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s ease-in-out;
+}
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group .game-display-btn-group-reset i {
+  margin-right: 0.5rem;
+}
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group .game-display-btn-group-reset i.fa-arrows-rotate::before, main #modal #modal-body .game-display .game .winning-message .game-display-btn-group .game-display-btn-group-reset i.fa-refresh::before, main #modal #modal-body .game-display .game .winning-message .game-display-btn-group .game-display-btn-group-reset i.fa-sync::before {
+  background-color: black;
+}
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group .game-display-btn-group-reset:active {
+  box-shadow: none;
+}
+main #modal #modal-body .game-display .game .winning-message .game-display-btn-group .game-display-btn-group-reset:disabled {
+  box-shadow: none;
+  opacity: 0.2;
 }
 header {
   position: sticky;
@@ -398,6 +469,9 @@ main .games-grid-game-description-btn {
   cursor: pointer;
   background-color: #676767;
 }
+main .games-grid-game-description-btn i.fa-solid::before, main .games-grid-game-description-btn i.fa-check-double {
+  background-color: inherit;
+}
 main #modal {
   position: absolute;
   left: 50%;
@@ -441,7 +515,7 @@ main #modal #modal-body {
     left: 50%;
     transform: translateX(-50%);
     width: 56.25%;
-    height: 50%;
+    height: 70%;
     background: grey;
     color: #ff652f;
   }
