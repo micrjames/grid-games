@@ -15,7 +15,7 @@ main .games-grid, main #modal #modal-body .game-display .game .winning-message .
   transform: translateX(-50%);
 }
 
-main #modal #modal-body span {
+main #modal #modal-body .game-display span {
   top: 50%;
   transform: translateY(-50%);
 }
@@ -74,7 +74,7 @@ main .games-grid, main #modal #modal-body .game-display .game .winning-message .
   transform: translateX(-50%);
 }
 
-main #modal #modal-body span {
+main #modal #modal-body .game-display span {
   top: 50%;
   transform: translateY(-50%);
 }
@@ -99,7 +99,7 @@ main .games-grid, main #modal #modal-body .game-display .game .winning-message .
   transform: translateX(-50%);
 }
 
-main #modal #modal-body span {
+main #modal #modal-body .game-display span {
   top: 50%;
   transform: translateY(-50%);
 }
@@ -153,7 +153,7 @@ main .games-grid, main #modal #modal-body .game-display .game .winning-message .
   transform: translateX(-50%);
 }
 
-main #modal #modal-body span {
+main #modal #modal-body .game-display span {
   top: 50%;
   transform: translateY(-50%);
 }
@@ -178,7 +178,7 @@ main .games-grid, main #modal #modal-body .game-display .game .winning-message .
   transform: translateX(-50%);
 }
 
-main #modal #modal-body span {
+main #modal #modal-body .game-display span {
   top: 50%;
   transform: translateY(-50%);
 }
@@ -296,7 +296,7 @@ main .games-grid, main #modal #modal-body .game-display .game .winning-message .
   transform: translateX(-50%);
 }
 
-main #modal #modal-body span {
+main #modal #modal-body .game-display span {
   top: 50%;
   transform: translateY(-50%);
 }
@@ -316,10 +316,10 @@ main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   align-items: center;
 }
 
-main #modal #modal-body span.ellipsis {
+main #modal #modal-body .game-display span.ellipsis {
   font-size: 30px;
 }
-main #modal #modal-body span.ellipsis::after {
+main #modal #modal-body .game-display span.ellipsis::after {
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;
@@ -336,11 +336,6 @@ main #modal #modal-body span.ellipsis::after {
 @font-face {
   font-family: Digital7Mono;
   src: url("../../fonts/Digital7Mono-B1g5.ttf");
-}
-main #modal #modal-body span {
-  position: absolute;
-  font-size: 2.75rem;
-  margin-left: 35%;
 }
 main #modal #modal-body .game-display .game {
   /*
@@ -394,6 +389,11 @@ main #modal #modal-body .game-display .game .winning-message .game-display-btn-g
 main #modal #modal-body .game-display .game .winning-message .game-display-btn-group .game-display-btn-group-reset:disabled {
   box-shadow: none;
   opacity: 0.2;
+}
+main #modal #modal-body .game-display span {
+  position: absolute;
+  font-size: 2.75rem;
+  margin-left: 35%;
 }
 header {
   position: sticky;

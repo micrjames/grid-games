@@ -1,5 +1,4 @@
 requirejs(['js/figure.min.js', 'js/modal.min.js', 'js/incs.js', 'js/utils/utils.js', 'js/utils/domHelpers.js', 'js/ts/TTT.js'], function() {
-   const span = createSpan("ellipsis", "Coming Soon");
    for(const figure of figures) {
 	  new Figure(figure, text => {
 		 const modal = new Modal(modalEl);
@@ -11,8 +10,6 @@ requirejs(['js/figure.min.js', 'js/modal.min.js', 'js/incs.js', 'js/utils/utils.
 		 for(const game of games) {
 			if(game.classList.contains(spinaledText)) {
 			   game.classList.remove("hidden");
-			   if(span.parentElement === modal.body)
-				  modal.body.removeChild(span);
 			   /*********/
 			   switch(game) {
 				  case gameDisplay.firstElementChild : {
@@ -24,17 +21,23 @@ requirejs(['js/figure.min.js', 'js/modal.min.js', 'js/incs.js', 'js/utils/utils.
 					 let ttt = new TTT(board);
 					 ttt.setMarks();
 
-					resetBtn.addEventListener("click", () => {
-						tttt = null;
+					 resetBtn.addEventListener("click", () => {
+						ttt = null;
 						ttt = new TTT(board);
 						ttt.setMarks();
-					});
+					 });
+					 break;
+				  }
+				  case gameDisplay.firstElementChild.nextElementSibling : {
+					 break;
+				  }
+				  default: {
+					 break;
 				  }
 			   }
 			   /*********/
 			} else {
 			   game.classList.add("hidden");
-			   modal.body.appendChild(span);
 			}
 		 }
 		 modal.open();
