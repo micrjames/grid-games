@@ -34,6 +34,24 @@ interface SCORE {
    [prop: string]: string;
 }
 
+const changeIcon = function(thisResults: Element, whichSelectionBtnIconClass: string) {
+   // Get the current player class
+   const thisResultsIcon = thisResults?.lastElementChild;
+   const thisResultsIconClass = thisResultsIcon?.classList[1];
+
+   // Get the current player score
+   const thisResultsScore = thisResults?.firstElementChild;
+   const thisResultsScoreText = thisResultsScore?.textContent;
+
+   thisResultsIcon?.classList.remove(<string>thisResultsIconClass);
+   thisResultsIcon?.classList.add(whichSelectionBtnIconClass);
+};
+
+const getRandomIdx = function(size: number) {
+   const iconIndex = Math.floor(Math.random() * size);  
+   return iconIndex;
+};
+
 export class RPS {
    private icons: ICON[];
    private score: SCORE;
@@ -92,19 +110,29 @@ export class RPS {
       const results = selections?.nextElementSibling;
 
       const plyrResults = results?.firstElementChild;
+      const cmptrResults = results?.lastElementChild;
 
-      // Get the current player class
-      const plyrResultsIcon = plyrResults?.lastElementChild;
-      const plyrResultsIconClass = plyrResultsIcon?.classList[1];
+      changeIcon(plyrResults, whichSelectionBtnIconClass);
 
-      // Get the current player score
-      const plyrResultsScore = plyrResults?.firstElementChild;
-      const plyrResultsScoreText = plyrResultsScore?.textContent;
-
-      plyrResultsIcon?.classList.remove(<string>plyrResultsIconClass);
-      plyrResultsIcon?.classList.add(whichSelectionBtnIconClass);
-
-      console.log(plyrResultsScoreText);
+      const icons = [
+         {
+            "icon": "hand-back-fist",
+           "type": "rock",
+           "beats": "scissors"
+         },
+         {
+            "icon": "hand",
+            "type": "paper",
+            "beats": "rock"
+         },
+         {
+            "icon": "hand-scissors",
+            "type": "scissors",
+            "beats": "paper"
+         }
+      ];
+      const randIdx = getRandomIdx(icons.length);
+      changeIcon(cmptrResults, `fa-${icons[randIdx].icon}`);
    }
   
    private createResults() {

@@ -33,6 +33,20 @@ var addIcon = function (context, name, className, type) {
         context.classList.add("".concat(name));
     return icon;
 };
+var changeIcon = function (thisResults, whichSelectionBtnIconClass) {
+    // Get the current player class
+    var thisResultsIcon = thisResults === null || thisResults === void 0 ? void 0 : thisResults.lastElementChild;
+    var thisResultsIconClass = thisResultsIcon === null || thisResultsIcon === void 0 ? void 0 : thisResultsIcon.classList[1];
+    // Get the current player score
+    var thisResultsScore = thisResults === null || thisResults === void 0 ? void 0 : thisResults.firstElementChild;
+    var thisResultsScoreText = thisResultsScore === null || thisResultsScore === void 0 ? void 0 : thisResultsScore.textContent;
+    thisResultsIcon === null || thisResultsIcon === void 0 ? void 0 : thisResultsIcon.classList.remove(thisResultsIconClass);
+    thisResultsIcon === null || thisResultsIcon === void 0 ? void 0 : thisResultsIcon.classList.add(whichSelectionBtnIconClass);
+};
+var getRandomIdx = function (size) {
+    var iconIndex = Math.floor(Math.random() * size);
+    return iconIndex;
+};
 var RPS = /** @class */ (function () {
     function RPS(context) {
         this.createResult = function (name, msg, resultClass, resultMsg, resultIcon, iconID) {
@@ -95,15 +109,28 @@ var RPS = /** @class */ (function () {
         var selections = selectionBtn === null || selectionBtn === void 0 ? void 0 : selectionBtn.parentElement;
         var results = selections === null || selections === void 0 ? void 0 : selections.nextElementSibling;
         var plyrResults = results === null || results === void 0 ? void 0 : results.firstElementChild;
-        // Get the current player class
-        var plyrResultsIcon = plyrResults === null || plyrResults === void 0 ? void 0 : plyrResults.lastElementChild;
-        var plyrResultsIconClass = plyrResultsIcon === null || plyrResultsIcon === void 0 ? void 0 : plyrResultsIcon.classList[1];
-        // Get the current player score
-        var plyrResultsScore = plyrResults === null || plyrResults === void 0 ? void 0 : plyrResults.firstElementChild;
-        var plyrResultsScoreText = plyrResultsScore === null || plyrResultsScore === void 0 ? void 0 : plyrResultsScore.textContent;
-        plyrResultsIcon === null || plyrResultsIcon === void 0 ? void 0 : plyrResultsIcon.classList.remove(plyrResultsIconClass);
-        plyrResultsIcon === null || plyrResultsIcon === void 0 ? void 0 : plyrResultsIcon.classList.add(whichSelectionBtnIconClass);
-        console.log(plyrResultsScoreText);
+        var cmptrResults = results === null || results === void 0 ? void 0 : results.lastElementChild;
+        changeIcon(plyrResults, whichSelectionBtnIconClass);
+        var icons = [
+            {
+                "icon": "hand-back-fist",
+                "type": "rock",
+                "beats": "scissors"
+            },
+            {
+                "icon": "hand",
+                "type": "paper",
+                "beats": "rock"
+            },
+            {
+                "icon": "hand-scissors",
+                "type": "scissors",
+                "beats": "paper"
+            }
+        ];
+        var randIdx = getRandomIdx(icons.length);
+        console.log(randIdx);
+        changeIcon(cmptrResults, "fa-".concat(icons[randIdx].icon));
     };
     RPS.prototype.createResults = function () {
         var div = buildEl("div", "results", "results");
