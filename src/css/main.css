@@ -148,6 +148,49 @@ main #modal #modal-body .game-display .game .instructions-message ul li {
   list-style-position: inside;
 }
 
+main #modal #modal-body .game-display .game.rock-paper-scissors .selections {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
+}
+main #modal #modal-body .game-display .game.rock-paper-scissors .selections .selection {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 5.75rem;
+  text-decoration: none;
+  padding: 0.75rem;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #222;
+  background: none;
+  border: none;
+  outline: none;
+  transition: 100ms;
+}
+main #modal #modal-body .game-display .game.rock-paper-scissors .selections .selection:hover {
+  transform: scale(1.2);
+}
+
+main #modal #modal-body .game-display .game.rock-paper-scissors .results {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.5rem;
+}
+main #modal #modal-body .game-display .game.rock-paper-scissors .results div .result-score {
+  position: relative;
+  font-size: 1.95rem;
+}
+main #modal #modal-body .game-display .game.rock-paper-scissors .results div i {
+  display: block;
+  font-size: 5.75rem;
+  opacity: 0.25;
+  padding: 0.5rem;
+}
+
 main .games-grid, main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
   left: 50%;
   transform: translateX(-50%);
@@ -339,9 +382,6 @@ main #modal #modal-body .game-display span.ellipsis::after {
 }
 main #modal #modal-body .game-display .game {
   /*
-  &.rock-paper-scissors {
-   @extend %rps;
-  }
   &.minesweeper {
   @extend %set-ms-board;
   }

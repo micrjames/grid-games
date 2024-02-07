@@ -1,0 +1,6 @@
+@import "set-board", "results";
+
+%rps {
+   @extend %selections;
+   @extend %results;
+}

@@ -1,0 +1,19 @@
+%results {
+    .results { 
+	   display: flex;
+       justify-content: space-evenly;
+       font-size: 1.5rem;
+       div {
+           .result-score {
+			   position: relative;
+               font-size: 1.95rem;
+           }
+           i {
+               display: block;
+               font-size: 5.75rem;
+               opacity: 0.25;
+               padding: 0.5rem;
+           }
+      }
+   }
+}
