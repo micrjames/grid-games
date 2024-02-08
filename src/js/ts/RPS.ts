@@ -39,18 +39,28 @@ const changeIcon = function(thisResults: Element, whichSelectionBtnIconClass: st
    const thisResultsIcon = thisResults?.lastElementChild;
    const thisResultsIconClass = thisResultsIcon?.classList[1];
 
-   // Get the current player score
-   const thisResultsScore = thisResults?.firstElementChild;
-   const thisResultsScoreText = thisResultsScore?.textContent;
-
    thisResultsIcon?.classList.remove(<string>thisResultsIconClass);
    thisResultsIcon?.classList.add(whichSelectionBtnIconClass);
+};
+
+const setScore = function(thisResults: Element, score: number) {
+   // Get the current player score
+   const thisResultsScore = thisResults?.firstElementChild;
+   console.log(thisResultsScore?.parentElement);
+   thisResultsScore.textContent = "1";
 };
 
 const getRandomIdx = function(size: number) {
    const iconIndex = Math.floor(Math.random() * size);  
    return iconIndex;
 };
+
+const switchVisibility = function(context1: Element, context2: Element) {
+   if(context1?.classList.contains("hidden")) {
+      context1.classList.remove("hidden"); 
+      context2?.classList.add("hidden");
+   }
+}
 
 export class RPS {
    private icons: ICON[];
@@ -77,14 +87,32 @@ export class RPS {
 	  ];
      this.score = {
        player: "0",
-       compputer: "0"
+       computer: "0"
      };
    }
 
+   private resetScore() {
+      this.score.player = "0";
+      this.score.computer = "0";
+   }
+
    start() {
+     this.resetScore();
 	  this.createResults();
 	  this.createSelection();
    };
+
+   reset() {
+      this.context.removeChild(this.context.firstChild);
+      this.context.removeChild(this.context.firstChild);
+
+      const winningMsg = this.context.firstElementChild;
+      const instructionsEl = winningMsg?.nextElementSibling;
+
+      switchVisibility(instructionsEl, winningMsg);
+
+      this.start();
+   }
 
    private createSelection() {
 	  const div = buildEl("div", "selections", "selections");
@@ -108,6 +136,12 @@ export class RPS {
       const selectionBtn = selectionBtnIcon.parentElement;
       const selections = selectionBtn?.parentElement;
       const results = selections?.nextElementSibling;
+
+      // Get the winning message element
+      const winningMsg = results?.nextElementSibling;
+
+      // Get the instructions element
+      const instructionsEl = winningMsg?.nextElementSibling;
 
       const plyrResults = results?.firstElementChild;
       const cmptrResults = results?.lastElementChild;
@@ -133,6 +167,46 @@ export class RPS {
       ];
       const randIdx = getRandomIdx(icons.length);
       changeIcon(cmptrResults, `fa-${icons[randIdx].icon}`);
+
+      const splitSelClass = whichSelectionBtnIconClass.split('-');
+      splitSelClass.shift();
+      const joinedSelClass = splitSelClass.join('-');
+      console.log(`player: ${joinedSelClass}`, `computer: ${icons[randIdx].icon}`);
+      console.log(winningMsg, instructionsEl);
+
+      // check if joinedSelClass beats icons[randIdx]
+      const joinedSelClassIdx = icons.findIndex(icon => joinedSelClass == icon.icon);
+      const joinedSelClassBeats = icons[joinedSelClassIdx].beats;
+      const joinedSelClassBeatsIdx = icons.findIndex(icon => joinedSelClassBeats == icon.type);
+
+      const computerClassBeats = icons[randIdx].beats;
+      const computerClassBeatsIdx = icons.findIndex(icon => computerClassBeats == icon.type);
+         
+      let winning_msg_text;
+      if(icons[joinedSelClassBeatsIdx].icon == icons[randIdx].icon) {
+         winning_msg_text = 'Player wins!';
+         endGame();
+         setScore(plyrResults, 1);
+      }
+      if(icons[computerClassBeatsIdx].icon == icons[joinedSelClassIdx].icon) {
+         winning_msg_text = 'Computer wins!';
+         endGame();
+         setScore(cmptrResults, 1);
+      }
+      if(icons[joinedSelClassIdx].icon == icons[randIdx].icon) {
+         winning_msg_text = 'There is a draw!';
+         endGame();
+      }
+
+      function endGame() {
+         winningMsg.firstElementChild.textContent = winning_msg_text;
+
+         for(let i = 0; i < selections?.children.length; i++) {
+            const selBtn = <HTMLButtonElement>selections.children[i];
+            selBtn.disabled = true;
+         }
+         switchVisibility(winningMsg, instructionsEl);
+      }
    }
   
    private createResults() {

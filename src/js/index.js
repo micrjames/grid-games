@@ -31,6 +31,10 @@ requirejs(['js/figure.min.js', 'js/modal.min.js', 'js/incs.js', 'js/utils/utils.
 				  case gameDisplay.firstElementChild.nextElementSibling : {
 					 let rps = new RPS(game);
 					 rps.start();
+
+					 resetBtn.addEventListener("click", () => {
+						rps.reset();
+					 });
 					 break;
 				  }
 				  default: {
