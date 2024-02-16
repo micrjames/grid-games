@@ -29,7 +29,7 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
-main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+main #modal #modal-body .game-display .game.minesweeper .board .cell, main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,7 +88,7 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
-main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+main #modal #modal-body .game-display .game.minesweeper .board .cell, main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,7 +113,7 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
-main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+main #modal #modal-body .game-display .game.minesweeper .board .cell, main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -210,7 +210,7 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
-main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+main #modal #modal-body .game-display .game.minesweeper .board .cell, main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -235,7 +235,7 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
-main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+main #modal #modal-body .game-display .game.minesweeper .board .cell, main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -353,7 +353,70 @@ main #modal #modal-header, main #modal {
   flex-direction: column;
 }
 
-main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+main #modal #modal-body .game-display .game.minesweeper .board .cell, main #modal #modal-body .game-display .game.tic-tac-toe .board .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main #modal #modal-body .game-display .game.minesweeper .board {
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(9, auto);
+  gap: 1px;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell {
+  width: 35px;
+  height: 35px;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell.covered {
+  background-color: darkgrey;
+  cursor: pointer;
+  border: 5px outset darkgrey;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell.uncovered {
+  background-color: grey;
+  border: 1px solid grey;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell.mine i {
+  color: red;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell.flag i {
+  color: red;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell.burst i {
+  font-size: 1.75rem;
+  color: yellow;
+  background-color: red;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell.numbers {
+  color: blue;
+}
+
+main .games-grid, main #modal #modal-body .game-display .game .winning-message .game-display-btn-group {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+main #modal #modal-body .game-display span {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hidden {
+  display: none;
+}
+
+main #modal #modal-header, main #modal {
+  display: flex;
+  flex-direction: column;
+}
+
+main #modal #modal-body .game-display .game.tic-tac-toe .board .cell, main #modal #modal-body .game-display .game.minesweeper .board .cell {
   display: flex;
   justify-content: center;
   align-items: center;

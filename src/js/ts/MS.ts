@@ -37,17 +37,55 @@ export class Countdown extends Timer {
    }
 }
 
+class Cell {
+   private cell: Element;
+   constructor(...classNames: string[]) {
+	  this.cell = document.createElement("div");
+	  for(const className of classNames) {
+		 this.cell.classList.add(className);
+	  }
+   }
+   add(context: DocumentFragment) {
+	  context.appendChild(this.cell);
+   }
+}
+
+class Board {
+   private board: Element;
+   constructor(board: Element) {
+	  this.board = board;
+   }
+
+   create() {
+	  const fragment = document.createDocumentFragment();
+	  for(let i = 0; i < 81; i++) {
+		 const cell = new Cell("cell", "covered");
+		 cell.add(fragment);
+	  }
+	  this.board.appendChild(fragment);
+   }
+
+   reset() {
+	  while(this.board.firstChild)
+		 this.board.removeChild(this.board.lastChild);
+   }
+}
+
 
 export class MS {                                                                                       
 	private countdownDisplay: Element;
 	private minesDisplay: Element;
+	private gameBoard: Element;
 	private boardResetBtn: Element;
 	private boardResetBtnIcon: Element;
 	private winningMsg: Element;
 	private instructionsMsg: Element;
 	private countdown: Countdown;
+
+	private board: Board;
     constructor(game: HTMLElement) {
 	   const gameInterface = game.firstElementChild;                                      
+	   this.gameBoard = gameInterface.nextElementSibling;
 	   this.countdownDisplay = gameInterface.children[2];
 	   this.minesDisplay = gameInterface.children[0];
 
@@ -57,13 +95,16 @@ export class MS {
 
 	   this.winningMsg = game.children.namedItem("winning-message");
 	   this.instructionsMsg = this.winningMsg.nextElementSibling;
-	   let seconds = "10";
-	   this.countdownDisplay.textContent = seconds;
 
-	   this.start(seconds);
+	   this.board = new Board(this.gameBoard);
+
+	   this.start("10", "00");
     }
 	
-	start(seconds: string) {
+	start(seconds: string, numMines: string) {
+	   this.board.create();
+	   this.minesDisplay.textContent = numMines;
+	   this.countdownDisplay.textContent = seconds;
 	   this.countdown = new Countdown(10, remainingTime => {
            if(this.countdown.seconds < 10) seconds = `0${remainingTime}`;                       
            else seconds = remainingTime.toString();
@@ -73,11 +114,13 @@ export class MS {
 
            this.instructionsMsg.classList.add("hidden");
            const resetHandler = () => {
-			  this.countdownDisplay.textContent = seconds.toString();
 			  switchIcons(this.boardResetBtnIcon, ["far", "fa-dizzy"], ["fa", "fa-smile-o"]);
 
+			  this.board.reset();
 			  this.boardResetBtn.removeEventListener("click", resetHandler);
 			  this.instructionsMsg.classList.remove("hidden");
+
+			  this.start("10", "00");
 		   };
 		   this.boardResetBtn.addEventListener("click", resetHandler);
 	   });

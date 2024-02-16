@@ -56,9 +56,45 @@ var Countdown = /** @class */ (function (_super) {
     return Countdown;
 }(Timer));
 exports.Countdown = Countdown;
+var Cell = /** @class */ (function () {
+    function Cell() {
+        var classNames = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            classNames[_i] = arguments[_i];
+        }
+        this.cell = document.createElement("div");
+        for (var _a = 0, classNames_1 = classNames; _a < classNames_1.length; _a++) {
+            var className = classNames_1[_a];
+            this.cell.classList.add(className);
+        }
+    }
+    Cell.prototype.add = function (context) {
+        context.appendChild(this.cell);
+    };
+    return Cell;
+}());
+var Board = /** @class */ (function () {
+    function Board(board) {
+        this.board = board;
+    }
+    Board.prototype.create = function () {
+        var fragment = document.createDocumentFragment();
+        for (var i = 0; i < 81; i++) {
+            var cell = new Cell("cell", "covered");
+            cell.add(fragment);
+        }
+        this.board.appendChild(fragment);
+    };
+    Board.prototype.reset = function () {
+        while (this.board.firstChild)
+            this.board.removeChild(this.board.lastChild);
+    };
+    return Board;
+}());
 var MS = /** @class */ (function () {
     function MS(game) {
         var gameInterface = game.firstElementChild;
+        this.gameBoard = gameInterface.nextElementSibling;
         this.countdownDisplay = gameInterface.children[2];
         this.minesDisplay = gameInterface.children[0];
         var btnGroup = gameInterface.children[1];
@@ -66,12 +102,14 @@ var MS = /** @class */ (function () {
         this.boardResetBtnIcon = this.boardResetBtn.firstElementChild;
         this.winningMsg = game.children.namedItem("winning-message");
         this.instructionsMsg = this.winningMsg.nextElementSibling;
-        var seconds = "10";
-        this.countdownDisplay.textContent = seconds;
-        this.start(seconds);
+        this.board = new Board(this.gameBoard);
+        this.start("10", "00");
     }
-    MS.prototype.start = function (seconds) {
+    MS.prototype.start = function (seconds, numMines) {
         var _this = this;
+        this.board.create();
+        this.minesDisplay.textContent = numMines;
+        this.countdownDisplay.textContent = seconds;
         this.countdown = new Countdown(10, function (remainingTime) {
             if (_this.countdown.seconds < 10)
                 seconds = "0".concat(remainingTime);
@@ -82,10 +120,11 @@ var MS = /** @class */ (function () {
             switchIcons(_this.boardResetBtnIcon, ["fa", "fa-smile-o"], ["far", "fa-dizzy"]);
             _this.instructionsMsg.classList.add("hidden");
             var resetHandler = function () {
-                _this.countdownDisplay.textContent = seconds.toString();
                 switchIcons(_this.boardResetBtnIcon, ["far", "fa-dizzy"], ["fa", "fa-smile-o"]);
+                _this.board.reset();
                 _this.boardResetBtn.removeEventListener("click", resetHandler);
                 _this.instructionsMsg.classList.remove("hidden");
+                _this.start("10", "00");
             };
             _this.boardResetBtn.addEventListener("click", resetHandler);
         });
