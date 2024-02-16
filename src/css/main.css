@@ -380,15 +380,63 @@ main #modal #modal-body .game-display span.ellipsis::after {
   font-family: Digital7Mono;
   src: url("../../fonts/Digital7Mono-B1g5.ttf");
 }
-main #modal #modal-body .game-display .game {
-  /*
-  &.minesweeper {
-  @extend %set-ms-board;
-  }
-  &.connect-four {
-  @extend %set-cf-board;
-  }
-  */
+main #modal #modal-body .game-display .game.minesweeper .game-interface-mines-display {
+  position: relative;
+  top: 10%;
+  right: 10%;
+  font-size: 1.85rem;
+  border: 1px solid grey;
+  padding: 10px 15px;
+  background-color: black;
+  color: red;
+}
+main #modal #modal-body .game-display .game.minesweeper .game-interface .game-display-btn-group {
+  position: relative;
+  top: 10%;
+  right: 40%;
+}
+main #modal #modal-body .game-display .game.minesweeper .game-interface .game-display-btn-group .game-display-btn-group-reset {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 0.75rem 0.95rem;
+  margin: 0;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 6px 2px 9px 2px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s ease-in-out;
+}
+main #modal #modal-body .game-display .game.minesweeper .game-interface .game-display-btn-group .game-display-btn-group-reset i {
+  color: yellow;
+  font-size: 1.65rem;
+}
+main #modal #modal-body .game-display .game.minesweeper .game-interface .game-display-btn-group .game-display-btn-group-reset i.fa-smile-o::before {
+  background-color: black;
+}
+main #modal #modal-body .game-display .game.minesweeper .game-interface .game-display-btn-group .game-display-btn-group-reset i.fa-dizzy::before {
+  background-color: black;
+}
+main #modal #modal-body .game-display .game.minesweeper .game-interface .game-display-btn-group .game-display-btn-group-reset:active {
+  box-shadow: none;
+}
+main #modal #modal-body .game-display .game.minesweeper .game-interface .game-display-btn-group .game-display-btn-group-reset:disabled {
+  box-shadow: none;
+  opacity: 0.2;
+}
+main #modal #modal-body .game-display .game.minesweeper .game-interface-countdown {
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  font-family: Digital7Mono;
+  font-size: 1.85rem;
+  border: 1px solid grey;
+  padding: 10px 15px;
+  background-color: black;
+  color: red;
 }
 main #modal #modal-body .game-display .game .winning-message {
   margin-bottom: 1.5rem;

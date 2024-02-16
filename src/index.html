@@ -53,7 +53,7 @@
 				  >
 				  <figcaption class="games-grid-game-description">
 					 <button class="games-grid-game-description-btn">
-						Coming Soon
+					    Minesweeper	
 						<i class="fa-solid fa-check-double"></i>
 					 </button>
 				  </figcaption>
@@ -153,6 +153,37 @@
 							  <li>Paper beats rock. Rock beats scissors. Scissors beats paper.</li>
 							  <li>It&apos;s just that simple.</li>
 						   </ul>
+						</div>
+					 </div>
+					 <div id="ms" class="game minesweeper">                                      
+						<div class="game-interface">
+							<span class="game-interface-mines-display">00</span>
+							<span class="game-display-btn-group">
+								<button class="game-display-btn-group-reset" id="restart-ms">
+								   <i class="fa fa-smile-o"></i>
+								</button>
+							</span>
+							<span class="game-interface-countdown"></span>
+						</div>
+						<div class="board" id="board"></div>
+						<div id="winning-message" class="winning-message hidden">
+						   <div class="winning-message-text"></div>
+						   <div class="game-display-btn-group">
+							  <button class="game-display-btn-group-reset" id="restart-ttt">
+								 <i class="fa-solid fa-arrows-rotate"></i>
+								 Reset Game
+							  </button>
+						   </div>
+						</div>
+						<div class="instructions-message">
+							<p>How to Play</p>
+							<ul>
+							   <li>Cmd-click or Alt-click to flag a cell.</li>
+							   <li>Click if you know a cell is clear.</li>
+							   <li>If it isn't, then there will be a clue to how mines are surrounding it.</li>
+							   <li>Flag all mines and uncover the remaining cells to win.</li>
+							   <li>Uncover a mine or run out of time to lose.</li>
+							</ul>
 						</div>
 					 </div>
 					 <span class="game coming-soon ellipsis">Coming Soon</span>

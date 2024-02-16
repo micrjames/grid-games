@@ -17,14 +17,47 @@ $mark-size: $cell-size * .9;
 		   &.rock-paper-scissors {
 			   @extend %rps;
 		   }
-		   /*
 		   &.minesweeper {
-			  @extend %set-ms-board;
-		   }
-		   &.connect-four {
-			  @extend %set-cf-board;
-		   }
-		   */
+			  // @extend %set-ms-board;
+			  .game-interface {
+				&-mines-display {
+				   position: relative;
+				   top: 10%;
+				   right: 10%;
+					 font-size: 1.85rem;
+					 border: 1px solid grey;
+					 padding: 10px 15px;
+					 background-color: black;
+					 color: red;
+				}
+				.game-display-btn-group {
+					 position: relative;
+					 top: 10%;
+					 right: 40%; 
+					 @include gd-btn-group {
+						 color: yellow;
+						 font-size: 1.65rem;
+						 &.fa-smile-o::before {
+						   background-color: black;
+						 }
+						 &.fa-dizzy::before {
+						   background-color: black;
+						 }
+					 }
+				}
+				&-countdown {
+				   position: absolute;
+				   top: 25%;
+				   left: 30%;
+					 font-family: Digital7Mono;
+					 font-size: 1.85rem;
+					 border: 1px solid grey;
+					 padding: 10px 15px;
+					 background-color: black;
+					 color: red;
+				}
+			 }
+		  }
 		   .winning-message {
 			   @if(&:last-child) {
 				   margin-bottom: 1.5rem;
