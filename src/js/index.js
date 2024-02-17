@@ -41,7 +41,7 @@ requirejs(['js/figure.min.js', 'js/modal.min.js', 'js/incs.js', 'js/utils/utils.
 					 break;
 				  }
 				  case gameDisplay.firstElementChild.nextElementSibling.nextElementSibling: {
-					 let ms = new MS(game);
+					 let ms = new MS(game, 9);
 					 break;
 				  }
 				  default: {
