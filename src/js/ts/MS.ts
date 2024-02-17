@@ -49,20 +49,35 @@ class Cell {
 	  context.appendChild(this.cell);
    }
 }
+class Cells {
+   private cells: DocumentFragment;
+   private num: number;
+   constructor(num: number) {
+	  this.num = num;
+	  this.cells = document.createDocumentFragment();
+   }
+   set() {
+	  for(let i = 0; i < this.num; i++) {
+		 const cell = new Cell("cell", "covered");
+		 cell.add(this.cells);
+	  }
+   }
+   add(context: Element) {
+	  context.appendChild(this.cells);
+   }
+}
 
 class Board {
    private board: Element;
-   constructor(board: Element) {
+   private cells: Cells;
+   constructor(board: Element, size: number) {
 	  this.board = board;
+	  this.cells = new Cells(size);
    }
 
    create() {
-	  const fragment = document.createDocumentFragment();
-	  for(let i = 0; i < 81; i++) {
-		 const cell = new Cell("cell", "covered");
-		 cell.add(fragment);
-	  }
-	  this.board.appendChild(fragment);
+	  this.cells.set();
+	  this.cells.add(this.board);
    }
 
    reset() {
@@ -96,7 +111,7 @@ export class MS {
 	   this.winningMsg = game.children.namedItem("winning-message");
 	   this.instructionsMsg = this.winningMsg.nextElementSibling;
 
-	   this.board = new Board(this.gameBoard);
+	   this.board = new Board(this.gameBoard, 81);
 
 	   this.start("10", "00");
     }

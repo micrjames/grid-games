@@ -73,17 +73,30 @@ var Cell = /** @class */ (function () {
     };
     return Cell;
 }());
+var Cells = /** @class */ (function () {
+    function Cells(num) {
+        this.num = num;
+        this.cells = document.createDocumentFragment();
+    }
+    Cells.prototype.set = function () {
+        for (var i = 0; i < this.num; i++) {
+            var cell = new Cell("cell", "covered");
+            cell.add(this.cells);
+        }
+    };
+    Cells.prototype.add = function (context) {
+        context.appendChild(this.cells);
+    };
+    return Cells;
+}());
 var Board = /** @class */ (function () {
-    function Board(board) {
+    function Board(board, size) {
         this.board = board;
+        this.cells = new Cells(size);
     }
     Board.prototype.create = function () {
-        var fragment = document.createDocumentFragment();
-        for (var i = 0; i < 81; i++) {
-            var cell = new Cell("cell", "covered");
-            cell.add(fragment);
-        }
-        this.board.appendChild(fragment);
+        this.cells.set();
+        this.cells.add(this.board);
     };
     Board.prototype.reset = function () {
         while (this.board.firstChild)
@@ -102,7 +115,7 @@ var MS = /** @class */ (function () {
         this.boardResetBtnIcon = this.boardResetBtn.firstElementChild;
         this.winningMsg = game.children.namedItem("winning-message");
         this.instructionsMsg = this.winningMsg.nextElementSibling;
-        this.board = new Board(this.gameBoard);
+        this.board = new Board(this.gameBoard, 81);
         this.start("10", "00");
     }
     MS.prototype.start = function (seconds, numMines) {
