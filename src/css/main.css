@@ -367,7 +367,6 @@ main #modal #modal-body .game-display .game.minesweeper .board {
   justify-items: center;
   align-items: center;
   grid-template-columns: repeat(9, auto);
-  gap: 1px;
 }
 main #modal #modal-body .game-display .game.minesweeper .board .cell {
   width: 35px;
@@ -380,7 +379,7 @@ main #modal #modal-body .game-display .game.minesweeper .board .cell.covered {
 }
 main #modal #modal-body .game-display .game.minesweeper .board .cell.uncovered {
   background-color: grey;
-  border: 1px solid grey;
+  border: 1px solid black;
 }
 main #modal #modal-body .game-display .game.minesweeper .board .cell.mine i {
   color: red;

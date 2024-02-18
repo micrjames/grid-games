@@ -364,6 +364,9 @@ var Countdown = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
+    Countdown.prototype.end = function () {
+        _super.prototype.cancel.call(this);
+    };
     return Countdown;
 }(Timer));
 exports.Countdown = Countdown;
@@ -376,30 +379,18 @@ var Cell = /** @class */ (function () {
             classNames[_i] = arguments[_i];
         }
         this.cell = document.createElement("div");
+        var gameOverEvent = new Event("gameover", { bubbles: true });
         try {
             for (var classNames_1 = __values(classNames), classNames_1_1 = classNames_1.next(); !classNames_1_1.done; classNames_1_1 = classNames_1.next()) {
                 var className = classNames_1_1.value;
                 this.cell.classList.add(className);
                 this.cell.addEventListener("click", function () {
-                    var e_2, _a;
                     if (_this.cell.classList.contains("covered")) {
                         switchIcons(_this.cell, ["covered"], ["uncovered"]);
                         if (_this.cell.classList.contains("mine")) {
                             switchIcons(_this.cell, ["mine"], ["burst"]);
                             addIcon(_this.cell, "burst", true, "solid");
-                            try {
-                                for (var _b = (e_2 = void 0, __values(_this.cell.parentElement.children)), _c = _b.next(); !_c.done; _c = _b.next()) {
-                                    var cell = _c.value;
-                                    console.log(cell);
-                                }
-                            }
-                            catch (e_2_1) { e_2 = { error: e_2_1 }; }
-                            finally {
-                                try {
-                                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                                }
-                                finally { if (e_2) throw e_2.error; }
-                            }
+                            _this.cell.dispatchEvent(gameOverEvent);
                         }
                     }
                 });
@@ -486,6 +477,7 @@ var MS = /** @class */ (function () {
         this.instructionsMsg = this.winningMsg.nextElementSibling;
         this.minesMat = new Matrix(n);
         this.board = new Board(this.gameBoard, n * n);
+        this.resetHandler = this.resetHandler.bind(this);
         this.start(this.totalSeconds.toString(), "10");
     }
     MS.prototype.start = function (seconds, numMines) {
@@ -502,19 +494,33 @@ var MS = /** @class */ (function () {
                 seconds = remainingTime.toString();
             _this.countdownDisplay.textContent = seconds;
         }, function () {
-            switchIcons(_this.boardResetBtnIcon, ["fa", "fa-smile-o"], ["far", "fa-dizzy"]);
-            _this.instructionsMsg.classList.add("hidden");
-            var resetHandler = function () {
-                switchIcons(_this.boardResetBtnIcon, ["far", "fa-dizzy"], ["fa", "fa-smile-o"]);
-                _this.board.reset();
-                _this.minesMat.clear();
-                _this.boardResetBtn.removeEventListener("click", resetHandler);
-                _this.instructionsMsg.classList.remove("hidden");
-                _this.start(_this.totalSeconds.toString(), "10");
-                _this.board.setMines(_this.minesMat, 10);
-            };
-            _this.boardResetBtn.addEventListener("click", resetHandler);
+            _this.gameBoard.dispatchEvent(new Event("gameover"));
         });
+        this.gameBoard.addEventListener("gameover", function () {
+            _this.countdown.cancel();
+            _this.setGameover();
+            var cells = _this.gameBoard.children;
+            for (var i = 0; i < cells.length; i++) {
+                if (cells[i].classList.contains("covered"))
+                    switchIcons(cells[i], ["covered"], ["uncovered"]);
+                if (cells[i].classList.contains("mine"))
+                    addIcon(cells[i], "bomb", true, "solid");
+            }
+        }, { once: true });
+    };
+    MS.prototype.setGameover = function () {
+        switchIcons(this.boardResetBtnIcon, ["fa", "fa-smile-o"], ["far", "fa-dizzy"]);
+        this.instructionsMsg.classList.add("hidden");
+        this.boardResetBtn.addEventListener("click", this.resetHandler);
+    };
+    MS.prototype.resetHandler = function () {
+        switchIcons(this.boardResetBtnIcon, ["far", "fa-dizzy"], ["fa", "fa-smile-o"]);
+        this.board.reset();
+        this.minesMat.clear();
+        this.boardResetBtn.removeEventListener("click", this.resetHandler);
+        this.instructionsMsg.classList.remove("hidden");
+        this.start(this.totalSeconds.toString(), "10");
+        //this.board.setMines(this.minesMat, 10);
     };
     return MS;
 }());
