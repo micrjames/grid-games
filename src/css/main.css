@@ -388,9 +388,14 @@ main #modal #modal-body .game-display .game.minesweeper .board .cell.mine i {
 main #modal #modal-body .game-display .game.minesweeper .board .cell.flag i {
   color: red;
 }
+main #modal #modal-body .game-display .game.minesweeper .board .cell.burst {
+  background-color: red;
+}
 main #modal #modal-body .game-display .game.minesweeper .board .cell.burst i {
   font-size: 1.75rem;
   color: yellow;
+}
+main #modal #modal-body .game-display .game.minesweeper .board .cell.burst i.fa-solid.fa-burst::before {
   background-color: red;
 }
 main #modal #modal-body .game-display .game.minesweeper .board .cell.numbers {

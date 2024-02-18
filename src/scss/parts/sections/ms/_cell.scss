@@ -25,11 +25,14 @@
            color: red;
         }
     }
-    &.burst {                                                                                         
+    &.burst {                                                             
+		background-color: red;
         i {
            font-size: 1.75rem;
            color: yellow;
-           background-color: red;
+		   &.fa-solid.fa-burst::before {
+			  background-color: red;
+		   }
         }
     }
     &.numbers {

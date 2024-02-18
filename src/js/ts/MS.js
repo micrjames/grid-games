@@ -370,6 +370,7 @@ exports.Countdown = Countdown;
 var Cell = /** @class */ (function () {
     function Cell() {
         var e_1, _a;
+        var _this = this;
         var classNames = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             classNames[_i] = arguments[_i];
@@ -379,6 +380,29 @@ var Cell = /** @class */ (function () {
             for (var classNames_1 = __values(classNames), classNames_1_1 = classNames_1.next(); !classNames_1_1.done; classNames_1_1 = classNames_1.next()) {
                 var className = classNames_1_1.value;
                 this.cell.classList.add(className);
+                this.cell.addEventListener("click", function () {
+                    var e_2, _a;
+                    if (_this.cell.classList.contains("covered")) {
+                        switchIcons(_this.cell, ["covered"], ["uncovered"]);
+                        if (_this.cell.classList.contains("mine")) {
+                            switchIcons(_this.cell, ["mine"], ["burst"]);
+                            addIcon(_this.cell, "burst", true, "solid");
+                            try {
+                                for (var _b = (e_2 = void 0, __values(_this.cell.parentElement.children)), _c = _b.next(); !_c.done; _c = _b.next()) {
+                                    var cell = _c.value;
+                                    console.log(cell);
+                                }
+                            }
+                            catch (e_2_1) { e_2 = { error: e_2_1 }; }
+                            finally {
+                                try {
+                                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                                }
+                                finally { if (e_2) throw e_2.error; }
+                            }
+                        }
+                    }
+                });
             }
         }
         catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -453,6 +477,7 @@ var MS = /** @class */ (function () {
         var gameInterface = game.firstElementChild;
         this.gameBoard = gameInterface.nextElementSibling;
         this.countdownDisplay = gameInterface.children[2];
+        this.totalSeconds = 10;
         this.minesDisplay = gameInterface.children[0];
         var btnGroup = gameInterface.children[1];
         this.boardResetBtn = btnGroup.firstElementChild;
@@ -461,7 +486,7 @@ var MS = /** @class */ (function () {
         this.instructionsMsg = this.winningMsg.nextElementSibling;
         this.minesMat = new Matrix(n);
         this.board = new Board(this.gameBoard, n * n);
-        this.start("99", "10");
+        this.start(this.totalSeconds.toString(), "10");
     }
     MS.prototype.start = function (seconds, numMines) {
         var _this = this;
@@ -470,7 +495,7 @@ var MS = /** @class */ (function () {
         console.log(this.minesMat.toString());
         this.minesDisplay.textContent = numMines;
         this.countdownDisplay.textContent = seconds;
-        this.countdown = new Countdown(10, function (remainingTime) {
+        this.countdown = new Countdown(this.totalSeconds, function (remainingTime) {
             if (_this.countdown.seconds < 10)
                 seconds = "0".concat(remainingTime);
             else
@@ -483,10 +508,10 @@ var MS = /** @class */ (function () {
                 switchIcons(_this.boardResetBtnIcon, ["far", "fa-dizzy"], ["fa", "fa-smile-o"]);
                 _this.board.reset();
                 _this.minesMat.clear();
-                _this.board.setMines(_this.minesMat, 10);
                 _this.boardResetBtn.removeEventListener("click", resetHandler);
                 _this.instructionsMsg.classList.remove("hidden");
-                _this.start("99", "10");
+                _this.start(_this.totalSeconds.toString(), "10");
+                _this.board.setMines(_this.minesMat, 10);
             };
             _this.boardResetBtn.addEventListener("click", resetHandler);
         });
@@ -499,4 +524,25 @@ var switchIcons = function (context, iconClassName1, iconClassName2) {
     context.classList.remove(iconClassName1[1]);
     context.classList.add(iconClassName2[0]);
     context.classList.add(iconClassName2[1]);
+};
+var createIcon = function (iconClasses) {
+    var icon = document.createElement("i");
+    var classes = iconClasses.split(" ");
+    classes.forEach(function (item) {
+        icon.classList.add(item);
+    });
+    return icon;
+};
+var addIcon = function (context, name, className, type) {
+    if (className === void 0) { className = false; }
+    if (type === void 0) { type = 'regular'; }
+    var icon = createIcon("fa-".concat(type, " fa-").concat(name));
+    context.appendChild(icon);
+    if (className)
+        context.classList.add("".concat(name));
+    return icon;
+};
+var removeIcon = function (context, name) {
+    context.classList.remove("".concat(name));
+    context.removeChild(context.lastChild);
 };

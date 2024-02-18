@@ -274,8 +274,18 @@ class Cell {
 	  this.cell = document.createElement("div");
 	  for(const className of classNames) {
 		 this.cell.classList.add(className);
+		 this.cell.addEventListener("click", () => {
+			if(this.cell.classList.contains("covered")) {
+			   switchIcons(this.cell, ["covered"], ["uncovered"]);
+			   if(this.cell.classList.contains("mine")) {
+				  switchIcons(this.cell, ["mine"], ["burst"]);
+				  addIcon(this.cell, "burst", true, "solid");
+			   }
+			}
+		 });
 	  }
    }
+
    add(context: DocumentFragment) {
 	  context.appendChild(this.cell);
    }
@@ -350,12 +360,14 @@ export class MS {
 	private instructionsMsg: Element;
 	private countdown: Countdown;
 	private minesMat: Matrix;
+	private totalSeconds: number;
 
 	private board: Board;
     constructor(game: HTMLElement, n: number) {
 	   const gameInterface = game.firstElementChild;                                      
 	   this.gameBoard = gameInterface.nextElementSibling;
 	   this.countdownDisplay = gameInterface.children[2];
+	   this.totalSeconds = 10;
 	   this.minesDisplay = gameInterface.children[0];
 
 	   const btnGroup = gameInterface.children[1];
@@ -368,7 +380,7 @@ export class MS {
 	   this.minesMat = new Matrix(n);
 	   this.board = new Board(this.gameBoard, n*n);
 
-	   this.start("99", "10");
+	   this.start(this.totalSeconds.toString(), "10");
     }
 	
 	start(seconds: string, numMines: string) {
@@ -377,7 +389,7 @@ export class MS {
 	   console.log(this.minesMat.toString());
 	   this.minesDisplay.textContent = numMines;
 	   this.countdownDisplay.textContent = seconds;
-	   this.countdown = new Countdown(10, remainingTime => {
+	   this.countdown = new Countdown(this.totalSeconds, remainingTime => {
            if(this.countdown.seconds < 10) seconds = `0${remainingTime}`;                       
            else seconds = remainingTime.toString();
            this.countdownDisplay.textContent = seconds;
@@ -390,12 +402,12 @@ export class MS {
 
 			  this.board.reset();
 			  this.minesMat.clear();
-			  this.board.setMines(this.minesMat, 10);
 
 			  this.boardResetBtn.removeEventListener("click", resetHandler);
 			  this.instructionsMsg.classList.remove("hidden");
 
-			  this.start("99", "10");
+			  this.start(this.totalSeconds.toString(), "10");
+			  this.board.setMines(this.minesMat, 10);
 		   };
 		   this.boardResetBtn.addEventListener("click", resetHandler);
 	   });
@@ -407,4 +419,27 @@ const switchIcons = (context: Element, iconClassName1: string[], iconClassName2:
 	context.classList.remove(iconClassName1[1]);
 	context.classList.add(iconClassName2[0]);
 	context.classList.add(iconClassName2[1]);
+};
+const createIcon = function(iconClasses: string) {
+   const icon = document.createElement("i");
+	
+   const classes = iconClasses.split(" ");
+   classes.forEach(item => {
+	  icon.classList.add(item);
+   });
+	
+   return icon;
+};
+
+const addIcon = function(context: Element, name: string, className=false, type='regular') {
+   const icon = createIcon(`fa-${type} fa-${name}`);
+   context.appendChild(icon);
+   if(className) context.classList.add(`${name}`);
+
+   return icon;
+};
+
+const removeIcon = function(context: Element, name: string) {
+   context.classList.remove(`${name}`);                                                            
+   context.removeChild(context.lastChild);
 };
