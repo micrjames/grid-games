@@ -10,5 +10,9 @@ const createSpan = (className = "", text = "", id = "") => {
    }           
    return span;
 };
+const changeSectionVisibility = function(context1, context2) {                                        
+    context1.classList.remove("hidden");
+    context2.classList.add("hidden");
+};
 
-exports.createSpan = createSpan;
+export { createSpan, changeSectionVisibility };

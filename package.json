@@ -4,7 +4,8 @@
   "description": "A basic framework upon which to build a web app.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+	 "build": "tsc",
+	 "start": "gulp start"
   },
   "author": "me",
   "license": "ISC",
@@ -21,5 +22,8 @@
   "keywords": [
     "search",
     "app"
-  ]
+  ],
+  "dependencies": {
+    "undici-types": "^6.6.2"
+  }
 }
