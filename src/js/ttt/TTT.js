@@ -1,5 +1,5 @@
-import { titleCase } from "../utils/utils.js";
-import { changeSectionVisibility } from "../utils/domHelpers.js";
+import { titleCase } from "../../js/utils/utils.js";
+import { changeSectionVisibility } from "../../js/utils/domHelpers.js";
 import { Cell } from "./Cell.js";
 import { Matrix } from "../matrix.min.js";
 export class TTT {
@@ -46,14 +46,7 @@ export class TTT {
         }
     }
     setMark(which, className) {
-        switch (className) {
-            case this.CLASS.CIRCLE:
-                this.MAT.CIRCLE.setElement(1, this.cells[which].pos.row, this.cells[which].pos.col);
-                break;
-            case this.CLASS.X:
-                this.MAT.X.setElement(1, this.cells[which].pos.row, this.cells[which].pos.col);
-                break;
-        }
+        this.MAT[className.toUpperCase()].setElement(1, this.cells[which].pos.row, this.cells[which].pos.col);
         console.log(this.MAT.X.toString());
         console.log(this.MAT.CIRCLE.toString());
         console.log('circle turn?', this.circleTurn);
