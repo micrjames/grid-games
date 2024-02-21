@@ -53,33 +53,28 @@ export class RPS {
     }
     handleSelectionClick(event) {
         const selectionBtnIcon = event.target;
-        // Get the selected class
         const whichSelectionBtnIconClass = selectionBtnIcon.classList[1];
         // Get the results element
-        const selectionBtn = selectionBtnIcon.parentElement;
-        const selections = selectionBtn === null || selectionBtn === void 0 ? void 0 : selectionBtn.parentElement;
-        const results = selections === null || selections === void 0 ? void 0 : selections.nextElementSibling;
+        const selections = selectionBtnIcon.parentElement.parentElement;
+        console.log(selections);
+        const results = selections.nextElementSibling;
         // Get the winning message element
         const winningMsg = results === null || results === void 0 ? void 0 : results.nextElementSibling;
         // Get the instructions element
         const instructionsEl = winningMsg === null || winningMsg === void 0 ? void 0 : winningMsg.nextElementSibling;
-        const plyrResults = results === null || results === void 0 ? void 0 : results.firstElementChild;
-        const cmptrResults = results === null || results === void 0 ? void 0 : results.lastElementChild;
-        this.changeIcon(plyrResults, whichSelectionBtnIconClass);
+        const resultsObj = {
+            plyr: results === null || results === void 0 ? void 0 : results.firstElementChild,
+            cmptr: results === null || results === void 0 ? void 0 : results.lastElementChild
+        };
         const randIdx = getRandomIdx(this.icons.length);
-        this.changeIcon(cmptrResults, `fa-${this.icons[randIdx].icon}`);
+        this.changeIcon(resultsObj.plyr, whichSelectionBtnIconClass);
+        this.changeIcon(resultsObj.cmptr, `fa-${this.icons[randIdx].icon}`);
         const splitSelClass = whichSelectionBtnIconClass.split('-');
         splitSelClass.shift();
-        const joinedSelClass = splitSelClass.join('-');
-        console.log(`player: ${joinedSelClass}`, `computer: ${this.icons[randIdx].icon}`);
-        console.log(winningMsg, instructionsEl);
-        // check if joinedSelClass beats icons[randIdx]
-        const joinedSelClassIdx = this.icons.findIndex(icon => joinedSelClass == icon.icon);
-        const joinedSelClassBeats = this.icons[joinedSelClassIdx].beats;
-        const joinedSelClassBeatsIdx = this.icons.findIndex(icon => joinedSelClassBeats == icon.type);
-        const computerClassBeats = this.icons[randIdx].beats;
-        const computerClassBeatsIdx = this.icons.findIndex(icon => computerClassBeats == icon.type);
-        const whichResults = this.checkWhichResults(plyrResults, cmptrResults, this.icons, joinedSelClassIdx, randIdx, joinedSelClassBeatsIdx, computerClassBeatsIdx);
+        const playerClassIdx = this.icons.findIndex(icon => splitSelClass.join('-') == icon.icon);
+        const playerClassBeatsIdx = this.icons.findIndex(icon => this.icons[playerClassIdx].beats == icon.type);
+        const computerClassBeatsIdx = this.icons.findIndex(icon => this.icons[randIdx].beats == icon.type);
+        const whichResults = this.checkWhichResults(resultsObj, this.icons, playerClassIdx, randIdx, playerClassBeatsIdx, computerClassBeatsIdx);
         this.endGame(winningMsg, selections, instructionsEl, whichResults.textMsg);
         if (whichResults.which)
             this.setScore(whichResults.which, 1);
@@ -97,25 +92,24 @@ export class RPS {
         console.log(thisResultsScore === null || thisResultsScore === void 0 ? void 0 : thisResultsScore.parentElement);
         thisResultsScore.textContent = "1";
     }
-    checkWhichResults(plyrResults, cmptrResults, icons, plyrIdx, cmptrIdx, plyrBeatsIdx, cmptrBeatsIdx) {
+    checkWhichResults(resultsObj, icons, plyrIdx, cmptrIdx, plyrBeatsIdx, cmptrBeatsIdx) {
+        let whichWins;
+        let results;
         if (icons[plyrBeatsIdx].icon == icons[cmptrIdx].icon) {
-            return {
-                textMsg: 'Player wins!',
-                which: plyrResults
-            };
+            whichWins = "Player";
+            results = resultsObj.plyr;
         }
         if (icons[cmptrBeatsIdx].icon == icons[plyrIdx].icon) {
-            return {
-                textMsg: 'Computer wins!',
-                which: cmptrResults
-            };
+            whichWins = "Computer";
+            results = resultsObj.cmptr;
         }
         if (icons[plyrIdx].icon == icons[cmptrIdx].icon) {
-            return {
-                textMsg: 'There is a draw!',
-                which: null
-            };
+            whichWins = "No one";
         }
+        return {
+            textMsg: `${whichWins} wins!`,
+            which: results
+        };
     }
     endGame(winningMsg, selections, instructionsEl, winning_msg_text) {
         winningMsg.firstElementChild.textContent = winning_msg_text;
