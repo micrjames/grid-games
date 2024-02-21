@@ -1,7 +1,7 @@
 import { titleCase } from "../utils/utils.js";
 import { changeSectionVisibility } from "../utils/domHelpers.js";
 import { Cell } from "./Cell.js";
-import { Matrix } from "../Matrix.js";
+import { Matrix } from "../matrix.min.js";
 export class TTT {
     constructor(board) {
         this.cells = [];

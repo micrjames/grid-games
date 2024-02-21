@@ -14,5 +14,9 @@ const titleCase = str => {
     const titledStr = titled.join(' ');
     return titledStr;
 };
+const getRandomIdx = function(size) {                                      
+    const iconIndex = Math.floor(Math.random() * size);                     
+    return iconIndex;                                                       
+};
 
-export { spinalCase, titleCase };
+export { spinalCase, titleCase, getRandomIdx };

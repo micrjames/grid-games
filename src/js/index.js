@@ -1,5 +1,6 @@
 import { figures, modalEl } from "./incs.js";
 import { TTT } from "./ttt/TTT.js";
+import { RPS } from "./rps/RPS.js";
 import { Modal } from "./modal.min.js";
 import { Figure } from "./figure.min.js";
 import { spinalCase } from "./utils/utils.js";
@@ -35,6 +36,19 @@ for(const figure of figures)
 					  ttt = new TTT(board);
 					  ttt.setMarks();
 				  });
+				  break;
+			   }
+			   case gameDisplay.firstElementChild.nextElementSibling : {
+				   let rps = new RPS(game);
+				   rps.start();
+
+				   resetBtn.addEventListener("click", () => {
+					   rps.reset();
+				   });
+				   break;
+			   }
+			   case gameDisplay.firstElementChild.nextElementSibling.nextElementSibling: {
+				  // let ms = new MS(game, 9);
 				  break;
 			   }
 			   default: {
