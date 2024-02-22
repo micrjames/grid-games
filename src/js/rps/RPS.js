@@ -1,3 +1,4 @@
+import config from "./config.js";
 import { buildEl, switchVisibility, addIcon } from "../../js/utils/domHelpers.js";
 import { getRandomIdx } from "../../js/utils/utils.js";
 import IconTypes from "./IconTypes.js";
@@ -51,9 +52,7 @@ export class RPS {
         // Get the results element
         const selections = selectionBtnIcon.parentElement.parentElement;
         const results = selections.nextElementSibling;
-        // Get the winning message element
         const winningMsg = results === null || results === void 0 ? void 0 : results.nextElementSibling;
-        // Get the instructions element
         const instructionsEl = winningMsg === null || winningMsg === void 0 ? void 0 : winningMsg.nextElementSibling;
         const resultsObj = {
             plyr: results === null || results === void 0 ? void 0 : results.firstElementChild,
@@ -66,10 +65,15 @@ export class RPS {
         splitSelClass.shift();
         const playerClassIdx = this.icons.findIndex(icon => splitSelClass.join('-') == icon.icon);
         const whichResults = this.checkWhichResults(resultsObj, this.icons, playerClassIdx, randIdx);
-        this.endGame(winningMsg, selections, instructionsEl, whichResults.textMsg);
         if (whichResults.which) {
             this.score.incScore(whichResults.name);
             this.setScore(whichResults);
+        }
+        this.context.addEventListener("gameover", () => {
+            this.endGame(winningMsg, selections, instructionsEl, whichResults.textMsg);
+        });
+        if (this.score.getIntScore("player") == config.numToWin || this.score.getIntScore("computer") == config.numToWin) {
+            this.context.dispatchEvent(new Event("gameover"));
         }
     }
     changeIcon(thisResults, whichSelectionBtnIconClass) {

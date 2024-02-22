@@ -16,4 +16,14 @@ export class Score {
     getScore(which) {
         return this._score[which];
     }
+    getIntScore(which) {
+        const intScore = parseInt(this.getScore(which));
+        return intScore;
+    }
+    get total() {
+        const playerScore = parseInt(this._score.player);
+        const computerScore = parseInt(this._score.computer);
+        const total = playerScore + computerScore;
+        return total;
+    }
 }
