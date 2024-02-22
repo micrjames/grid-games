@@ -1,5 +1,5 @@
-import { Countdown } from "../countdown.min.js";
-import { Matrix } from "../matrix.min.js";
+import { Countdown } from "../libs/countdown.min.js";
+import { Matrix } from "../libs/matrix.min.js";
 import { Board } from "./Board.js";
 import { switchIcons, addIcon } from "./utils.js";
 export class MS {

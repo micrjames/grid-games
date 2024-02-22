@@ -1,6 +1,6 @@
 import { Cells } from "./Cells.js";
-import { Range } from "../range.min.js";
-import { shuffle } from "../shuffle.min.js";
+import { Range } from "../libs/range.min.js";
+import { shuffle } from "../libs/shuffle.min.js";
 export class Board {
     constructor(board, size) {
         this.board = board;

@@ -2,8 +2,8 @@ import { figures, modalEl } from "./incs.js";
 import { TTT } from "./ttt/TTT.js";
 import { RPS } from "./rps/RPS.js";
 import { MS } from "./ms/MS.js";
-import { Modal } from "./modal.min.js";
-import { Figure } from "./figure.min.js";
+import { Modal } from "./libs/modal.min.js";
+import { Figure } from "./libs/figure.min.js";
 import { spinalCase } from "./utils/utils.js";
 
 for(const figure of figures)

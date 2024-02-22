@@ -1,6 +1,6 @@
 import config from "./config.js";
-import { buildEl, switchVisibility, addIcon } from "../../js/utils/domHelpers.js";
-import { getRandomIdx } from "../../js/utils/utils.js";
+import { buildEl, switchVisibility, addIcon } from "../utils/domHelpers.js";
+import { getRandomIdx } from "../utils/utils.js";
 import IconTypes from "./IconTypes.js";
 import { Score } from "./Score.js";
 export class RPS {
