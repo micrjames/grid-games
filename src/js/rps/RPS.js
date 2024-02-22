@@ -1,6 +1,7 @@
 import { buildEl, switchVisibility, addIcon } from "../../js/utils/domHelpers.js";
 import { getRandomIdx } from "../../js/utils/utils.js";
 import IconTypes from "./IconTypes.js";
+import { Score } from "./Score.js";
 export class RPS {
     constructor(context) {
         this.createResult = function (name, msg, resultClass, resultMsg, resultIcon, iconID) {
@@ -16,18 +17,11 @@ export class RPS {
         };
         this.context = context;
         this.icons = IconTypes;
-        this.score = {
-            player: "0",
-            computer: "0"
-        };
+        this.score = new Score();
         this.handleSelectionClick = this.handleSelectionClick.bind(this);
     }
-    resetScore() {
-        this.score.player = "0";
-        this.score.computer = "0";
-    }
     start() {
-        this.resetScore();
+        this.score.reset();
         this.createResults();
         this.createSelection();
     }
@@ -56,7 +50,6 @@ export class RPS {
         const whichSelectionBtnIconClass = selectionBtnIcon.classList[1];
         // Get the results element
         const selections = selectionBtnIcon.parentElement.parentElement;
-        console.log(selections);
         const results = selections.nextElementSibling;
         // Get the winning message element
         const winningMsg = results === null || results === void 0 ? void 0 : results.nextElementSibling;
@@ -72,12 +65,12 @@ export class RPS {
         const splitSelClass = whichSelectionBtnIconClass.split('-');
         splitSelClass.shift();
         const playerClassIdx = this.icons.findIndex(icon => splitSelClass.join('-') == icon.icon);
-        const playerClassBeatsIdx = this.icons.findIndex(icon => this.icons[playerClassIdx].beats == icon.type);
-        const computerClassBeatsIdx = this.icons.findIndex(icon => this.icons[randIdx].beats == icon.type);
-        const whichResults = this.checkWhichResults(resultsObj, this.icons, playerClassIdx, randIdx, playerClassBeatsIdx, computerClassBeatsIdx);
+        const whichResults = this.checkWhichResults(resultsObj, this.icons, playerClassIdx, randIdx);
         this.endGame(winningMsg, selections, instructionsEl, whichResults.textMsg);
-        if (whichResults.which)
-            this.setScore(whichResults.which, 1);
+        if (whichResults.which) {
+            this.score.incScore(whichResults.name);
+            this.setScore(whichResults);
+        }
     }
     changeIcon(thisResults, whichSelectionBtnIconClass) {
         // Get the current player class
@@ -86,29 +79,36 @@ export class RPS {
         thisResultsIcon === null || thisResultsIcon === void 0 ? void 0 : thisResultsIcon.classList.remove(thisResultsIconClass);
         thisResultsIcon === null || thisResultsIcon === void 0 ? void 0 : thisResultsIcon.classList.add(whichSelectionBtnIconClass);
     }
-    setScore(thisResults, score) {
+    setScore(thisResults) {
+        var _a;
         // Get the current player score
-        const thisResultsScore = thisResults === null || thisResults === void 0 ? void 0 : thisResults.firstElementChild;
-        console.log(thisResultsScore === null || thisResultsScore === void 0 ? void 0 : thisResultsScore.parentElement);
-        thisResultsScore.textContent = "1";
+        const thisResultsScore = (_a = thisResults.which) === null || _a === void 0 ? void 0 : _a.firstElementChild;
+        thisResultsScore.textContent = this.score.getScore(thisResults.name);
     }
-    checkWhichResults(resultsObj, icons, plyrIdx, cmptrIdx, plyrBeatsIdx, cmptrBeatsIdx) {
+    checkWhichResults(resultsObj, icons, plyrIdx, cmptrIdx) {
         let whichWins;
         let results;
+        let name;
+        const plyrBeatsIdx = this.icons.findIndex(icon => this.icons[plyrIdx].beats == icon.type);
+        const cmptrBeatsIdx = this.icons.findIndex(icon => this.icons[cmptrIdx].beats == icon.type);
         if (icons[plyrBeatsIdx].icon == icons[cmptrIdx].icon) {
             whichWins = "Player";
             results = resultsObj.plyr;
+            name = whichWins.toLowerCase();
         }
         if (icons[cmptrBeatsIdx].icon == icons[plyrIdx].icon) {
             whichWins = "Computer";
             results = resultsObj.cmptr;
+            name = whichWins.toLowerCase();
         }
         if (icons[plyrIdx].icon == icons[cmptrIdx].icon) {
             whichWins = "No one";
+            name = whichWins.toLowerCase();
         }
         return {
             textMsg: `${whichWins} wins!`,
-            which: results
+            which: results,
+            name
         };
     }
     endGame(winningMsg, selections, instructionsEl, winning_msg_text) {
@@ -121,9 +121,9 @@ export class RPS {
     }
     createResults() {
         const div = buildEl("div", "results", "results");
-        const playerSpan = this.createResult("plyr-result", "You", "result-score", this.score.player, this.icons[0].icon, "plyr-selection");
+        const playerSpan = this.createResult("plyr-result", "You", "result-score", this.score.getScore("player"), this.icons[0].icon, "plyr-selection");
         div.appendChild(playerSpan);
-        const computerSpan = this.createResult("cmptr-result", "Computer", "result-score", this.score.player, this.icons[2].icon, "cmptr-selection");
+        const computerSpan = this.createResult("cmptr-result", "Computer", "result-score", this.score.getScore("computer"), this.icons[2].icon, "cmptr-selection");
         div.appendChild(computerSpan);
         this.context.insertBefore(div, this.context.firstChild);
     }
