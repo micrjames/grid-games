@@ -1,6 +1,7 @@
 import { figures, modalEl } from "./incs.js";
 import { TTT } from "./ttt/TTT.js";
 import { RPS } from "./rps/RPS.js";
+import { MS } from "./ms/MS.js";
 import { Modal } from "./modal.min.js";
 import { Figure } from "./figure.min.js";
 import { spinalCase } from "./utils/utils.js";
@@ -48,7 +49,7 @@ for(const figure of figures)
 				   break;
 			   }
 			   case gameDisplay.firstElementChild.nextElementSibling.nextElementSibling: {
-				  // let ms = new MS(game, 9);
+				  let ms = new MS(game, 9);
 				  break;
 			   }
 			   default: {
