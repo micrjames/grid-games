@@ -9,7 +9,6 @@ import { spinalCase } from "./utils/utils.js";
 for(const figure of figures)
    new Figure(figure, text => {
 	  const modal = new Modal(modalEl);
-	  modal.doOnClose();
 	  modal.hdrText = text;
 	  const spinaledText = spinalCase(text);
 	  const gameDisplay = modal.body.children[0];
@@ -49,7 +48,7 @@ for(const figure of figures)
 				   break;
 			   }
 			   case gameDisplay.firstElementChild.nextElementSibling.nextElementSibling: {
-				  let ms = new MS(game, 9);
+				  new MS(game, 9);
 				  break;
 			   }
 			   default: {
@@ -62,5 +61,8 @@ for(const figure of figures)
 		 }
 	  }
 	  modal.open();
+	  modal.doOnClose(() => {
+		 location.reload();
+	  });
 	  window.scrollTo(0, 0);
    });
